@@ -1,1 +1,1 @@
-# The-Geneva-Emotion-Wheel
+# The Geneva Emotion Wheel
