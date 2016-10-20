@@ -4,10 +4,34 @@ var R = 80;
 
 var gr = draw.group();
 
-var numberPoints = 20;
+
+var labels = [
+	'Contentment',
+	'Love',
+	'Admiration',
+	'Relief',
+	'Comassion',
+	'Sadness',
+	'Guilt',
+	'Regret',
+	'Shame',
+	'Disappointment',
+	'Fear',
+	'Disgust',
+	'Contempt',
+	'Hate',
+	'Anger',
+	'Interest',
+	'Amusement',
+	'Pride',
+	'Joy',
+	'Pleasure'
+];
+
+var numberPoints = labels.length;
 var k = 360/numberPoints;
 
-gr.move(200, 200);
+gr.move(300, 300);
 
 var config = [
 	[10, 'yellow'],
@@ -32,5 +56,14 @@ for(var i =1; i<=numberPoints; i++) {
 		circle.dy(y);
 		odstep += c[0] + 10;
 	});
+
+	var text = group.plain(labels[i-1]);
+	text.fill('#000');
+	text.addClass('text');
+	text.center(R, R);
+	var y = Math.sin(k*i*Math.PI/180) * (R+odstep);
+	var x = Math.cos(k*i*Math.PI/180) * (R+odstep);
+	text.dx(x);
+	text.dy(y);
 }
 
