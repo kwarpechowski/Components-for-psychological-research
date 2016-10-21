@@ -1,0 +1,20 @@
+{
+    "files": [
+    	"src/model/*.ts",
+        "src/*.ts"
+    ],
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "baseUrl": "./src/",
+        "typeRoots": [
+            "../"
+        ],
+        "types": [],
+        "noEmit": false,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true
+    }
+}
