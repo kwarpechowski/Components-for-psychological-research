@@ -52,14 +52,18 @@ export class Config implements ConfigInterface{
     return this.labels.length;
   }
 
+  getQuarterCount() : number {
+    return this.getElementsCount() / 4;
+  }
+
   getLines(): Array<Line> {
     //TODO KW konfig
     let lines: Array<Line> = [];
-    lines.push(new Line(10, 'yellow'));
-    lines.push(new Line(20, 'red'));
-    lines.push(new Line(25, 'yellow'));
-    lines.push(new Line(30, 'red'));
-    lines.push(new Line(40, 'yellow'));
+    lines.push(new Line(10));
+    lines.push(new Line(20));
+    lines.push(new Line(25));
+    lines.push(new Line(30));
+    lines.push(new Line(40));
     return lines;
   }
 }

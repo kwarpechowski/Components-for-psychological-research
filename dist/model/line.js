@@ -1,12 +1,8 @@
 "use strict";
 var Line = (function () {
-    function Line(size, color) {
+    function Line(size) {
         this.size = size;
-        this.color = color;
     }
-    Line.prototype.getColor = function () {
-        return this.color;
-    };
     Line.prototype.getSize = function () {
         return this.size;
     };

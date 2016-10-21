@@ -94,14 +94,17 @@
 	    Config.prototype.getElementsCount = function () {
 	        return this.labels.length;
 	    };
+	    Config.prototype.getQuarterCount = function () {
+	        return this.getElementsCount() / 4;
+	    };
 	    Config.prototype.getLines = function () {
 	        //TODO KW konfig
 	        var lines = [];
-	        lines.push(new line_1.Line(10, 'yellow'));
-	        lines.push(new line_1.Line(20, 'red'));
-	        lines.push(new line_1.Line(25, 'yellow'));
-	        lines.push(new line_1.Line(30, 'red'));
-	        lines.push(new line_1.Line(40, 'yellow'));
+	        lines.push(new line_1.Line(10));
+	        lines.push(new line_1.Line(20));
+	        lines.push(new line_1.Line(25));
+	        lines.push(new line_1.Line(30));
+	        lines.push(new line_1.Line(40));
 	        return lines;
 	    };
 	    return Config;
@@ -115,13 +118,9 @@
 
 	"use strict";
 	var Line = (function () {
-	    function Line(size, color) {
+	    function Line(size) {
 	        this.size = size;
-	        this.color = color;
 	    }
-	    Line.prototype.getColor = function () {
-	        return this.color;
-	    };
 	    Line.prototype.getSize = function () {
 	        return this.size;
 	    };
@@ -133,9 +132,10 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var group_1 = __webpack_require__(4);
 	var Drawer = (function () {
 	    function Drawer(config) {
 	        this.draw = SVG('drawing'); //z konfigu pobierac
@@ -149,44 +149,77 @@
 	        lineVertical.center(this.config.R, this.config.R);
 	    };
 	    Drawer.prototype.run = function () {
-	        var _this = this;
 	        this.drawAxis();
 	        this.mainElement.move(250, 250);
-	        var cw = this.config.getElementsCount() / 4; //a co jak nie bedzie calkowita
-	        var _loop_1 = function() {
-	            //let groupInstance = new Group(this.mainElement);
-	            var position = (90 / cw) * (i - cw - 0.5) * Math.PI / 180;
-	            var oy = Math.sin(position);
-	            var ox = Math.cos(position);
-	            var odstep = 0;
-	            var group = this_1.mainElement.group().addClass('line');
-	            this_1.config.getLines().forEach(function (line, index) {
-	                var size = line.getSize();
-	                var circle = group.ellipse(size, size);
-	                circle.addClass('element_' + index);
-	                circle.fill(line.getColor());
-	                circle.center(_this.config.R, _this.config.R);
-	                circle.dx(ox * (_this.config.R + odstep));
-	                circle.dy(oy * (_this.config.R + odstep));
-	                circle.click(function () {
-	                    console.log('clicked', i, index);
-	                });
-	                odstep += size + 10;
-	            });
-	            var text = group.plain(this_1.config.labels[i - 1]);
-	            text.addClass('text');
-	            text.center(this_1.config.R, this_1.config.R);
-	            text.dx(ox * (this_1.config.R + odstep));
-	            text.dy(oy * (this_1.config.R + odstep));
-	        };
-	        var this_1 = this;
 	        for (var i = 1; i <= this.config.getElementsCount(); i++) {
-	            _loop_1();
+	            new group_1.Group(this.mainElement, i, this.config).run();
 	        }
 	    };
 	    return Drawer;
 	}());
 	exports.Drawer = Drawer;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var circle_1 = __webpack_require__(5);
+	var Group = (function () {
+	    function Group(element, index, config) {
+	        this.element = element.group().addClass('line');
+	        this.index = index;
+	        this.config = config;
+	    }
+	    Group.prototype.getPosition = function () {
+	        var cw = this.config.getQuarterCount();
+	        return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
+	    };
+	    Group.prototype.run = function () {
+	        var _this = this;
+	        var odstep = 0;
+	        this.config.getLines().forEach(function (line, index) {
+	            var size = line.getSize();
+	            new circle_1.Circle(_this, size, odstep, index);
+	            odstep += size + 10;
+	        });
+	        // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle
+	        // 
+	        // let text = this.element.plain(this.config.labels[this.index-1]);
+	        // text.addClass('text');
+	        // text.center(this.config.R, this.config.R);
+	        // text.dx(ox * (this.config.R + odstep));
+	        // text.dy(oy * (this.config.R + odstep));
+	    };
+	    return Group;
+	}());
+	exports.Group = Group;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+	var Circle = (function () {
+	    function Circle(group, size, odstep, index) {
+	        this.element = group.element[Circle.mode](size, size);
+	        this.element.fill('yellow');
+	        //TODO KW bezposrednio do config
+	        this.element.center(group.config.R, group.config.R);
+	        var oy = Math.sin(group.getPosition());
+	        var ox = Math.cos(group.getPosition());
+	        this.element.dx(ox * (group.config.R + odstep));
+	        this.element.dy(oy * (group.config.R + odstep));
+	        this.element.click(function () {
+	            console.log('clicked', group.index, index);
+	        });
+	    }
+	    Circle.mode = 'ellipse';
+	    return Circle;
+	}());
+	exports.Circle = Circle;
 
 
 /***/ }

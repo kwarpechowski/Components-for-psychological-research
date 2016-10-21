@@ -34,14 +34,17 @@ var Config = (function () {
     Config.prototype.getElementsCount = function () {
         return this.labels.length;
     };
+    Config.prototype.getQuarterCount = function () {
+        return this.getElementsCount() / 4;
+    };
     Config.prototype.getLines = function () {
         //TODO KW konfig
         var lines = [];
-        lines.push(new line_1.Line(10, 'yellow'));
-        lines.push(new line_1.Line(20, 'red'));
-        lines.push(new line_1.Line(25, 'yellow'));
-        lines.push(new line_1.Line(30, 'red'));
-        lines.push(new line_1.Line(40, 'yellow'));
+        lines.push(new line_1.Line(10));
+        lines.push(new line_1.Line(20));
+        lines.push(new line_1.Line(25));
+        lines.push(new line_1.Line(30));
+        lines.push(new line_1.Line(40));
         return lines;
     };
     return Config;
