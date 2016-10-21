@@ -1,40 +1,45 @@
 /// <reference path="../types/svgjs.d.ts" />
 import { Config }  from './config';
-import { Line }  from './model/line';
-
+import { Line } from './model/line';
+import { Group } from './model/group';
 
 export class Drawer {
   private config: Config;
   private mainElement: svgjs.Element;
-  private draw: svgjs.Doc = SVG('drawing');
-
+  private draw: svgjs.Doc = SVG('drawing'); //z konfigu pobierac
 
   constructor(config: Config) {
     this.config = config;
     this.mainElement = this.draw.group();
   }
 
-  getLines(): Array<Line> {
-    let lines: Array<Line> = [];
-    lines.push(new Line(10, 'yellow'));
-    lines.push(new Line(20, 'green'));
-    lines.push(new Line(30, 'pink'));
-    lines.push(new Line(40, 'blue'));
-    lines.push(new Line(50, 'gold'));
-    return lines;
+  private drawAxis(): void {
+    let lineHorizontal = this.mainElement.line(0, 0, 600, 0).stroke({ width: 1 })
+    lineHorizontal.center(this.config.R, this.config.R);
+
+    let lineVertical = this.mainElement.line(0, 0, 0, 600).stroke({ width: 1 })
+    lineVertical.center(this.config.R, this.config.R);
   }
 
   run() : void {
-    var numberPoints = this.config.labels.length;
-    var k = 360/numberPoints;
+    this.drawAxis();
+    this.mainElement.move(250, 250);
 
-    this.mainElement.move(300, 300);
+    let cw = this.config.getElementsCount() / 4; //a co jak nie bedzie calkowita
 
-    for(var i =1; i <= numberPoints; i++) {
-      var odstep = 0;
+
+    for(var i =1; i <= this.config.getElementsCount(); i++) {
+       //let groupInstance = new Group(this.mainElement);
+
+      let position = (90 / cw) * (i - cw - 0.5) * Math.PI / 180;
+
+      let oy = Math.sin(position);
+      let ox = Math.cos(position);
+
+      let odstep = 0;
 
       let group = this.mainElement.group().addClass('line');
-      this.getLines().forEach((line, index) => {
+      this.config.getLines().forEach((line, index) => {
 
         let size : number = line.getSize();
         let circle = group.ellipse(size, size);
@@ -42,22 +47,23 @@ export class Drawer {
         circle.addClass('element_' + index);
         circle.fill(line.getColor());
         circle.center(this.config.R, this.config.R);
-        var y = Math.sin(k*i*Math.PI/180) * (this.config.R + odstep);
-        var x = Math.cos(k*i*Math.PI/180) * (this.config.R + odstep);
-        circle.dx(x);
-        circle.dy(y);
+
+        circle.dx(ox * (this.config.R + odstep));
+        circle.dy(oy * (this.config.R + odstep));
+
+
+        circle.click(() => {
+          console.log('clicked', i, index);
+        });
+
         odstep += size + 10;
       });
 
-      var text = group.plain(this.config.labels[i-1]);
-      text.fill('#000');
+      let text = group.plain(this.config.labels[i-1]);
       text.addClass('text');
       text.center(this.config.R, this.config.R);
-      var y = Math.sin(k*i*Math.PI/180) * (this.config.R + odstep);
-      var x = Math.cos(k*i*Math.PI/180) * (this.config.R + odstep);
-      text.dx(x);
-      text.dy(y);
+      text.dx(ox * (this.config.R + odstep));
+      text.dy(oy * (this.config.R + odstep));
     }
   }
-
 }

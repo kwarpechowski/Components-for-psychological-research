@@ -1,52 +1,49 @@
 "use strict";
-var line_1 = require('./model/line');
 var Drawer = (function () {
     function Drawer(config) {
-        this.draw = SVG('drawing');
+        this.draw = SVG('drawing'); //z konfigu pobierac
         this.config = config;
         this.mainElement = this.draw.group();
     }
-    Drawer.prototype.getLines = function () {
-        var lines = [];
-        lines.push(new line_1.Line(10, 'yellow'));
-        lines.push(new line_1.Line(20, 'green'));
-        lines.push(new line_1.Line(30, 'pink'));
-        lines.push(new line_1.Line(40, 'blue'));
-        lines.push(new line_1.Line(50, 'gold'));
-        return lines;
+    Drawer.prototype.drawAxis = function () {
+        var lineHorizontal = this.mainElement.line(0, 0, 600, 0).stroke({ width: 1 });
+        lineHorizontal.center(this.config.R, this.config.R);
+        var lineVertical = this.mainElement.line(0, 0, 0, 600).stroke({ width: 1 });
+        lineVertical.center(this.config.R, this.config.R);
     };
     Drawer.prototype.run = function () {
         var _this = this;
-        var numberPoints = this.config.labels.length;
-        var k = 360 / numberPoints;
-        this.mainElement.move(300, 300);
+        this.drawAxis();
+        this.mainElement.move(250, 250);
+        var cw = this.config.getElementsCount() / 4; //a co jak nie bedzie calkowita
         var _loop_1 = function() {
-            odstep = 0;
+            //let groupInstance = new Group(this.mainElement);
+            var position = (90 / cw) * (i - cw - 0.5) * Math.PI / 180;
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var odstep = 0;
             var group = this_1.mainElement.group().addClass('line');
-            this_1.getLines().forEach(function (line, index) {
+            this_1.config.getLines().forEach(function (line, index) {
                 var size = line.getSize();
                 var circle = group.ellipse(size, size);
                 circle.addClass('element_' + index);
                 circle.fill(line.getColor());
                 circle.center(_this.config.R, _this.config.R);
-                var y = Math.sin(k * i * Math.PI / 180) * (_this.config.R + odstep);
-                var x = Math.cos(k * i * Math.PI / 180) * (_this.config.R + odstep);
-                circle.dx(x);
-                circle.dy(y);
+                circle.dx(ox * (_this.config.R + odstep));
+                circle.dy(oy * (_this.config.R + odstep));
+                circle.click(function () {
+                    console.log('clicked', i, index);
+                });
                 odstep += size + 10;
             });
-            text = group.plain(this_1.config.labels[i - 1]);
-            text.fill('#000');
+            var text = group.plain(this_1.config.labels[i - 1]);
             text.addClass('text');
             text.center(this_1.config.R, this_1.config.R);
-            y = Math.sin(k * i * Math.PI / 180) * (this_1.config.R + odstep);
-            x = Math.cos(k * i * Math.PI / 180) * (this_1.config.R + odstep);
-            text.dx(x);
-            text.dy(y);
+            text.dx(ox * (this_1.config.R + odstep));
+            text.dy(oy * (this_1.config.R + odstep));
         };
         var this_1 = this;
-        var odstep, text, y, x;
-        for (var i = 1; i <= numberPoints; i++) {
+        for (var i = 1; i <= this.config.getElementsCount(); i++) {
             _loop_1();
         }
     };
