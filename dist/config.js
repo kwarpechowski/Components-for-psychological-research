@@ -1,5 +1,5 @@
 "use strict";
-var line_1 = require('./model/line');
+var line_1 = require("./model/line");
 var Config = (function () {
     function Config() {
     }
@@ -15,7 +15,7 @@ var Config = (function () {
         return this.getElementsCount() / 4;
     };
     Config.getLines = function () {
-        //TODO KW konfig
+        // TODO KW konfig
         var lines = [];
         lines.push(new line_1.Line(10));
         lines.push(new line_1.Line(15));
@@ -26,34 +26,34 @@ var Config = (function () {
     };
     Config.R = 80;
     Config.labels = [
-        'Interest',
-        'Amusement',
-        'Pride',
-        'Joy',
-        'Pleasure',
-        'Contentment',
-        'Love',
-        'Admiration',
-        'Relief',
-        'Comassion',
-        'Sadness',
-        'Guilt',
-        'Regret',
-        'Shame',
-        'Disappointment',
-        'Fear',
-        'Disgust',
-        'Contempt',
-        'Hate',
-        'Anger'
+        "Interest",
+        "Amusement",
+        "Pride",
+        "Joy",
+        "Pleasure",
+        "Contentment",
+        "Love",
+        "Admiration",
+        "Relief",
+        "Comassion",
+        "Sadness",
+        "Guilt",
+        "Regret",
+        "Shame",
+        "Disappointment",
+        "Fear",
+        "Disgust",
+        "Contempt",
+        "Hate",
+        "Anger"
     ];
-    Config.element = 'drawer';
+    Config.element = "drawer";
     Config.showLines = true;
     Config.classes = {
-        mainGroup: 'main_group',
-        lineAxis: 'line_axis',
-        line: 'line',
-        circlePrefix: 'row_'
+        mainGroup: "main_group",
+        lineAxis: "line_axis",
+        line: "line",
+        circlePrefix: "row_"
     };
     return Config;
 }());

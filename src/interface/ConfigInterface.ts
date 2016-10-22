@@ -1,4 +1,4 @@
-import { ClassesInterface } from './ClassesInterface';
+import { ClassesInterface } from "./ClassesInterface";
 
 export interface ConfigInterface {
   /**
@@ -8,13 +8,12 @@ export interface ConfigInterface {
   /**
    * List of all labels
    */
-  labels: Array<string>
+  labels: Array<string>;
 
   /**
    * Id DOM element
    */
   element: string;
-
 
   showLines: boolean;
 

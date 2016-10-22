@@ -1,6 +1,6 @@
-import { Config }  from '../config';
-import { Circle }  from './circle';
-import { ElementInterface } from '../interface/ElementInterface';
+import { Config }  from "../config";
+import { Circle }  from "./circle";
+import { ElementInterface } from "../interface/ElementInterface";
 
 export class Group implements ElementInterface {
   element: SVGGElement;
@@ -10,18 +10,18 @@ export class Group implements ElementInterface {
   private circles: Array<Circle> = [];
 
   constructor(index: number) {
-    let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; //TODO KW magic string, szukac tylko po configu
+    let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
 
-    this.element  = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    //this.element.setAttribute('id', 'group_' + index);
-    this.element.setAttribute('class', Config.classes.line);
+    this.element  = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    // this.element.setAttribute('id', 'group_' + index);
+    this.element.setAttribute("class", Config.classes.line);
 
     main.appendChild(this.element);
     this.index = index;
     this.run();
   }
 
-  getPosition() : number {
+  getPosition(): number {
     let cw = Config.getQuarterCount();
     return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
   }

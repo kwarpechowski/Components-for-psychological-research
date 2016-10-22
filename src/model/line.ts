@@ -1,9 +1,9 @@
 export class Line {
   private size: number;
   constructor(size: number) {
-  	this.size = size;
+    this.size = size;
   }
   getSize(): number {
-  	return this.size;
+    return this.size;
   }
 };
