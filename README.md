@@ -1,5 +1,19 @@
 # The Geneva Emotion Wheel
 
+##Project status
+Draft
+
+##Usage
+```html
+<div id="drawing"></div>
+
+<script type="text/javascript" src="dist/gew-min.js"></script>
+<script>
+    GEW({
+      element: 'drawing'
+    });
+</script>
+```
 
 ##Parameters
 
