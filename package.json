@@ -19,6 +19,8 @@
   "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-less": "^3.1.0",
     "gulp-minify": "0.0.14",
     "gulp-sequence": "^0.4.6",
     "gulp-typedoc": "^2.0.0",

@@ -5,6 +5,10 @@ var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence')
 var typedoc = require("gulp-typedoc");
 var minify = require('gulp-minify');
+var less = require('gulp-less');
+var path = require('path');
+var cssmin = require('gulp-cssmin');
+
 
 gulp.task("ts", function () {
     return tsProject.src()
@@ -44,4 +48,11 @@ gulp.task('compress', function() {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('default', gulpSequence('ts', 'scripts', 'compress'));
+gulp.task('less', function () {
+  return gulp.src('./src/themes/**/theme.less')
+    .pipe(less())
+    .pipe(cssmin())
+    .pipe(gulp.dest('dist/themes'));
+});
+
+gulp.task('default', gulpSequence(['ts', 'scripts', 'compress'], 'less'));
