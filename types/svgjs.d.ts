@@ -159,6 +159,7 @@ declare namespace svgjs {
         after(element:Element):Element;
 
         addClass(s:String):Element;
+        removeClass(s:String):Element;
         plain(s:String):Element;
 
 

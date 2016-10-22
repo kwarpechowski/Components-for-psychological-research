@@ -172,6 +172,7 @@
 	var circle_1 = __webpack_require__(5);
 	var Group = (function () {
 	    function Group(element, index) {
+	        this.odstep = 0;
 	        this.circles = [];
 	        this.element = element.group().addClass('line');
 	        this.index = index;
@@ -185,10 +186,7 @@
 	        var _this = this;
 	        var odstep = 0;
 	        config_1.Config.getLines().forEach(function (line, index) {
-	            var size = line.getSize();
-	            var circle = new circle_1.Circle(_this, size, odstep, index);
-	            _this.circles.push(circle);
-	            odstep += size + 10;
+	            _this.circles.push(new circle_1.Circle(_this, line.getSize(), index));
 	        });
 	        // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle
 	        // 
@@ -197,6 +195,12 @@
 	        // text.center(this.config.R, this.config.R);
 	        // text.dx(ox * (this.config.R + odstep));
 	        // text.dy(oy * (this.config.R + odstep));
+	    };
+	    Group.prototype.setActive = function (circle) {
+	        this.circles.forEach(function (c) {
+	            c.disable();
+	        });
+	        circle.enable();
 	    };
 	    return Group;
 	}());
@@ -211,21 +215,28 @@
 	/// <reference path="../../types/svgjs.d.ts" />
 	var config_1 = __webpack_require__(1);
 	var Circle = (function () {
-	    function Circle(group, size, odstep, index) {
+	    function Circle(group, size, index) {
 	        var _this = this;
-	        this.element = group.element.ellipse(size, size);
-	        this.element.fill('red');
+	        this.group = group;
+	        this.element = this.group.element.ellipse(size, size);
 	        this.index = index;
 	        //TODO KW bezposrednio do config
 	        this.element.center(config_1.Config.R, config_1.Config.R);
-	        var oy = Math.sin(group.getPosition());
-	        var ox = Math.cos(group.getPosition());
-	        this.element.dx(ox * (config_1.Config.R + odstep));
-	        this.element.dy(oy * (config_1.Config.R + odstep));
+	        var oy = Math.sin(this.group.getPosition());
+	        var ox = Math.cos(this.group.getPosition());
+	        this.element.dx(ox * (config_1.Config.R + this.group.odstep));
+	        this.element.dy(oy * (config_1.Config.R + this.group.odstep));
+	        this.group.odstep += size + 10;
 	        this.element.click(function () {
-	            console.log('clicked', group.index, _this.index);
+	            _this.group.setActive(_this);
 	        });
 	    }
+	    Circle.prototype.disable = function () {
+	        this.element.removeClass('active');
+	    };
+	    Circle.prototype.enable = function () {
+	        this.element.addClass('active');
+	    };
 	    return Circle;
 	}());
 	exports.Circle = Circle;

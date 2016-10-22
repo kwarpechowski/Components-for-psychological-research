@@ -2,12 +2,17 @@
     <head>
         <title>GEW</title>
         <style>
+            .line ellipse {
+                fill: #ccc;
+                cursor: pointer;
+            }
             .line ellipse:hover {
-                fill: red;
+                fill: yellow;
             }
 
-            .line:hover *{
-                fill: #ccc;
+            .line .active {
+                fill: blue;
+                cursor: default;
             }
         </style>
     </head>

@@ -6,25 +6,34 @@ import { ElementInterface } from '../interface/ElementInterface';
 export class Circle implements ElementInterface {
   element: svgjs.Element;
   index: number;
+  group: Group;
 
-  constructor(group: Group, size: number, odstep: number, index: number) {
-
-    this.element = group.element.ellipse(size, size);
-    this.element.fill('red');
+  constructor(group: Group, size: number, index: number) {
+    this.group = group;
+    this.element = this.group.element.ellipse(size, size);
     this.index = index;
 
     //TODO KW bezposrednio do config
     this.element.center(Config.R, Config.R);
 
-    let oy = Math.sin(group.getPosition());
-    let ox = Math.cos(group.getPosition());
+    let oy = Math.sin(this.group.getPosition());
+    let ox = Math.cos(this.group.getPosition());
 
-    this.element.dx(ox * (Config.R + odstep));
-    this.element.dy(oy * (Config.R + odstep));
+    this.element.dx(ox * (Config.R + this.group.odstep));
+    this.element.dy(oy * (Config.R + this.group.odstep));
+
+    this.group.odstep += size + 10;
 
     this.element.click(() => {
-      console.log('clicked', group.index, this.index);
+      this.group.setActive(this);
     });
 
+  }
+
+  disable(): void {
+    this.element.removeClass('active');
+  }
+  enable(): void {
+    this.element.addClass('active');
   }
 }
