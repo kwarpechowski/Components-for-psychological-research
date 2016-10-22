@@ -6,24 +6,26 @@ export class Group {
   public element: svgjs.Element;
   public index: number;
   public config: Config;
+  private circles: Array<Circle> = [];
 
-  constructor(element: svgjs.Element, index: number, config: Config) {
+  constructor(element: svgjs.Element, index: number) {
     this.element = element.group().addClass('line');
     this.index = index;
-    this.config = config;
+    this.run();
   }
 
   getPosition() : number {
-    let cw = this.config.getQuarterCount();
+    let cw = Config.getQuarterCount();
     return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
   }
 
-  run(): void {
+  private run(): void {
     let odstep = 0;
 
-    this.config.getLines().forEach((line, index) => {
+    Config.getLines().forEach((line, index) => {
       let size = line.getSize();
-      new Circle(this, size, odstep, index);
+      let circle = new Circle(this, size, odstep, index);
+      this.circles.push(circle);
       odstep += size + 10;
     });
 

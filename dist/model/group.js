@@ -1,21 +1,25 @@
 "use strict";
+/// <reference path="../../types/svgjs.d.ts" />
+var config_1 = require('../config');
 var circle_1 = require('./circle');
 var Group = (function () {
-    function Group(element, index, config) {
+    function Group(element, index) {
+        this.circles = [];
         this.element = element.group().addClass('line');
         this.index = index;
-        this.config = config;
+        this.run();
     }
     Group.prototype.getPosition = function () {
-        var cw = this.config.getQuarterCount();
+        var cw = config_1.Config.getQuarterCount();
         return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
     };
     Group.prototype.run = function () {
         var _this = this;
         var odstep = 0;
-        this.config.getLines().forEach(function (line, index) {
+        config_1.Config.getLines().forEach(function (line, index) {
             var size = line.getSize();
-            new circle_1.Circle(_this, size, odstep, index);
+            var circle = new circle_1.Circle(_this, size, odstep, index);
+            _this.circles.push(circle);
             odstep += size + 10;
         });
         // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle

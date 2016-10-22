@@ -16,9 +16,9 @@ export interface ConfigInterface {
   element: string;
 }
 
-export class Config implements ConfigInterface{
-  R: number = 80;
-  labels: Array<string> = [
+export class Config {
+  static R: number = 80;
+  static labels: Array<string> = [
     'Interest',
     'Amusement',
     'Pride',
@@ -40,23 +40,23 @@ export class Config implements ConfigInterface{
     'Hate',
     'Anger'
   ];
-  element: string = 'drawer';
+  static element: string = 'drawer';
 
-  constructor(config: ConfigInterface) {
+  static set (config: ConfigInterface) {
     Object.keys(config).forEach((key) => {
-      this[key] = config[key];
+      Config[key] = config[key];
     });
   }
 
-  getElementsCount() : number {
+  static getElementsCount() : number {
     return this.labels.length;
   }
 
-  getQuarterCount() : number {
+  static getQuarterCount() : number {
     return this.getElementsCount() / 4;
   }
 
-  getLines(): Array<Line> {
+  static getLines(): Array<Line> {
     //TODO KW konfig
     let lines: Array<Line> = [];
     lines.push(new Line(10));

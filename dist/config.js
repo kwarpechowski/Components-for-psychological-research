@@ -1,43 +1,20 @@
 "use strict";
 var line_1 = require('./model/line');
 var Config = (function () {
-    function Config(config) {
-        var _this = this;
-        this.R = 80;
-        this.labels = [
-            'Interest',
-            'Amusement',
-            'Pride',
-            'Joy',
-            'Pleasure',
-            'Contentment',
-            'Love',
-            'Admiration',
-            'Relief',
-            'Comassion',
-            'Sadness',
-            'Guilt',
-            'Regret',
-            'Shame',
-            'Disappointment',
-            'Fear',
-            'Disgust',
-            'Contempt',
-            'Hate',
-            'Anger'
-        ];
-        this.element = 'drawer';
-        Object.keys(config).forEach(function (key) {
-            _this[key] = config[key];
-        });
+    function Config() {
     }
-    Config.prototype.getElementsCount = function () {
+    Config.set = function (config) {
+        Object.keys(config).forEach(function (key) {
+            Config[key] = config[key];
+        });
+    };
+    Config.getElementsCount = function () {
         return this.labels.length;
     };
-    Config.prototype.getQuarterCount = function () {
+    Config.getQuarterCount = function () {
         return this.getElementsCount() / 4;
     };
-    Config.prototype.getLines = function () {
+    Config.getLines = function () {
         //TODO KW konfig
         var lines = [];
         lines.push(new line_1.Line(10));
@@ -47,6 +24,30 @@ var Config = (function () {
         lines.push(new line_1.Line(40));
         return lines;
     };
+    Config.R = 80;
+    Config.labels = [
+        'Interest',
+        'Amusement',
+        'Pride',
+        'Joy',
+        'Pleasure',
+        'Contentment',
+        'Love',
+        'Admiration',
+        'Relief',
+        'Comassion',
+        'Sadness',
+        'Guilt',
+        'Regret',
+        'Shame',
+        'Disappointment',
+        'Fear',
+        'Disgust',
+        'Contempt',
+        'Hate',
+        'Anger'
+    ];
+    Config.element = 'drawer';
     return Config;
 }());
 exports.Config = Config;
