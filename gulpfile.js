@@ -4,6 +4,7 @@ var tsProject = ts.createProject("tsconfig.json");
 var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence')
 var typedoc = require("gulp-typedoc");
+var minify = require('gulp-minify');
 
 gulp.task("ts", function () {
     return tsProject.src()
@@ -15,7 +16,7 @@ gulp.task('scripts', function() {
      return gulp.src('dist/main.js')
     .pipe(webpack({
       output: {
-        filename: 'compiled.js',
+        filename: 'gew.js',
       }
     }))
     .pipe(gulp.dest('dist/'));
@@ -36,5 +37,11 @@ gulp.task("typedoc", function() {
     ;
 });
 
+gulp.task('compress', function() {
+  return gulp
+    .src(['dist/gew.js'])
+    .pipe(minify())
+    .pipe(gulp.dest('dist'))
+});
 
-gulp.task('default', gulpSequence('ts', 'scripts'));
+gulp.task('default', gulpSequence('ts', 'scripts', 'compress'));

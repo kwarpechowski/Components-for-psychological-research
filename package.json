@@ -16,11 +16,10 @@
     "url": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/issues"
   },
   "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
-  "dependencies": {
-   
-  },
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-minify": "0.0.14",
     "gulp-sequence": "^0.4.6",
     "gulp-typedoc": "^2.0.0",
     "gulp-typescript": "^3.0.2",
