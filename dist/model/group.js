@@ -1,6 +1,7 @@
 "use strict";
 var config_1 = require("../config");
 var circle_1 = require("./circle");
+var text_1 = require("./text");
 var Group = (function () {
     function Group(index) {
         this.odstep = 0;
@@ -23,13 +24,7 @@ var Group = (function () {
         config_1.Config.getLines().forEach(function (line, index) {
             _this.circles.push(new circle_1.Circle(_this, line.getSize(), index));
         });
-        // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle
-        // 
-        // let text = this.element.plain(this.config.labels[this.index-1]);
-        // text.addClass('text');
-        // text.center(this.config.R, this.config.R);
-        // text.dx(ox * (this.config.R + odstep));
-        // text.dy(oy * (this.config.R + odstep));
+        new text_1.Text(this, this.index);
     };
     Group.prototype.setActive = function (circle) {
         this.circles.forEach(function (c) {

@@ -1,5 +1,6 @@
 import { Config }  from "../config";
 import { Circle }  from "./circle";
+import { Text }  from "./text";
 import { ElementInterface } from "../interface/ElementInterface";
 
 export class Group implements ElementInterface {
@@ -33,13 +34,7 @@ export class Group implements ElementInterface {
       this.circles.push(new Circle(this, line.getSize(), index));
     });
 
-    // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle
-    // 
-    // let text = this.element.plain(this.config.labels[this.index-1]);
-    // text.addClass('text');
-    // text.center(this.config.R, this.config.R);
-    // text.dx(ox * (this.config.R + odstep));
-    // text.dy(oy * (this.config.R + odstep));
+    new Text(this, this.index);
   }
 
   setActive(circle: Circle) {

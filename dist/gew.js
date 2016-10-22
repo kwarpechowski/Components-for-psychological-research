@@ -47,7 +47,7 @@
 	"use strict";
 	var config_1 = __webpack_require__(1);
 	var drawer_1 = __webpack_require__(3);
-	window['GEW'] = function (userConfig) {
+	window["GEW"] = function (userConfig) {
 	    config_1.Config.set(userConfig);
 	    var drawer = new drawer_1.Drawer();
 	    drawer.run();
@@ -75,7 +75,7 @@
 	        return this.getElementsCount() / 4;
 	    };
 	    Config.getLines = function () {
-	        //TODO KW konfig
+	        // TODO KW konfig
 	        var lines = [];
 	        lines.push(new line_1.Line(10));
 	        lines.push(new line_1.Line(15));
@@ -86,34 +86,34 @@
 	    };
 	    Config.R = 80;
 	    Config.labels = [
-	        'Interest',
-	        'Amusement',
-	        'Pride',
-	        'Joy',
-	        'Pleasure',
-	        'Contentment',
-	        'Love',
-	        'Admiration',
-	        'Relief',
-	        'Comassion',
-	        'Sadness',
-	        'Guilt',
-	        'Regret',
-	        'Shame',
-	        'Disappointment',
-	        'Fear',
-	        'Disgust',
-	        'Contempt',
-	        'Hate',
-	        'Anger'
+	        "Interest",
+	        "Amusement",
+	        "Pride",
+	        "Joy",
+	        "Pleasure",
+	        "Contentment",
+	        "Love",
+	        "Admiration",
+	        "Relief",
+	        "Comassion",
+	        "Sadness",
+	        "Guilt",
+	        "Regret",
+	        "Shame",
+	        "Disappointment",
+	        "Fear",
+	        "Disgust",
+	        "Contempt",
+	        "Hate",
+	        "Anger"
 	    ];
-	    Config.element = 'drawer';
+	    Config.element = "drawer";
 	    Config.showLines = true;
 	    Config.classes = {
-	        mainGroup: 'main_group',
-	        lineAxis: 'line_axis',
-	        line: 'line',
-	        circlePrefix: 'row_'
+	        mainGroup: "main_group",
+	        lineAxis: "line_axis",
+	        line: "line",
+	        circlePrefix: "row_"
 	    };
 	    return Config;
 	}());
@@ -148,23 +148,23 @@
 	var Drawer = (function () {
 	    function Drawer() {
 	        var container = document.getElementById(config_1.Config.element);
-	        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-	        svg.setAttribute('version', '1.1');
-	        svg.setAttribute('id', 'mysvg'); //TODO KW usunac
+	        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+	        svg.setAttribute("version", "1.1");
+	        svg.setAttribute("id", "mysvg"); // TODO KW usunac
 	        container.appendChild(svg);
-	        var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-	        g.setAttribute('class', config_1.Config.classes.mainGroup);
+	        var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	        g.setAttribute("class", config_1.Config.classes.mainGroup);
 	        svg.appendChild(g);
 	        this.mainElement = g;
 	    }
 	    Drawer.prototype.drawLine = function (x1, y1, x2, y2) {
 	        if (config_1.Config.showLines) {
-	            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-	            line.setAttribute('class', config_1.Config.classes.lineAxis);
-	            line.setAttribute('x1', x1.toString());
-	            line.setAttribute('y1', y1.toString());
-	            line.setAttribute('x2', x2.toString());
-	            line.setAttribute('y2', y2.toString());
+	            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	            line.setAttribute("class", config_1.Config.classes.lineAxis);
+	            line.setAttribute("x1", x1.toString());
+	            line.setAttribute("y1", y1.toString());
+	            line.setAttribute("x2", x2.toString());
+	            line.setAttribute("y2", y2.toString());
 	            this.mainElement.appendChild(line);
 	        }
 	    };
@@ -174,9 +174,9 @@
 	    };
 	    Drawer.prototype.setPosition = function () {
 	        var el = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0];
-	        var width = el.getBoundingClientRect().width / 2; //ladniej mozna policzyc rozmiar
+	        var width = el.getBoundingClientRect().width / 2; // ladniej mozna policzyc rozmiar
 	        this.drawAxis(width);
-	        el.setAttribute('style', "transform: translate(" + width + "px, " + width + "px)");
+	        el.setAttribute("style", "transform: translate(" + width + "px, " + width + "px)");
 	    };
 	    Drawer.prototype.run = function () {
 	        for (var i = 1; i <= config_1.Config.getElementsCount(); i++) {
@@ -196,14 +196,15 @@
 	"use strict";
 	var config_1 = __webpack_require__(1);
 	var circle_1 = __webpack_require__(5);
+	var text_1 = __webpack_require__(6);
 	var Group = (function () {
 	    function Group(index) {
 	        this.odstep = 0;
 	        this.circles = [];
-	        var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; //TODO KW magic string, szukac tylko po configu
-	        this.element = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-	        //this.element.setAttribute('id', 'group_' + index);
-	        this.element.setAttribute('class', config_1.Config.classes.line);
+	        var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
+	        this.element = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	        // this.element.setAttribute('id', 'group_' + index);
+	        this.element.setAttribute("class", config_1.Config.classes.line);
 	        main.appendChild(this.element);
 	        this.index = index;
 	        this.run();
@@ -218,13 +219,7 @@
 	        config_1.Config.getLines().forEach(function (line, index) {
 	            _this.circles.push(new circle_1.Circle(_this, line.getSize(), index));
 	        });
-	        // TODO KW zrobic element z ktorego bedzie dziedziczyc text oraz circle
-	        // 
-	        // let text = this.element.plain(this.config.labels[this.index-1]);
-	        // text.addClass('text');
-	        // text.center(this.config.R, this.config.R);
-	        // text.dx(ox * (this.config.R + odstep));
-	        // text.dy(oy * (this.config.R + odstep));
+	        new text_1.Text(this, this.index);
 	    };
 	    Group.prototype.setActive = function (circle) {
 	        this.circles.forEach(function (c) {
@@ -287,6 +282,39 @@
 	    return Circle;
 	}());
 	exports.Circle = Circle;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var config_1 = __webpack_require__(1);
+	var Text = (function () {
+	    function Text(group, index) {
+	        this.group = group;
+	        this.index = index;
+	        var oy = Math.sin(this.group.getPosition());
+	        var ox = Math.cos(this.group.getPosition());
+	        this.group.odstep += 40; // TODO KW magic numbers
+	        var sizeY = oy * (config_1.Config.R + this.group.odstep);
+	        var sizeX = ox * (config_1.Config.R + this.group.odstep);
+	        this.element = document.createElementNS("http://www.w3.org/2000/svg", "text");
+	        this.element.setAttribute("x", sizeX.toString());
+	        this.element.setAttribute("y", sizeY.toString());
+	        this.element.setAttribute("id", "text_" + this.index);
+	        var textNode = document.createTextNode(config_1.Config.labels[this.index - 1]);
+	        this.element.appendChild(textNode);
+	        this.group.element.appendChild(this.element);
+	        if (index > config_1.Config.labels.length / 2) {
+	            var el = document.getElementById("text_" + this.index);
+	            var width = el.getBoundingClientRect().width;
+	            this.element.setAttribute("x", (sizeX - width).toString());
+	        }
+	    }
+	    return Text;
+	}());
+	exports.Text = Text;
 
 
 /***/ }
