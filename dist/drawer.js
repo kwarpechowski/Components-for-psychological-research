@@ -1,24 +1,44 @@
 "use strict";
-/// <reference path="../types/svgjs.d.ts" />
 var config_1 = require('./config');
 var group_1 = require('./model/group');
 var Drawer = (function () {
     function Drawer() {
-        this.draw = SVG('drawing'); //z konfigu pobierac
-        this.mainElement = this.draw.group();
+        var container = document.getElementById(config_1.Config.element);
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('version', '1.1');
+        svg.setAttribute('id', 'mysvg'); //TODO KW usunac
+        container.appendChild(svg);
+        var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', config_1.Config.classes.mainGroup);
+        svg.appendChild(g);
+        this.mainElement = g;
     }
-    Drawer.prototype.drawAxis = function () {
-        var lineHorizontal = this.mainElement.line(0, 0, 600, 0).stroke({ width: 1 });
-        lineHorizontal.center(config_1.Config.R, config_1.Config.R);
-        var lineVertical = this.mainElement.line(0, 0, 0, 600).stroke({ width: 1 });
-        lineVertical.center(config_1.Config.R, config_1.Config.R);
+    Drawer.prototype.drawLine = function (x1, y1, x2, y2) {
+        if (config_1.Config.showLines) {
+            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('class', config_1.Config.classes.lineAxis);
+            line.setAttribute('x1', x1.toString());
+            line.setAttribute('y1', y1.toString());
+            line.setAttribute('x2', x2.toString());
+            line.setAttribute('y2', y2.toString());
+            this.mainElement.appendChild(line);
+        }
+    };
+    Drawer.prototype.drawAxis = function (size) {
+        this.drawLine(size * -1, 0, size, 0);
+        this.drawLine(0, size, 0, size * -1);
+    };
+    Drawer.prototype.setPosition = function () {
+        var el = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0];
+        var width = el.getBoundingClientRect().width / 2; //ladniej mozna policzyc rozmiar
+        this.drawAxis(width);
+        el.setAttribute('style', "transform: translate(" + width + "px, " + width + "px)");
     };
     Drawer.prototype.run = function () {
-        this.drawAxis();
-        this.mainElement.move(250, 250);
         for (var i = 1; i <= config_1.Config.getElementsCount(); i++) {
-            new group_1.Group(this.mainElement, i);
+            new group_1.Group(i);
         }
+        this.setPosition();
     };
     return Drawer;
 }());

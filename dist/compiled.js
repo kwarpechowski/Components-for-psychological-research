@@ -78,10 +78,10 @@
 	        //TODO KW konfig
 	        var lines = [];
 	        lines.push(new line_1.Line(10));
+	        lines.push(new line_1.Line(15));
 	        lines.push(new line_1.Line(20));
 	        lines.push(new line_1.Line(25));
 	        lines.push(new line_1.Line(30));
-	        lines.push(new line_1.Line(40));
 	        return lines;
 	    };
 	    Config.R = 80;
@@ -108,6 +108,13 @@
 	        'Anger'
 	    ];
 	    Config.element = 'drawer';
+	    Config.showLines = true;
+	    Config.classes = {
+	        mainGroup: 'main_group',
+	        lineAxis: 'line_axis',
+	        line: 'line',
+	        circlePrefix: 'row_'
+	    };
 	    return Config;
 	}());
 	exports.Config = Config;
@@ -136,26 +143,46 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	/// <reference path="../types/svgjs.d.ts" />
 	var config_1 = __webpack_require__(1);
 	var group_1 = __webpack_require__(4);
 	var Drawer = (function () {
 	    function Drawer() {
-	        this.draw = SVG('drawing'); //z konfigu pobierac
-	        this.mainElement = this.draw.group();
+	        var container = document.getElementById(config_1.Config.element);
+	        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	        svg.setAttribute('version', '1.1');
+	        svg.setAttribute('id', 'mysvg'); //TODO KW usunac
+	        container.appendChild(svg);
+	        var g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+	        g.setAttribute('class', config_1.Config.classes.mainGroup);
+	        svg.appendChild(g);
+	        this.mainElement = g;
 	    }
-	    Drawer.prototype.drawAxis = function () {
-	        var lineHorizontal = this.mainElement.line(0, 0, 600, 0).stroke({ width: 1 });
-	        lineHorizontal.center(config_1.Config.R, config_1.Config.R);
-	        var lineVertical = this.mainElement.line(0, 0, 0, 600).stroke({ width: 1 });
-	        lineVertical.center(config_1.Config.R, config_1.Config.R);
+	    Drawer.prototype.drawLine = function (x1, y1, x2, y2) {
+	        if (config_1.Config.showLines) {
+	            var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+	            line.setAttribute('class', config_1.Config.classes.lineAxis);
+	            line.setAttribute('x1', x1.toString());
+	            line.setAttribute('y1', y1.toString());
+	            line.setAttribute('x2', x2.toString());
+	            line.setAttribute('y2', y2.toString());
+	            this.mainElement.appendChild(line);
+	        }
+	    };
+	    Drawer.prototype.drawAxis = function (size) {
+	        this.drawLine(size * -1, 0, size, 0);
+	        this.drawLine(0, size, 0, size * -1);
+	    };
+	    Drawer.prototype.setPosition = function () {
+	        var el = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0];
+	        var width = el.getBoundingClientRect().width / 2; //ladniej mozna policzyc rozmiar
+	        this.drawAxis(width);
+	        el.setAttribute('style', "transform: translate(" + width + "px, " + width + "px)");
 	    };
 	    Drawer.prototype.run = function () {
-	        this.drawAxis();
-	        this.mainElement.move(250, 250);
 	        for (var i = 1; i <= config_1.Config.getElementsCount(); i++) {
-	            new group_1.Group(this.mainElement, i);
+	            new group_1.Group(i);
 	        }
+	        this.setPosition();
 	    };
 	    return Drawer;
 	}());
@@ -167,14 +194,17 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	/// <reference path="../../types/svgjs.d.ts" />
 	var config_1 = __webpack_require__(1);
 	var circle_1 = __webpack_require__(5);
 	var Group = (function () {
-	    function Group(element, index) {
+	    function Group(index) {
 	        this.odstep = 0;
 	        this.circles = [];
-	        this.element = element.group().addClass('line');
+	        var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; //TODO KW magic string, szukac tylko po configu
+	        this.element = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+	        //this.element.setAttribute('id', 'group_' + index);
+	        this.element.setAttribute('class', config_1.Config.classes.line);
+	        main.appendChild(this.element);
 	        this.index = index;
 	        this.run();
 	    }
@@ -212,31 +242,48 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	/// <reference path="../../types/svgjs.d.ts" />
 	var config_1 = __webpack_require__(1);
 	var Circle = (function () {
 	    function Circle(group, size, index) {
-	        var _this = this;
 	        this.group = group;
-	        this.element = this.group.element.ellipse(size, size);
 	        this.index = index;
-	        //TODO KW bezposrednio do config
-	        this.element.center(config_1.Config.R, config_1.Config.R);
 	        var oy = Math.sin(this.group.getPosition());
 	        var ox = Math.cos(this.group.getPosition());
-	        this.element.dx(ox * (config_1.Config.R + this.group.odstep));
-	        this.element.dy(oy * (config_1.Config.R + this.group.odstep));
-	        this.group.odstep += size + 10;
-	        this.element.click(function () {
+	        this.group.odstep += size * 2; //TODO KW magic numbers
+	        var sizeY = oy * (config_1.Config.R + this.group.odstep);
+	        var sizeX = ox * (config_1.Config.R + this.group.odstep);
+	        this.element = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	        this.element.setAttribute('cx', sizeX.toString());
+	        this.element.setAttribute('cy', sizeY.toString());
+	        this.element.setAttribute('r', size.toString());
+	        this.element.setAttribute('class', config_1.Config.classes.circlePrefix + index);
+	        this.bindEvents();
+	        this.group.element.appendChild(this.element);
+	    }
+	    Circle.prototype.bindEvents = function () {
+	        var _this = this;
+	        this.element.addEventListener('click', function () {
 	            _this.group.setActive(_this);
 	        });
-	    }
-	    Circle.prototype.disable = function () {
-	        this.element.removeClass('active');
 	    };
 	    Circle.prototype.enable = function () {
-	        this.element.addClass('active');
+	        var classes = this.element.getAttribute('class');
+	        if (classes) {
+	            classes += ' ' + Circle.activeClass;
+	        }
+	        else {
+	            classes = Circle.activeClass;
+	        }
+	        this.element.setAttribute('class', classes);
 	    };
+	    Circle.prototype.disable = function () {
+	        var classes = this.element.getAttribute('class');
+	        if (classes) {
+	            classes = classes.replace(Circle.activeClass, '');
+	        }
+	        this.element.setAttribute('class', classes);
+	    };
+	    Circle.activeClass = 'active';
 	    return Circle;
 	}());
 	exports.Circle = Circle;

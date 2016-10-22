@@ -1,12 +1,15 @@
 "use strict";
-/// <reference path="../../types/svgjs.d.ts" />
 var config_1 = require('../config');
 var circle_1 = require('./circle');
 var Group = (function () {
-    function Group(element, index) {
+    function Group(index) {
         this.odstep = 0;
         this.circles = [];
-        this.element = element.group().addClass('line');
+        var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; //TODO KW magic string, szukac tylko po configu
+        this.element = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        //this.element.setAttribute('id', 'group_' + index);
+        this.element.setAttribute('class', config_1.Config.classes.line);
+        main.appendChild(this.element);
         this.index = index;
         this.run();
     }

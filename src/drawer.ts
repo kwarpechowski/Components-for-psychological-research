@@ -1,31 +1,53 @@
-/// <reference path="../types/svgjs.d.ts" />
 import { Config }  from './config';
 import { Line } from './model/line';
 import { Group } from './model/group';
 
 export class Drawer {
-  private mainElement: svgjs.Element;
-  private draw: svgjs.Doc = SVG('drawing'); //z konfigu pobierac
+  private mainElement: SVGGElement;
 
   constructor() {
-    this.mainElement = this.draw.group();
+    let container = document.getElementById(Config.element);
+    let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('version', '1.1');
+    svg.setAttribute('id', 'mysvg'); //TODO KW usunac
+    container.appendChild(svg);
+
+    let g  = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', Config.classes.mainGroup);
+    svg.appendChild(g);
+    this.mainElement = g;
   }
 
-  private drawAxis(): void {
-    let lineHorizontal = this.mainElement.line(0, 0, 600, 0).stroke({ width: 1 })
-    lineHorizontal.center(Config.R, Config.R);
+  private drawLine(x1: number, y1: number, x2:number, y2:number): void {
+    if (Config.showLines) {
+      var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('class', Config.classes.lineAxis);
+      line.setAttribute('x1', x1.toString());
+      line.setAttribute('y1', y1.toString());
+      line.setAttribute('x2', x2.toString());
+      line.setAttribute('y2', y2.toString());
+      this.mainElement.appendChild(line);
+    }
+  }
 
-    let lineVertical = this.mainElement.line(0, 0, 0, 600).stroke({ width: 1 })
-    lineVertical.center(Config.R, Config.R);
+  private drawAxis(size: number): void {
+    this.drawLine(size * -1, 0, size, 0);
+    this.drawLine(0, size, 0, size * -1);
+  }
+
+  private setPosition(): void {
+    let el = document.getElementsByClassName(Config.classes.mainGroup)[0];
+    let width = el.getBoundingClientRect().width / 2; //ladniej mozna policzyc rozmiar
+    this.drawAxis(width);
+    el.setAttribute('style', `transform: translate(${width}px, ${width}px)`);
   }
 
   run() : void {
-    this.drawAxis();
-    this.mainElement.move(250, 250);
 
     for(var i =1; i <= Config.getElementsCount(); i++) {
-      new Group(this.mainElement, i)
-      //TODO KW usunac mainElement i confgi z konstruktorow, moze statyki
+      new Group(i)
     }
+
+    this.setPosition();
   }
 }

@@ -5,8 +5,6 @@ var webpack = require('gulp-webpack');
 var gulpSequence = require('gulp-sequence')
 var typedoc = require("gulp-typedoc");
 
- 
-
 gulp.task("ts", function () {
     return tsProject.src()
         .pipe(tsProject())

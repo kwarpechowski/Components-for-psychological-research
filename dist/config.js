@@ -18,10 +18,10 @@ var Config = (function () {
         //TODO KW konfig
         var lines = [];
         lines.push(new line_1.Line(10));
+        lines.push(new line_1.Line(15));
         lines.push(new line_1.Line(20));
         lines.push(new line_1.Line(25));
         lines.push(new line_1.Line(30));
-        lines.push(new line_1.Line(40));
         return lines;
     };
     Config.R = 80;
@@ -48,6 +48,13 @@ var Config = (function () {
         'Anger'
     ];
     Config.element = 'drawer';
+    Config.showLines = true;
+    Config.classes = {
+        mainGroup: 'main_group',
+        lineAxis: 'line_axis',
+        line: 'line',
+        circlePrefix: 'row_'
+    };
     return Config;
 }());
 exports.Config = Config;

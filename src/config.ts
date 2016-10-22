@@ -1,20 +1,6 @@
 import { Line } from './model/line';
-
-export interface ConfigInterface {
-  /**
-   * Radius of the main wheel
-   */
-  R: number;
-  /**
-   * List of all labels
-   */
-  labels: Array<string>
-
-  /**
-   * Id DOM element
-   */
-  element: string;
-}
+import { ClassesInterface } from './interface/ClassesInterface';
+import { ConfigInterface } from './interface/ConfigInterface';
 
 export class Config {
   static R: number = 80;
@@ -42,6 +28,15 @@ export class Config {
   ];
   static element: string = 'drawer';
 
+  static showLines: boolean = true;
+
+  static classes: ClassesInterface = {
+    mainGroup: 'main_group',
+    lineAxis: 'line_axis',
+    line: 'line',
+    circlePrefix: 'row_'
+  }
+
   static set (config: ConfigInterface) {
     Object.keys(config).forEach((key) => {
       Config[key] = config[key];
@@ -60,10 +55,10 @@ export class Config {
     //TODO KW konfig
     let lines: Array<Line> = [];
     lines.push(new Line(10));
+    lines.push(new Line(15));
     lines.push(new Line(20));
     lines.push(new Line(25));
     lines.push(new Line(30));
-    lines.push(new Line(40));
     return lines;
   }
 }

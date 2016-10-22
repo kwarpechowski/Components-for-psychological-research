@@ -2,11 +2,31 @@
     <head>
         <title>GEW</title>
         <style>
-            .line ellipse {
-                fill: #ccc;
+            .line circle {
                 cursor: pointer;
             }
-            .line ellipse:hover {
+
+            .line .row_0 {
+              fill: #f4f4f4;
+            }
+
+            .line .row_1 {
+              fill: #e0e0e0;
+            }
+
+            .line .row_2 {
+              fill: #c8c8c8;
+            }
+
+            .line .row_3 {
+              fill: #b6b6b6;
+            }
+
+            .line .row_4 {
+              fill: #9f9f9f;
+            }
+
+            .line circle:hover {
                 fill: yellow;
             }
 
@@ -14,17 +34,27 @@
                 fill: blue;
                 cursor: default;
             }
+
+            .line_axis {
+              stroke: pink;
+              stroke-width: 1px;
+            }
+
+            #drawing svg {
+              width: 100%;
+              height: 100%;
+            }
         </style>
     </head>
     <body>
-        <svg id="drawing"></svg>
+        <div id="drawing"></div>
 
-         <script type="text/javascript" src="node_modules/svgjs/dist/svg.min.js"></script>
          <script type="text/javascript" src="dist/compiled.js"></script>
          <script>
             GEW({
-              R: 150,
+              R: 55,
               element: 'drawing',
+              showLines: true
              // labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             });
          </script>

@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
   "dependencies": {
-    "svgjs": "^2.2.5"
+   
   },
   "devDependencies": {
     "gulp": "^3.9.1",
