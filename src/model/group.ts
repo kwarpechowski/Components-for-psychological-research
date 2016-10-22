@@ -1,10 +1,11 @@
 /// <reference path="../../types/svgjs.d.ts" />
 import { Config }  from '../config';
 import { Circle }  from './circle';
+import { ElementInterface } from '../interface/ElementInterface';
 
-export class Group {
-  public element: svgjs.Element;
-  public index: number;
+export class Group implements ElementInterface {
+  element: svgjs.Element;
+  index: number;
   public config: Config;
   private circles: Array<Circle> = [];
 
