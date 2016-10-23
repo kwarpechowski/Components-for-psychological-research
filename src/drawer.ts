@@ -1,6 +1,7 @@
 import { Config }  from "./config";
 import { Line } from "./model/line";
 import { Group } from "./model/group";
+import { Circle } from "./model/circle";
 
 export class Drawer {
   private mainElement: SVGGElement;
@@ -9,7 +10,6 @@ export class Drawer {
     let container = document.getElementById(Config.element);
     let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("version", "1.1");
-    svg.setAttribute("id", "mysvg"); // TODO KW usunac
     container.appendChild(svg);
 
     let g  = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -49,5 +49,9 @@ export class Drawer {
     }
 
     this.setPosition();
+  }
+
+  circleClick(f: Function) {
+    Circle.clickEvents.push(f);
   }
 }

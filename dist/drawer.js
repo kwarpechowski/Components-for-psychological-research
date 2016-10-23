@@ -1,12 +1,12 @@
 "use strict";
 var config_1 = require("./config");
 var group_1 = require("./model/group");
+var circle_1 = require("./model/circle");
 var Drawer = (function () {
     function Drawer() {
         var container = document.getElementById(config_1.Config.element);
         var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
         svg.setAttribute("version", "1.1");
-        svg.setAttribute("id", "mysvg"); // TODO KW usunac
         container.appendChild(svg);
         var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
         g.setAttribute("class", config_1.Config.classes.mainGroup);
@@ -39,6 +39,9 @@ var Drawer = (function () {
             new group_1.Group(i);
         }
         this.setPosition();
+    };
+    Drawer.prototype.circleClick = function (f) {
+        circle_1.Circle.clickEvents.push(f);
     };
     return Drawer;
 }());

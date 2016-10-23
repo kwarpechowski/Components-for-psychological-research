@@ -51,6 +51,7 @@
 	    config_1.Config.set(userConfig);
 	    var drawer = new drawer_1.Drawer();
 	    drawer.run();
+	    return drawer;
 	};
 
 
@@ -145,12 +146,12 @@
 	"use strict";
 	var config_1 = __webpack_require__(1);
 	var group_1 = __webpack_require__(4);
+	var circle_1 = __webpack_require__(5);
 	var Drawer = (function () {
 	    function Drawer() {
 	        var container = document.getElementById(config_1.Config.element);
 	        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 	        svg.setAttribute("version", "1.1");
-	        svg.setAttribute("id", "mysvg"); // TODO KW usunac
 	        container.appendChild(svg);
 	        var g = document.createElementNS("http://www.w3.org/2000/svg", "g");
 	        g.setAttribute("class", config_1.Config.classes.mainGroup);
@@ -183,6 +184,9 @@
 	            new group_1.Group(i);
 	        }
 	        this.setPosition();
+	    };
+	    Drawer.prototype.circleClick = function (f) {
+	        circle_1.Circle.clickEvents.push(f);
 	    };
 	    return Drawer;
 	}());
@@ -259,6 +263,9 @@
 	        var _this = this;
 	        this.element.addEventListener("click", function () {
 	            _this.group.setActive(_this);
+	            Circle.clickEvents.forEach(function (event) {
+	                event(_this.group.index, _this.index);
+	            });
 	        });
 	    };
 	    Circle.prototype.enable = function () {
@@ -279,6 +286,7 @@
 	        this.element.setAttribute("class", classes);
 	    };
 	    Circle.activeClass = "active";
+	    Circle.clickEvents = [];
 	    return Circle;
 	}());
 	exports.Circle = Circle;

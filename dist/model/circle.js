@@ -21,6 +21,9 @@ var Circle = (function () {
         var _this = this;
         this.element.addEventListener("click", function () {
             _this.group.setActive(_this);
+            Circle.clickEvents.forEach(function (event) {
+                event(_this.group.index, _this.index);
+            });
         });
     };
     Circle.prototype.enable = function () {
@@ -41,6 +44,7 @@ var Circle = (function () {
         this.element.setAttribute("class", classes);
     };
     Circle.activeClass = "active";
+    Circle.clickEvents = [];
     return Circle;
 }());
 exports.Circle = Circle;

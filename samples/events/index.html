@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>GEW</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="../../dist/themes/core/theme.css">
+    </head>
+    <body>
+        <div id="drawing"></div>
+         <script type="text/javascript" src="../../dist/gew.js"></script>
+         <script>
+            var gew = GEW({
+              element: 'drawing'
+            });
+            gew.circleClick(function(row, element) {
+                console.log('clicked [row, element]:', row, element);
+            });
+         </script>
+    </body>
+
+</html>

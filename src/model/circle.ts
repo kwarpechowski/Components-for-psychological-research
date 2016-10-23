@@ -7,6 +7,7 @@ export class Circle implements ElementInterface {
   index: number;
   group: Group;
   static activeClass: string = "active";
+  static clickEvents: Array<Function> = [];
 
   constructor(group: Group, size: number, index: number) {
     this.group = group;
@@ -33,6 +34,9 @@ export class Circle implements ElementInterface {
   bindEvents(): void {
     this.element.addEventListener("click", () => {
       this.group.setActive(this);
+      Circle.clickEvents.forEach(event => {
+        event(this.group.index, this.index);
+      });
     });
   }
 

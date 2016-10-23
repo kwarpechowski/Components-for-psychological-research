@@ -6,5 +6,6 @@ window["GEW"] = function (userConfig: ConfigInterface) {
   Config.set(userConfig);
   let drawer = new Drawer();
   drawer.run();
+  return drawer;
 };
 

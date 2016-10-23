@@ -5,4 +5,5 @@ window["GEW"] = function (userConfig) {
     config_1.Config.set(userConfig);
     var drawer = new drawer_1.Drawer();
     drawer.run();
+    return drawer;
 };
