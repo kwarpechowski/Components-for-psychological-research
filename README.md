@@ -24,6 +24,9 @@ Draft
 | `element`   | string  | drawer             |         |
 | `showLines` | boolean | true |            |
 | `classes`   | Object  | [click](#classes) |         |
+| `showHeader`| boolean | true | |
+| `headerTop`| string | No emotion | |
+| `headerBottom`| string | Other emotion | |
 
 ###labels<a name="labels"></a>
 ```javascript
