@@ -21,26 +21,48 @@ export class Drawer {
   }
 
   private drawLine(x1: number, y1: number, x2: number, y2: number): void {
-    if (Config.showLines) {
-      let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("class", Config.classes.lineAxis);
-      line.setAttribute("x1", x1.toString());
-      line.setAttribute("y1", y1.toString());
-      line.setAttribute("x2", x2.toString());
-      line.setAttribute("y2", y2.toString());
-      this.mainElement.appendChild(line);
-    }
+    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("class", Config.classes.lineAxis);
+    line.setAttribute("x1", x1.toString());
+    line.setAttribute("y1", y1.toString());
+    line.setAttribute("x2", x2.toString());
+    line.setAttribute("y2", y2.toString());
+    this.mainElement.appendChild(line);
   }
 
   private drawAxis(size: number): void {
-    this.drawLine(size * -1, 0, size, 0);
-    this.drawLine(0, size, 0, size * -1);
+    if (Config.showLines) {
+      this.drawLine(size * -1, 0, Config.R * -1, 0);
+      this.drawLine(Config.R, 0, size, 0);
+
+      this.drawLine(0, size * -1, 0, Config.R * -1);
+      this.drawLine(0, Config.R, 0 , size);
+    }
+  }
+
+  private drawHeaders(): void {
+    this.drawHeader(Config.R / 2 * -1, Config.headerTop);
+    this.drawHeader(Config.R / 2, Config.headerBottom);
+  }
+
+  private drawHeader(y: number, txt: string): void {
+    let el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    el.setAttribute("text-anchor", "middle");
+    el.setAttribute("x", "0");
+    el.setAttribute("y", y.toString());
+    this.mainElement.appendChild(el);
+
+    let textNode = document.createTextNode(txt);
+    el.appendChild(textNode);
   }
 
   private setPosition(): void {
     let el = document.getElementsByClassName(Config.classes.mainGroup)[0];
     let width = el.getBoundingClientRect().width / 2; // ladniej mozna policzyc rozmiar
     this.drawAxis(width);
+
+    this.drawHeaders();
+
     el.setAttribute("style", `transform: translate(${width}px, ${width}px)`);
   }
 

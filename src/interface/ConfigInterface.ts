@@ -18,4 +18,10 @@ export interface ConfigInterface {
   showLines: boolean;
 
   classes: ClassesInterface;
+
+  headerBottom: string;
+
+  headerTop: string;
+
+  showHeader: boolean;
 }

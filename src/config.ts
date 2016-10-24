@@ -31,6 +31,12 @@ export class Config {
 
   static showLines: boolean = true;
 
+  static headerTop: string = "No emotion";
+
+  static headerBottom: string = "Other emotion";
+
+  static showHeader: boolean = true;
+
   static classes: ClassesInterface = {
     mainGroup: "main_group",
     lineAxis: "line_axis",

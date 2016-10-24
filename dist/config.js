@@ -49,6 +49,9 @@ var Config = (function () {
     ];
     Config.element = "drawer";
     Config.showLines = true;
+    Config.headerTop = "No emotion";
+    Config.headerBottom = "Other emotion";
+    Config.showHeader = true;
     Config.classes = {
         mainGroup: "main_group",
         lineAxis: "line_axis",

@@ -110,6 +110,9 @@
 	    ];
 	    Config.element = "drawer";
 	    Config.showLines = true;
+	    Config.headerTop = "No emotion";
+	    Config.headerBottom = "Other emotion";
+	    Config.showHeader = true;
 	    Config.classes = {
 	        mainGroup: "main_group",
 	        lineAxis: "line_axis",
@@ -161,24 +164,40 @@
 	        this.mainElement = g;
 	    }
 	    Drawer.prototype.drawLine = function (x1, y1, x2, y2) {
-	        if (config_1.Config.showLines) {
-	            var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-	            line.setAttribute("class", config_1.Config.classes.lineAxis);
-	            line.setAttribute("x1", x1.toString());
-	            line.setAttribute("y1", y1.toString());
-	            line.setAttribute("x2", x2.toString());
-	            line.setAttribute("y2", y2.toString());
-	            this.mainElement.appendChild(line);
-	        }
+	        var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+	        line.setAttribute("class", config_1.Config.classes.lineAxis);
+	        line.setAttribute("x1", x1.toString());
+	        line.setAttribute("y1", y1.toString());
+	        line.setAttribute("x2", x2.toString());
+	        line.setAttribute("y2", y2.toString());
+	        this.mainElement.appendChild(line);
 	    };
 	    Drawer.prototype.drawAxis = function (size) {
-	        this.drawLine(size * -1, 0, size, 0);
-	        this.drawLine(0, size, 0, size * -1);
+	        if (config_1.Config.showLines) {
+	            this.drawLine(size * -1, 0, config_1.Config.R * -1, 0);
+	            this.drawLine(config_1.Config.R, 0, size, 0);
+	            this.drawLine(0, size * -1, 0, config_1.Config.R * -1);
+	            this.drawLine(0, config_1.Config.R, 0, size);
+	        }
+	    };
+	    Drawer.prototype.drawHeaders = function () {
+	        this.drawHeader(config_1.Config.R / 2 * -1, config_1.Config.headerTop);
+	        this.drawHeader(config_1.Config.R / 2, config_1.Config.headerBottom);
+	    };
+	    Drawer.prototype.drawHeader = function (y, txt) {
+	        var el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+	        el.setAttribute("text-anchor", "middle");
+	        el.setAttribute("x", "0");
+	        el.setAttribute("y", y.toString());
+	        this.mainElement.appendChild(el);
+	        var textNode = document.createTextNode(txt);
+	        el.appendChild(textNode);
 	    };
 	    Drawer.prototype.setPosition = function () {
 	        var el = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0];
 	        var width = el.getBoundingClientRect().width / 2; // ladniej mozna policzyc rozmiar
 	        this.drawAxis(width);
+	        this.drawHeaders();
 	        el.setAttribute("style", "transform: translate(" + width + "px, " + width + "px)");
 	    };
 	    Drawer.prototype.run = function () {
