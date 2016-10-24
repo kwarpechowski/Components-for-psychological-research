@@ -7,14 +7,16 @@
 
 
 .color-rows(@n, @color, @i: 0) when (@i < @n) {
-  circle.row_@{i} {
-    fill: darken(@color, @i*10);
+  .row_@{i} {
+    circle {
+      fill: darken(@color, @i*10);
+    }
 
-    &:hover {
+    &:hover circle{
     	fill: darken(@color, @i*20);
     }
 
-    &.active {
+    &.active circle{
     	fill: blue;
     }
   }

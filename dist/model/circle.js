@@ -9,12 +9,16 @@ var Circle = (function () {
         this.group.odstep += size * 2; // TODO KW magic numbers
         var sizeY = oy * (config_1.Config.R + this.group.odstep);
         var sizeX = ox * (config_1.Config.R + this.group.odstep);
-        this.element = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-        this.element.setAttribute("cx", sizeX.toString());
-        this.element.setAttribute("cy", sizeY.toString());
-        this.element.setAttribute("r", size.toString());
+        this.element = document.createElementNS("http://www.w3.org/2000/svg", "a");
+        this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#");
+        this.element.setAttribute("target", "_top");
         this.element.setAttribute("class", config_1.Config.classes.circlePrefix + index);
+        var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", sizeX.toString());
+        c.setAttribute("cy", sizeY.toString());
+        c.setAttribute("r", size.toString());
         this.bindEvents();
+        this.element.appendChild(c);
         this.group.element.appendChild(this.element);
     }
     Circle.prototype.bindEvents = function () {
