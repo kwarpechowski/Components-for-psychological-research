@@ -207,8 +207,11 @@
 	        this.circles = [];
 	        var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
 	        this.element = document.createElementNS("http://www.w3.org/2000/svg", "g");
-	        // this.element.setAttribute('id', 'group_' + index);
-	        this.element.setAttribute("class", config_1.Config.classes.line);
+	        var classes = [
+	            config_1.Config.classes.line,
+	            config_1.Config.classes.line + "_" + index
+	        ];
+	        this.element.setAttribute("class", classes.join(" "));
 	        main.appendChild(this.element);
 	        this.index = index;
 	        this.run();

@@ -14,8 +14,11 @@ export class Group implements ElementInterface {
     let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
 
     this.element  = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    // this.element.setAttribute('id', 'group_' + index);
-    this.element.setAttribute("class", Config.classes.line);
+    let classes = [
+      Config.classes.line,
+      Config.classes.line + "_" + index
+    ];
+    this.element.setAttribute("class", classes.join(" "));
 
     main.appendChild(this.element);
     this.index = index;

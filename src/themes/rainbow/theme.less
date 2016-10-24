@@ -1,0 +1,24 @@
+.color-lines(@n, @y, @color, @i: 0) when (@i <= @n) {
+  .line.line_@{i}{
+    .color-rows(@y, desaturate(@color, @i*4));
+  }
+  .color-lines(@n, @y, @color, (@i + 1));
+}
+
+
+.color-rows(@n, @color, @i: 0) when (@i < @n) {
+  circle.row_@{i} {
+    fill: darken(@color, @i*10);
+
+    &:hover {
+    	fill: darken(@color, @i*20);
+    }
+
+    &.active {
+    	fill: blue;
+    }
+  }
+  .color-rows(@n, @color, (@i + 1));
+}
+
+.color-lines(20, 5, #ffdddd);
