@@ -43,6 +43,9 @@ var Drawer = (function () {
     Drawer.prototype.circleClick = function (f) {
         circle_1.Circle.clickEvents.push(f);
     };
+    Drawer.prototype.isAllChecked = function (f) {
+        group_1.Group.isAllCheckedEvents.push(f);
+    };
     return Drawer;
 }());
 exports.Drawer = Drawer;

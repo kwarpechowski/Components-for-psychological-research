@@ -51,7 +51,11 @@ export class Drawer {
     this.setPosition();
   }
 
-  circleClick(f: Function) {
+  circleClick(f: Function): void {
     Circle.clickEvents.push(f);
+  }
+
+  isAllChecked(f: Function): void {
+    Group.isAllCheckedEvents.push(f);
   }
 }

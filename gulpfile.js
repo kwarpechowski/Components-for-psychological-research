@@ -49,4 +49,4 @@ gulp.task('less', function () {
     .pipe(gulp.dest('dist/themes'));
 });
 
-gulp.task('default', gulpSequence(['tslint', 'ts', 'scripts', 'compress'], 'less'));
+gulp.task('default', gulpSequence(['tslint', 'ts', 'scripts'], 'less', 'compress'));

@@ -5,6 +5,7 @@ var text_1 = require("./text");
 var Group = (function () {
     function Group(index) {
         this.odstep = 0;
+        this.active = null;
         this.circles = [];
         var main = document.getElementsByClassName(config_1.Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
         this.element = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -16,7 +17,18 @@ var Group = (function () {
         main.appendChild(this.element);
         this.index = index;
         this.run();
+        Group.list.push(this);
     }
+    Group.isAllChecked = function () {
+        var count = Group.list.filter(function (group) {
+            return group.active === null;
+        }).length;
+        if (!count) {
+            Group.isAllCheckedEvents.forEach(function (f) {
+                f();
+            });
+        }
+    };
     Group.prototype.getPosition = function () {
         var cw = config_1.Config.getQuarterCount();
         return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
@@ -34,7 +46,11 @@ var Group = (function () {
             c.disable();
         });
         circle.enable();
+        this.active = circle;
+        Group.isAllChecked();
     };
+    Group.list = [];
+    Group.isAllCheckedEvents = [];
     return Group;
 }());
 exports.Group = Group;

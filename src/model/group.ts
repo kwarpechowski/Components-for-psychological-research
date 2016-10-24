@@ -8,7 +8,10 @@ export class Group implements ElementInterface {
   index: number;
   config: Config;
   odstep: number = 0;
+  active: Circle = null;
   private circles: Array<Circle> = [];
+  static list: Array<Group> = [];
+  static isAllCheckedEvents: Array<Function> = [];
 
   constructor(index: number) {
     let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
@@ -23,6 +26,18 @@ export class Group implements ElementInterface {
     main.appendChild(this.element);
     this.index = index;
     this.run();
+    Group.list.push(this);
+  }
+
+  static isAllChecked(): void {
+    let count = Group.list.filter(group => {
+      return group.active === null;
+    }).length;
+    if (!count) {
+      Group.isAllCheckedEvents.forEach((f) => {
+        f();
+      });
+    }
   }
 
   getPosition(): number {
@@ -45,5 +60,7 @@ export class Group implements ElementInterface {
       c.disable();
     });
     circle.enable();
+    this.active = circle;
+    Group.isAllChecked();
   }
 }
