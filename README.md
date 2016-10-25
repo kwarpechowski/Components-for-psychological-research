@@ -19,11 +19,11 @@ Draft
 
 | Name        | Type            | Default Value  | Description |
 | ----------- |:---------------:| --------------:|------------:|
-| `R`         | number          | 80              |         |
-| `labels`    | Array <string>  | [click](#labels) |            |
-| `element`   | string  | drawer             |         |
-| `showLines` | boolean | true |            |
-| `classes`   | Object  | [click](#classes) |         |
+| `R`         | number | 80 | |
+| `labels`    | Array <string>  | [click](#labels) | |
+| `element`   | string  | drawer | |
+| `showLines` | boolean | true | |
+| `classes`   | Object  | [click](#classes) ||
 | `showHeader`| boolean | true | |
 | `headerTop`| string | No emotion | |
 | `headerBottom`| string | Other emotion | |
@@ -63,3 +63,6 @@ Draft
     circlePrefix: "row_"
 }
 ```
+##API
+###circleClick
+###isAllChecked
