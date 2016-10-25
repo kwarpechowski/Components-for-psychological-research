@@ -31,35 +31,35 @@ Draft
 ###labels<a name="labels"></a>
 ```javascript
 [
-    'Interest',
-    'Amusement',
-    'Pride',
-    'Joy',
-    'Pleasure',
-    'Contentment',
-    'Love',
-    'Admiration',
-    'Relief',
-    'Comassion',
-    'Sadness',
-    'Guilt',
-    'Regret',
-    'Shame',
-    'Disappointment',
-    'Fear',
-    'Disgust',
-    'Contempt',
-    'Hate',
-    'Anger'
+    "Interest",
+    "Amusement",
+    "Pride",
+    "Joy",
+    "Pleasure",
+    "Contentment",
+    "Love",
+    "Admiration",
+    "Relief",
+    "Comassion",
+    "Sadness",
+    "Guilt",
+    "Regret",
+    "Shame",
+    "Disappointment",
+    "Fear",
+    "Disgust",
+    "Contempt",
+    "Hate",
+    "Anger"
   ];
 ```
 
 ###clases<a name="classes"></a>
 ```javascript
 {
-    mainGroup: 'main_group',
-    lineAxis: 'line_axis',
-    line: 'line',
-    circlePrefix: 'row_'
+    mainGroup: "main_group",
+    lineAxis: "line_axis",
+    line: "line",
+    circlePrefix: "row_"
 }
 ```
