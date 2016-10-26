@@ -68,6 +68,11 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
     circlePrefix: "row_"
 }
 ```
+##Build
+```
+npm i webpack -g
+npm run build
+```
 ##API
 ###circleClick
 ###isAllChecked
