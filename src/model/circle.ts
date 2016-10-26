@@ -23,7 +23,6 @@ export class Circle implements ElementInterface {
 
     this.element = DrawHelper.createElement("a");
     this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#");
-    this.element.setAttribute("target", "_top");
     this.element.setAttribute("class", Config.classes.circlePrefix + index);
 
     let c = DrawHelper.createElement("circle");
