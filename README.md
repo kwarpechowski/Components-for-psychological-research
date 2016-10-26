@@ -4,7 +4,9 @@
 Draft
 
 ##Examples
-Examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples)
+<img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/sample.png" width="500"/>
+
+All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples?style=centerme)
 
 ##Usage
 ```html
