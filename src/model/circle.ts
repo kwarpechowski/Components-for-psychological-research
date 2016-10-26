@@ -22,7 +22,7 @@ export class Circle implements ElementInterface {
     let sizeX = ox * (Config.R + this.group.odstep);
 
     this.element = DrawHelper.createElement("a");
-    this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#");
+    this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "javascript:;");
     this.element.setAttribute("class", Config.classes.circlePrefix + index);
 
     let c = DrawHelper.createElement("circle");

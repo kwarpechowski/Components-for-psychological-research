@@ -3,6 +3,7 @@ import { Circle }  from "./circle";
 import { Text }  from "./text";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
+import { Drawer }  from "../drawer";
 
 export class Group implements ElementInterface {
   element: SVGElement;
@@ -26,7 +27,7 @@ export class Group implements ElementInterface {
   }
 
   constructor(index: number) {
-    let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
+    let main =  Drawer.mainElement;
 
     this.element  = DrawHelper.createElement("g");
     let classes = [

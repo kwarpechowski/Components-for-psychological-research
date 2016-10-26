@@ -6,7 +6,7 @@ import { Text } from "./model/text";
 import { DrawHelper } from "./helpers/DrawHelper";
 
 export class Drawer {
-  private mainElement: SVGGElement;
+  static mainElement: SVGGElement;
   private svg: SVGElement;
 
   constructor() {
@@ -21,11 +21,21 @@ export class Drawer {
     let g  = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.setAttribute("class", Config.classes.mainGroup);
     this.svg.appendChild(g);
-    this.mainElement = g;
+    Drawer.mainElement = g;
+  }
+
+  private countLineSize(): number {
+    let size = 0;
+
+    Config.getLines().forEach((line  ) => {
+     size += line.getSize() * 2;
+    });
+
+    return size;
   }
 
   private getRealR(): number {
-    return Config.R + Text.maxWidth + Text.spacerSize + Line.lineSize;
+    return Config.R + Text.maxWidth + Text.spacerSize + this.countLineSize();
   }
 
   private drawAxis(): void {
@@ -46,24 +56,26 @@ export class Drawer {
     line.setAttribute("y1", y1.toString());
     line.setAttribute("x2", x2.toString());
     line.setAttribute("y2", y2.toString());
-    this.mainElement.appendChild(line);
+    Drawer.mainElement.appendChild(line);
   }
 
   private drawHeaders(): void {
-    let headerTop = DrawHelper.drawHeader(Config.R / 2 * -1, Config.headerTop);
-    let headerBottom = DrawHelper.drawHeader(Config.R / 2, Config.headerBottom);
+    if (Config.showHeader) {
+      let headerTop = DrawHelper.drawHeader(Config.R / 2 * -1, Config.headerTop);
+      let headerBottom = DrawHelper.drawHeader(Config.R / 2, Config.headerBottom);
 
-    this.mainElement.appendChild(headerTop);
-    this.mainElement.appendChild(headerBottom);
+      Drawer.mainElement.appendChild(headerTop);
+      Drawer.mainElement.appendChild(headerBottom);
+    }
   }
 
   private drawBorder(): void {
     if (Config.showBorder) {
       let outsideBorder = DrawHelper.drawBorder(this.getRealR());
-      this.mainElement.appendChild(outsideBorder);
+      Drawer.mainElement.appendChild(outsideBorder);
 
       let insideBorder = DrawHelper.drawBorder(Config.R);
-      this.mainElement.appendChild(insideBorder);
+      Drawer.mainElement.appendChild(insideBorder);
     }
   }
 
@@ -71,7 +83,7 @@ export class Drawer {
     let halfWidth = this.getRealR();
     let width = halfWidth * 2;
 
-    this.mainElement.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
+    Drawer.mainElement.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
     this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
