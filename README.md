@@ -12,7 +12,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 ```html
 <div id="drawing"></div>
 
-<script type="text/javascript" src="dist/gew-min.js"></script>
+<script type="text/javascript" src="dist/core-gew.js"></script>
 <script>
     GEW({
       element: 'drawing'
