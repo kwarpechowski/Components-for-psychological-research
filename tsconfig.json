@@ -1,7 +1,6 @@
 {
     "files": [
-    	"src/model/*.ts",
-        "src/*.ts"
+        "src/main.ts"
     ],
     "compilerOptions": {
         "module": "commonjs",

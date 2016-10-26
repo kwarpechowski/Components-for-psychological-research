@@ -1,6 +1,6 @@
 {
   "name": "the-geneva-emotion-wheel",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,16 +16,15 @@
     "url": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/issues"
   },
   "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
-  "dependencies": {},
+  "dependencies": {
+    "ts-loader": "^0.9.5"
+  },
   "devDependencies": {
+    "css-loader": "^0.25.0",
     "gulp": "^3.9.1",
-    "gulp-cssmin": "^0.1.7",
-    "gulp-less": "^3.1.0",
-    "gulp-minify": "0.0.14",
-    "gulp-sequence": "^0.4.6",
-    "gulp-tslint": "^6.1.2",
-    "gulp-typescript": "^3.0.2",
-    "gulp-webpack": "^1.5.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
     "tslint": "^3.15.1"
   }
 }
