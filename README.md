@@ -3,6 +3,9 @@
 ##Project status
 Draft
 
+##Examples
+Examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples)
+
 ##Usage
 ```html
 <div id="drawing"></div>
