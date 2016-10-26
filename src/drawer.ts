@@ -5,18 +5,20 @@ import { Circle } from "./model/circle";
 
 export class Drawer {
   private mainElement: SVGGElement;
+  private svg: SVGSVGElement;
 
   constructor() {
     let container = document.getElementById(Config.element);
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
-    svg.setAttribute("version", "1.1");
-    container.appendChild(svg);
+    this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+    this.svg.setAttribute("version", "1.1");
+    this.svg.setAttribute("class", "gew-instance");
+    container.appendChild(this.svg);
 
     let g  = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.setAttribute("class", Config.classes.mainGroup);
-    svg.appendChild(g);
+    this.svg.appendChild(g);
     this.mainElement = g;
   }
 
@@ -58,12 +60,15 @@ export class Drawer {
 
   private setPosition(): void {
     let el = document.getElementsByClassName(Config.classes.mainGroup)[0];
-    let width = el.getBoundingClientRect().width / 2; // ladniej mozna policzyc rozmiar
-    this.drawAxis(width);
+    let width = el.getBoundingClientRect().width;
+    let halfWidth = width / 2; // ladniej mozna policzyc rozmiar
+    this.drawAxis(halfWidth);
 
     this.drawHeaders();
 
-    el.setAttribute("style", `transform: translate(${width}px, ${width}px)`);
+    el.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
+
+    this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
   run(): void {

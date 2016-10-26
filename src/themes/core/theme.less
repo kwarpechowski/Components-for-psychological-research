@@ -1,47 +1,48 @@
 @base: #f4f4f4;
 
-.line {
-  circle {
-    cursor: pointer;
-  }
-
-  .row_0 {
-    fill: @base;
-  }
-
-  .row_1 {
-    fill: darken(@base, 5%);
-  }
-
-  .row_2 {
-    fill: darken(@base, 10%);
-  }
-
-  .row_3 {
-    fill: darken(@base, 15%);
-  }
-
-  .row_4 {
-    fill: darken(@base, 20%);
-  }
-}
-
-
-.line circle:hover {
-    fill: yellow;
-}
-
-.line .active {
-    fill: blue;
-    cursor: default;
-}
-
-.line_axis {
-  stroke: pink;
-  stroke-width: 1px;
-}
-
-#drawing svg {
+.gew-instance {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   width: 100%;
   height: 100%;
+
+  .line {
+    circle {
+      cursor: pointer;
+    }
+
+    .row_0 {
+      fill: @base;
+    }
+
+    .row_1 {
+      fill: darken(@base, 5%);
+    }
+
+    .row_2 {
+      fill: darken(@base, 10%);
+    }
+
+    .row_3 {
+      fill: darken(@base, 15%);
+    }
+
+    .row_4 {
+      fill: darken(@base, 20%);
+    }
+  }
+
+
+  .line circle:hover {
+      fill: yellow;
+  }
+
+  .line .active {
+      fill: blue;
+      cursor: default;
+  }
+
+  .line_axis {
+    stroke: pink;
+    stroke-width: 1px;
+  }
 }
