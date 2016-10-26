@@ -47,8 +47,6 @@ export class Group implements ElementInterface {
   }
 
   private run(): void {
-    let odstep = 0;
-
     Config.getLines().forEach((line, index) => {
       this.circles.push(new Circle(this, line.getSize(), index));
     });
