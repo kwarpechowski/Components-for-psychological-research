@@ -2,6 +2,7 @@ import { Config }  from "./config";
 import { Line } from "./model/line";
 import { Group } from "./model/group";
 import { Circle } from "./model/circle";
+import { Text } from "./model/text";
 import { DrawHelper } from "./helpers/DrawHelper";
 
 export class Drawer {
@@ -23,6 +24,21 @@ export class Drawer {
     this.mainElement = g;
   }
 
+  private getRealR(): number {
+    return Config.R + Text.maxWidth + Text.spacerSize + Line.lineSize;
+  }
+
+  private drawAxis(): void {
+    if (Config.showLines) {
+      let size = this.getRealR();
+      this.drawLine(size * -1, 0, Config.R * -1, 0);
+      this.drawLine(Config.R, 0, size, 0);
+
+      this.drawLine(0, size * -1, 0, Config.R * -1);
+      this.drawLine(0, Config.R, 0 , size);
+    }
+  }
+
   private drawLine(x1: number, y1: number, x2: number, y2: number): void {
     let line = DrawHelper.createElement("line");
     line.setAttribute("class", Config.classes.lineAxis);
@@ -33,42 +49,29 @@ export class Drawer {
     this.mainElement.appendChild(line);
   }
 
-  private drawAxis(size: number): void {
-    if (Config.showLines) {
-      this.drawLine(size * -1, 0, Config.R * -1, 0);
-      this.drawLine(Config.R, 0, size, 0);
+  private drawHeaders(): void {
+    let headerTop = DrawHelper.drawHeader(Config.R / 2 * -1, Config.headerTop);
+    let headerBottom = DrawHelper.drawHeader(Config.R / 2, Config.headerBottom);
 
-      this.drawLine(0, size * -1, 0, Config.R * -1);
-      this.drawLine(0, Config.R, 0 , size);
+    this.mainElement.appendChild(headerTop);
+    this.mainElement.appendChild(headerBottom);
+  }
+
+  private drawBorder(): void {
+    if (Config.showBorder) {
+      let outsideBorder = DrawHelper.drawBorder(this.getRealR());
+      this.mainElement.appendChild(outsideBorder);
+
+      let insideBorder = DrawHelper.drawBorder(Config.R);
+      this.mainElement.appendChild(insideBorder);
     }
   }
 
-  private drawHeaders(): void {
-    this.drawHeader(Config.R / 2 * -1, Config.headerTop);
-    this.drawHeader(Config.R / 2, Config.headerBottom);
-  }
-
-  private drawHeader(y: number, txt: string): void {
-    let el = DrawHelper.createElement("text");
-    el.setAttribute("text-anchor", "middle");
-    el.setAttribute("x", "0");
-    el.setAttribute("y", y.toString());
-    this.mainElement.appendChild(el);
-
-    let textNode = document.createTextNode(txt);
-    el.appendChild(textNode);
-  }
-
   private setPosition(): void {
-    let el = document.getElementsByClassName(Config.classes.mainGroup)[0];
-    let width = el.getBoundingClientRect().width;
-    let halfWidth = width / 2; // ladniej mozna policzyc rozmiar
-    this.drawAxis(halfWidth);
+    let halfWidth = this.getRealR();
+    let width = halfWidth * 2;
 
-    this.drawHeaders();
-
-    el.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
-
+    this.mainElement.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
     this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
@@ -79,6 +82,9 @@ export class Drawer {
     }
 
     this.setPosition();
+    this.drawAxis();
+    this.drawHeaders();
+    this.drawBorder();
   }
 
   circleClick(f: Function): void {

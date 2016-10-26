@@ -17,6 +17,8 @@ export interface ConfigInterface {
 
   showLines: boolean;
 
+  showBorder: boolean;
+
   classes: ClassesInterface;
 
   headerBottom: string;

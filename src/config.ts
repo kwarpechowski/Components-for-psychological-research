@@ -31,6 +31,8 @@ export class Config {
 
   static showLines: boolean = true;
 
+  static showBorder: boolean = true;
+
   static headerTop: string = "No emotion";
 
   static headerBottom: string = "Other emotion";
@@ -40,6 +42,7 @@ export class Config {
   static classes: ClassesInterface = {
     mainGroup: "main_group",
     lineAxis: "line_axis",
+    lineBorder: "line_border",
     line: "line",
     circlePrefix: "row_"
   };
@@ -58,14 +61,17 @@ export class Config {
     return this.getElementsCount() / 4;
   }
 
+  static lines: Array<Line> = [];
+
   static getLines(): Array<Line> {
-    // TODO KW konfig
-    let lines: Array<Line> = [];
-    lines.push(new Line(10));
-    lines.push(new Line(15));
-    lines.push(new Line(20));
-    lines.push(new Line(25));
-    lines.push(new Line(30));
-    return lines;
+    if (!Config.lines.length) {
+      // TODO KW konfig
+      Config.lines.push(new Line(10));
+      Config.lines.push(new Line(15));
+      Config.lines.push(new Line(20));
+      Config.lines.push(new Line(25));
+      Config.lines.push(new Line(30));
+    }
+    return Config.lines;
   }
 }

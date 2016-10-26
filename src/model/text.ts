@@ -3,6 +3,8 @@ import { Group }  from "./group";
 import { ElementInterface } from "../interface/ElementInterface";
 
 export class Text implements ElementInterface {
+  static maxWidth: number = 0;
+  static spacerSize: number = 40;
   element: SVGGElement;
   index: number;
   group: Group;
@@ -13,7 +15,7 @@ export class Text implements ElementInterface {
 
     let oy = Math.sin(this.group.getPosition());
     let ox = Math.cos(this.group.getPosition());
-    this.group.odstep += 40; // TODO KW magic numbers
+    this.group.odstep += Text.spacerSize;
 
     let sizeY = oy * (Config.R + this.group.odstep);
     let sizeX = ox * (Config.R + this.group.odstep);
@@ -31,6 +33,9 @@ export class Text implements ElementInterface {
     if (index > Config.labels.length / 2) {
       let el = document.getElementById("text_" + this.index);
       let width = el.getBoundingClientRect().width;
+      if (Text.maxWidth < width) {
+        Text.maxWidth = width;
+      }
       this.element.setAttribute("x", (sizeX - width).toString());
     }
   }

@@ -14,6 +14,17 @@ export class Group implements ElementInterface {
   static list: Array<Group> = [];
   static isAllCheckedEvents: Array<Function> = [];
 
+  static isAllChecked(): void {
+    let count = Group.list.filter(group => {
+      return group.active === null;
+    }).length;
+    if (!count) {
+      Group.isAllCheckedEvents.forEach((f) => {
+        f();
+      });
+    }
+  }
+
   constructor(index: number) {
     let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
 
@@ -28,17 +39,6 @@ export class Group implements ElementInterface {
     this.index = index;
     this.run();
     Group.list.push(this);
-  }
-
-  static isAllChecked(): void {
-    let count = Group.list.filter(group => {
-      return group.active === null;
-    }).length;
-    if (!count) {
-      Group.isAllCheckedEvents.forEach((f) => {
-        f();
-      });
-    }
   }
 
   getPosition(): number {

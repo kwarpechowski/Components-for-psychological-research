@@ -32,6 +32,7 @@ npm i the-geneva-emotion-wheel
 | `labels`    | Array <string>  | [click](#labels) | |
 | `element`   | string  | drawer | |
 | `showLines` | boolean | true | |
+| `showBorder` | boolean | true | |
 | `classes`   | Object  | [click](#classes) ||
 | `showHeader`| boolean | true | |
 | `headerTop`| string | No emotion | |
@@ -68,6 +69,7 @@ npm i the-geneva-emotion-wheel
 {
     mainGroup: "main_group",
     lineAxis: "line_axis",
+    lineBorder: "line_border",
     line: "line",
     circlePrefix: "row_"
 }
