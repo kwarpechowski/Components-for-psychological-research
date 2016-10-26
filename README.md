@@ -8,6 +8,10 @@ Draft
 
 All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples?style=centerme)
 
+##Instalation
+```
+npm i the-geneva-emotion-wheel
+```
 ##Usage
 ```html
 <div id="drawing"></div>
