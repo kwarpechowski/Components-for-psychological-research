@@ -2,14 +2,15 @@ import { Config }  from "./config";
 import { Line } from "./model/line";
 import { Group } from "./model/group";
 import { Circle } from "./model/circle";
+import { DrawHelper } from "./helpers/DrawHelper";
 
 export class Drawer {
   private mainElement: SVGGElement;
-  private svg: SVGSVGElement;
+  private svg: SVGElement;
 
   constructor() {
     let container = document.getElementById(Config.element);
-    this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    this.svg = DrawHelper.createElement("svg");
     this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
     this.svg.setAttribute("version", "1.1");
@@ -23,7 +24,7 @@ export class Drawer {
   }
 
   private drawLine(x1: number, y1: number, x2: number, y2: number): void {
-    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    let line = DrawHelper.createElement("line");
     line.setAttribute("class", Config.classes.lineAxis);
     line.setAttribute("x1", x1.toString());
     line.setAttribute("y1", y1.toString());
@@ -48,7 +49,7 @@ export class Drawer {
   }
 
   private drawHeader(y: number, txt: string): void {
-    let el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    let el = DrawHelper.createElement("text");
     el.setAttribute("text-anchor", "middle");
     el.setAttribute("x", "0");
     el.setAttribute("y", y.toString());

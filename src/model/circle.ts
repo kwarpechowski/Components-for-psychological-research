@@ -1,9 +1,10 @@
 import { Config }  from "../config";
 import { Group }  from "./group";
 import { ElementInterface } from "../interface/ElementInterface";
+import { DrawHelper } from "../helpers/DrawHelper";
 
 export class Circle implements ElementInterface {
-  element: SVGGElement;
+  element: SVGElement;
   index: number;
   group: Group;
   static activeClass: string = "active";
@@ -20,12 +21,12 @@ export class Circle implements ElementInterface {
     let sizeY = oy * (Config.R + this.group.odstep);
     let sizeX = ox * (Config.R + this.group.odstep);
 
-    this.element = document.createElementNS("http://www.w3.org/2000/svg", "a");
+    this.element = DrawHelper.createElement("a");
     this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#");
     this.element.setAttribute("target", "_top");
     this.element.setAttribute("class", Config.classes.circlePrefix + index);
 
-    let c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    let c = DrawHelper.createElement("circle");
     c.setAttribute("cx", sizeX.toString());
     c.setAttribute("cy", sizeY.toString());
     c.setAttribute("r", size.toString());

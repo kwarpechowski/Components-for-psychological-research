@@ -2,9 +2,10 @@ import { Config }  from "../config";
 import { Circle }  from "./circle";
 import { Text }  from "./text";
 import { ElementInterface } from "../interface/ElementInterface";
+import { DrawHelper } from "../helpers/DrawHelper";
 
 export class Group implements ElementInterface {
-  element: SVGGElement;
+  element: SVGElement;
   index: number;
   config: Config;
   odstep: number = 0;
@@ -16,7 +17,7 @@ export class Group implements ElementInterface {
   constructor(index: number) {
     let main =  document.getElementsByClassName(Config.classes.mainGroup)[0]; // TODO KW magic string, szukac tylko po configu
 
-    this.element  = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    this.element  = DrawHelper.createElement("g");
     let classes = [
       Config.classes.line,
       Config.classes.line + "_" + index
