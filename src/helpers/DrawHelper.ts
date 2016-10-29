@@ -19,11 +19,10 @@ export class DrawHelper {
   }
 
   static drawBorder(r: number): SVGElement {
-    let c = DrawHelper.createElement('circle');
+    let c = DrawHelper.createElement("circle");
     c.setAttribute("cx", "0");
     c.setAttribute("cy", "0");
     c.setAttribute("r", r.toString());
-    c.setAttribute("class", Config.classes.lineBorder);
     return c;
   }
 

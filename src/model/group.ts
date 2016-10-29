@@ -1,58 +1,58 @@
 import { Config }  from "../config";
-import { Circle }  from "./circle";
-import { Text }  from "./text";
+import { Circle }  from "./Circle";
+import { Text }  from "./Text";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
 import { Drawer }  from "../drawer";
+
+import { Observable, Subject } from "rx";
+
 
 export class Group implements ElementInterface {
   element: SVGElement;
   index: number;
   config: Config;
   odstep: number = 0;
-  active: Circle = null;
+  changeObserver: Subject<any>;
   private circles: Array<Circle> = [];
-  static list: Array<Group> = [];
-  static isAllCheckedEvents: Array<Function> = [];
+  private text: Text;
 
-  static isAllChecked(): void {
-    let count = Group.list.filter(group => {
-      return group.active === null;
-    }).length;
-    if (!count) {
-      Group.isAllCheckedEvents.forEach((f) => {
-        f();
-      });
-    }
+  constructor(config: Config, index: number) {
+    this.index = index;
+    this.config = config;
+    this.changeObserver = new Subject();
   }
 
-  constructor(index: number) {
-    let main =  Drawer.mainElement;
+  public create(): SVGElement {
 
     this.element  = DrawHelper.createElement("g");
     let classes = [
-      Config.classes.line,
-      Config.classes.line + "_" + index
+      this.config.classes.line,
+      this.config.classes.line + "_" + this.index
     ];
     this.element.setAttribute("class", classes.join(" "));
 
-    main.appendChild(this.element);
-    this.index = index;
     this.run();
-    Group.list.push(this);
+    return this.element;
+  }
+
+  public getText(): Text {
+    return this.text;
   }
 
   getPosition(): number {
-    let cw = Config.getQuarterCount();
+    let cw = this.config.getQuarterCount();
     return (90 / cw) * (this.index - cw - 0.5) * Math.PI / 180;
   }
 
   private run(): void {
-    Config.getLines().forEach((line, index) => {
-      this.circles.push(new Circle(this, line.getSize(), index));
+    this.config.getLines().forEach((line, index) => {
+      let circle = new Circle(this, line.getSize(), index);
+      this.circles.push(circle);
+      this.element.appendChild(circle.create());
     });
 
-    new Text(this, this.index);
+    this.text = new Text(this);
   }
 
   setActive(circle: Circle) {
@@ -60,7 +60,7 @@ export class Group implements ElementInterface {
       c.disable();
     });
     circle.enable();
-    this.active = circle;
-    Group.isAllChecked();
+
+    this.changeObserver.onNext(circle);
   }
 }

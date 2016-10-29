@@ -1,65 +1,79 @@
-import { Config }  from "../config";
-import { Group }  from "./group";
+import { Group }  from "./Group";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
 
+import { Observable } from "rx";
+
 export class Circle implements ElementInterface {
-  element: SVGElement;
   index: number;
-  group: Group;
+  element: SVGElement;
+  private isActive: boolean;
+  private group: Group;
   static activeClass: string = "active";
-  static clickEvents: Array<Function> = [];
+  private size: number;
 
   constructor(group: Group, size: number, index: number) {
     this.group = group;
+    this.size = size;
     this.index = index;
+  }
 
+  create(): SVGElement {
     let oy = Math.sin(this.group.getPosition());
     let ox = Math.cos(this.group.getPosition());
-    this.group.odstep += size * 2; // TODO KW magic numbers
+    this.group.odstep += this.size * 2; // TODO KW magic numbers
 
-    let sizeY = oy * (Config.R + this.group.odstep);
-    let sizeX = ox * (Config.R + this.group.odstep);
+    let sizeY = oy * (this.group.config.R + this.group.odstep);
+    let sizeX = ox * (this.group.config.R + this.group.odstep);
 
     this.element = DrawHelper.createElement("a");
     this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "javascript:;");
-    this.element.setAttribute("class", Config.classes.circlePrefix + index);
+    this.element.setAttributeNS("http://www.w3.org/1999/xlink", "title", "xyz");
+    this.element.setAttribute("class", this.group.config.classes.circlePrefix + this.index);
 
     let c = DrawHelper.createElement("circle");
     c.setAttribute("cx", sizeX.toString());
     c.setAttribute("cy", sizeY.toString());
-    c.setAttribute("r", size.toString());
+    c.setAttribute("r", this.size.toString());
 
     this.bindEvents();
 
     this.element.appendChild(c);
-    this.group.element.appendChild(this.element);
+
+    return this.element;
   }
 
   bindEvents(): void {
-    this.element.addEventListener("click", () => {
-      this.group.setActive(this);
-      Circle.clickEvents.forEach(event => {
-        event(this.group.index, this.index);
-      });
+    let source = Observable.fromEvent(this.element, "click");
+
+    let subscription = source.subscribe(() => {
+      if (!this.isActive) {
+        this.group.setActive(this);
+      }
     });
   }
 
   enable(): void {
-    let classes = this.element.getAttribute("class");
-    if (classes) {
-      classes += " " + Circle.activeClass;
-    } else {
-      classes = Circle.activeClass;
+    if (!this.isActive) {
+      this.isActive = true;
+      let classes = this.element.getAttribute("class");
+      if (classes) {
+        classes += " " + Circle.activeClass;
+      } else {
+        classes = Circle.activeClass;
+      }
+      this.element.setAttribute("class", classes);
     }
-    this.element.setAttribute("class", classes);
   }
 
   disable(): void {
-    let classes = this.element.getAttribute("class");
-    if (classes) {
-       classes = classes.replace(Circle.activeClass, "");
+    if (this.isActive) {
+      this.isActive = false;
+      let classes = this.element.getAttribute("class");
+      if (classes) {
+         classes = classes.replace(Circle.activeClass, "");
+      }
+      this.element.setAttribute("class", classes);
     }
-    this.element.setAttribute("class", classes);
   }
 }

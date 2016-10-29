@@ -1,6 +1,6 @@
 {
   "name": "the-geneva-emotion-wheel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,21 +10,23 @@
     "type": "git",
     "url": "git+https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel.git"
   },
-  "author": "",
+  "author": "Kamil Warpechowski",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/issues"
   },
   "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
   "dependencies": {
-    "ts-loader": "^0.9.5"
+    "rx": "^4.1.0"
   },
   "devDependencies": {
     "css-loader": "^0.25.0",
-    "gulp": "^3.9.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
-    "tslint": "^3.15.1"
+    "tslint": "^3.15.1",
+    "tslint-loader": "^2.1.5",
+    "typescript": "^2.0.6",
+    "ts-loader": "^0.9.5"
   }
 }

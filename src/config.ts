@@ -3,8 +3,8 @@ import { ClassesInterface } from "./interface/ClassesInterface";
 import { ConfigInterface } from "./interface/ConfigInterface";
 
 export class Config {
-  static R: number = 80;
-  static labels: Array<string> = [
+  R: number = 80;
+  labels: Array<string> = [
     "Interest",
     "Amusement",
     "Pride",
@@ -27,19 +27,19 @@ export class Config {
     "Anger"
   ];
 
-  static element: string = "drawer";
+  element: string = "drawer";
 
-  static showLines: boolean = true;
+  showLines: boolean = true;
 
-  static showBorder: boolean = true;
+  showBorder: boolean = true;
 
-  static headerTop: string = "No emotion";
+  headerTop: string = "No emotion";
 
-  static headerBottom: string = "Other emotion";
+  headerBottom: string = "Other emotion";
 
-  static showHeader: boolean = true;
+  showHeader: boolean = true;
 
-  static classes: ClassesInterface = {
+  classes: ClassesInterface = {
     mainGroup: "main_group",
     lineAxis: "line_axis",
     lineBorder: "line_border",
@@ -47,31 +47,31 @@ export class Config {
     circlePrefix: "row_"
   };
 
-  static set (config: ConfigInterface): void {
+  constructor (config: ConfigInterface) {
     Object.keys(config).forEach((key) => {
-      Config[key] = config[key];
+      this[key] = config[key];
     });
   }
 
-  static getElementsCount(): number {
+  getElementsCount(): number {
     return this.labels.length;
   }
 
-  static getQuarterCount(): number {
+  getQuarterCount(): number {
     return this.getElementsCount() / 4;
   }
 
-  static lines: Array<Line> = [];
+  lines: Array<Line> = [];
 
-  static getLines(): Array<Line> {
-    if (!Config.lines.length) {
+  getLines(): Array<Line> {
+    if (!this.lines.length) {
       // TODO KW konfig
-      Config.lines.push(new Line(10));
-      Config.lines.push(new Line(15));
-      Config.lines.push(new Line(20));
-      Config.lines.push(new Line(25));
-      Config.lines.push(new Line(30));
+      this.lines.push(new Line(10));
+      this.lines.push(new Line(15));
+      this.lines.push(new Line(20));
+      this.lines.push(new Line(25));
+      this.lines.push(new Line(30));
     }
-    return Config.lines;
+    return this.lines;
   }
 }

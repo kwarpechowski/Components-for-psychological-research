@@ -10,14 +10,17 @@
             var gew = GEW({
               element: 'drawing'
             });
-            gew.circleClick(function(row, element) {
-                console.log('clicked [row, element]:', row, element);
+            var action = gew.circleClick();
+            action.subscribe(function(data) {
+                console.log('clicked', data);
             });
 
-            gew.isAllChecked(function() {
-              console.log('all is checked');
+            var isAll = gew.isAllChecked();
+            isAll.subscribe(function(data) {
+              console.log('all is checked', data);
             });
          </script>
     </body>
 
 </html>
+

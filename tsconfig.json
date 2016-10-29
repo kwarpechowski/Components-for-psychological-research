@@ -1,5 +1,6 @@
 {
     "files": [
+        "node_modules/rx/ts/rx.all.d.ts",
         "src/main.ts"
     ],
     "compilerOptions": {
@@ -8,7 +9,7 @@
         "strictNullChecks": false,
         "baseUrl": "./src/",
         "typeRoots": [
-            "../"
+            "typings"
         ],
         "types": [],
         "noEmit": false,
