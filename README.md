@@ -1,5 +1,7 @@
 # The Geneva Emotion Wheel
 
+[![Dependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=dependencies) [![devDependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/dev-status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=devDependencies)
+
 ##Project status
 Draft
 
