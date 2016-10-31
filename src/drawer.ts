@@ -1,6 +1,5 @@
 import { Config }  from "./config";
 import { Group } from "./model/Group";
-import { Circle } from "./model/Circle";
 import { Text } from "./model/Text";
 import { ClickEvent } from "./model/ClickEvent";
 import { DrawHelper } from "./helpers/DrawHelper";

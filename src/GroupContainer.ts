@@ -1,5 +1,5 @@
 import { Group } from "./model/Group";
-import { Circle } from "./model/Circle";
+import { Element } from "./model/Element";
 import { Config }  from "./config";
 import { ClickEvent } from "./model/ClickEvent";
 
@@ -28,8 +28,8 @@ export class GroupContainer {
     for (let i = 1; i <= this.config.getElementsCount(); i++) {
       let g = new Group(this.config, i);
 
-      g.changeObserver.subscribe((circle: Circle) => {
-        this.groupStatus[g.index] = circle.index;
+      g.changeObserver.subscribe((element: Element) => {
+        this.groupStatus[g.index] = element.index;
         this.changeObserver.onNext(this.groupStatus);
       });
       this.groups.push(g);

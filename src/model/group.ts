@@ -1,5 +1,5 @@
 import { Config }  from "../config";
-import { Circle }  from "./Circle";
+import { Element }  from "./Element";
 import { Position }  from "./Position";
 import { Text }  from "./Text";
 import { ElementInterface } from "../interface/ElementInterface";
@@ -15,7 +15,7 @@ export class Group implements ElementInterface {
   config: Config;
   private odstep: number = 0;
   changeObserver: Subject<any>;
-  private circles: Array<Circle> = [];
+  private elements: Array<Element> = [];
   private text: Text;
 
   constructor(config: Config, index: number) {
@@ -50,9 +50,9 @@ export class Group implements ElementInterface {
     this.config.getLines().forEach((line, index) => {
       let size = line.getSize();
       this.odstep += size * 2; // TODO KW magic numbers
-      let circle = new Circle(this, size, index);
-      this.circles.push(circle);
-      this.element.appendChild(circle.create());
+      let element = new Element(this, size, index);
+      this.elements.push(element);
+      this.element.appendChild(element.create());
     });
 
     this.odstep += Text.spacerSize;
@@ -72,12 +72,12 @@ export class Group implements ElementInterface {
     };
   }
 
-  setActive(circle: Circle) {
-    this.circles.forEach(c => {
+  setActive(element: Element) {
+    this.elements.forEach(c => {
       c.disable();
     });
-    circle.enable();
+    element.enable();
 
-    this.changeObserver.onNext(circle);
+    this.changeObserver.onNext(element);
   }
 }

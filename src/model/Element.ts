@@ -4,7 +4,7 @@ import { DrawHelper } from "../helpers/DrawHelper";
 
 import { Observable } from "rx";
 
-export class Circle implements ElementInterface {
+export class Element implements ElementInterface {
   index: number;
   element: SVGElement;
   private isActive: boolean;
@@ -57,9 +57,9 @@ export class Circle implements ElementInterface {
       this.isActive = true;
       let classes = this.element.getAttribute("class");
       if (classes) {
-        classes += " " + Circle.activeClass;
+        classes += " " + Element.activeClass;
       } else {
-        classes = Circle.activeClass;
+        classes = Element.activeClass;
       }
       this.element.setAttribute("class", classes);
     }
@@ -70,7 +70,7 @@ export class Circle implements ElementInterface {
       this.isActive = false;
       let classes = this.element.getAttribute("class");
       if (classes) {
-         classes = classes.replace(Circle.activeClass, "");
+         classes = classes.replace(Element.activeClass, "");
       }
       this.element.setAttribute("class", classes);
     }
