@@ -21,7 +21,7 @@ export class GroupContainer {
       if (this.groups.length === Object.keys(this.groupStatus).length) {
         this.completeObserver.onNext(this.groupStatus);
       }
-    })
+    });
   }
 
   create() {

@@ -19,21 +19,16 @@ export class Circle implements ElementInterface {
   }
 
   create(): SVGElement {
-    let oy = Math.sin(this.group.getPosition());
-    let ox = Math.cos(this.group.getPosition());
-    this.group.odstep += this.size * 2; // TODO KW magic numbers
-
-    let sizeY = oy * (this.group.config.R + this.group.odstep);
-    let sizeX = ox * (this.group.config.R + this.group.odstep);
+    let position = this.group.getElementPosition();
 
     this.element = DrawHelper.createElement("a");
     this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "javascript:;");
-    this.element.setAttributeNS("http://www.w3.org/1999/xlink", "title", "xyz");
+    this.element.setAttributeNS("http://www.w3.org/1999/xlink", "title", this.getTitle());
     this.element.setAttribute("class", this.group.config.classes.circlePrefix + this.index);
 
     let c = DrawHelper.createElement("circle");
-    c.setAttribute("cx", sizeX.toString());
-    c.setAttribute("cy", sizeY.toString());
+    c.setAttribute("cx", position.x);
+    c.setAttribute("cy", position.y);
     c.setAttribute("r", this.size.toString());
 
     this.bindEvents();
@@ -43,7 +38,11 @@ export class Circle implements ElementInterface {
     return this.element;
   }
 
-  bindEvents(): void {
+  private getTitle(): string {
+    return `Element ${this.index}`;
+  }
+
+  private bindEvents(): void {
     let source = Observable.fromEvent(this.element, "click");
 
     let subscription = source.subscribe(() => {

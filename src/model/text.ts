@@ -9,8 +9,6 @@ export class Text implements ElementInterface {
   element: SVGGElement;
   index: number;
   group: Group;
-  sizeX: number;
-  sizeY: number;
 
   constructor(group: Group) {
     this.group = group;
@@ -19,31 +17,25 @@ export class Text implements ElementInterface {
 
   create(): SVGGElement {
 
-    let oy = Math.sin(this.group.getPosition());
-    let ox = Math.cos(this.group.getPosition());
-    this.group.odstep += Text.spacerSize;
-
-    this.sizeY = oy * (this.group.config.R + this.group.odstep);
-    this.sizeX = ox * (this.group.config.R + this.group.odstep);
+    let position = this.group.getElementPosition();
 
     this.element = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    this.element.setAttribute("x", this.sizeX.toString());
-    this.element.setAttribute("y", this.sizeY.toString());
+    this.element.setAttribute("x", position.x);
+    this.element.setAttribute("y", position.y);
     this.element.setAttribute("id", "text_" + this.index);
 
     let textNode = document.createTextNode(this.group.config.labels[this.index - 1]);
     this.element.appendChild(textNode);
 
     return this.element;
-
   }
 
   repaint(textSizer: Subject<number>): void {
     if (this.index > this.group.config.labels.length / 2) {
       let el = document.getElementById("text_" + this.index);
       let width = el.getBoundingClientRect().width;
-      this.element.setAttribute("x", (this.sizeX - width).toString());
-
+      let x = parseInt(el.getAttribute("x"), 10);
+      this.element.setAttribute("x", (x - width).toString());
       textSizer.onNext(width);
     }
   }

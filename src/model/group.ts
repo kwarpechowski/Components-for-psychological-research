@@ -1,5 +1,6 @@
 import { Config }  from "../config";
 import { Circle }  from "./Circle";
+import { Position }  from "./Position";
 import { Text }  from "./Text";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
@@ -12,7 +13,7 @@ export class Group implements ElementInterface {
   element: SVGElement;
   index: number;
   config: Config;
-  odstep: number = 0;
+  private odstep: number = 0;
   changeObserver: Subject<any>;
   private circles: Array<Circle> = [];
   private text: Text;
@@ -47,12 +48,28 @@ export class Group implements ElementInterface {
 
   private run(): void {
     this.config.getLines().forEach((line, index) => {
-      let circle = new Circle(this, line.getSize(), index);
+      let size = line.getSize();
+      this.odstep += size * 2; // TODO KW magic numbers
+      let circle = new Circle(this, size, index);
       this.circles.push(circle);
       this.element.appendChild(circle.create());
     });
 
+    this.odstep += Text.spacerSize;
     this.text = new Text(this);
+  }
+
+  getElementPosition(): Position {
+    let oy = Math.sin(this.getPosition());
+    let ox = Math.cos(this.getPosition());
+
+    let sizeY = oy * (this.config.R + this.odstep);
+    let sizeX = ox * (this.config.R + this.odstep);
+
+    return {
+      x: sizeX.toString(),
+      y: sizeY.toString()
+    };
   }
 
   setActive(circle: Circle) {

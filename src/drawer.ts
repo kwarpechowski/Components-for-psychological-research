@@ -1,5 +1,4 @@
 import { Config }  from "./config";
-import { Line } from "./model/Line";
 import { Group } from "./model/Group";
 import { Circle } from "./model/Circle";
 import { Text } from "./model/Text";
@@ -26,9 +25,9 @@ export class Drawer {
     this.svg.setAttribute("class", "gew-instance");
     container.appendChild(this.svg);
 
-    let g  = document.createElementNS("http://www.w3.org/2000/svg", "g");
-    g.setAttribute("class", this.config.classes.mainGroup);
-    this.mainElement = g;
+    this.mainElement  = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    this.mainElement.setAttribute("class", this.config.classes.mainGroup);
+    this.svg.appendChild(this.mainElement);
 
     this.textSizer = new Subject();
 
@@ -45,7 +44,7 @@ export class Drawer {
   private countLineSize(): number {
     let size = 0;
 
-    this.config.getLines().forEach((line  ) => {
+    this.config.getLines().forEach((line) => {
      size += line.getSize() * 2;
     });
 
@@ -107,10 +106,6 @@ export class Drawer {
     this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
-  private showInDOM(): void {
-    this.svg.appendChild(this.mainElement);
-  }
-
   run(): void {
 
     this.gc.create();
@@ -126,7 +121,6 @@ export class Drawer {
     this.drawAxis();
     this.drawHeaders();
     this.drawBorder();
-    this.showInDOM();
   }
 
   circleClick(): any {
