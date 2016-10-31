@@ -1,7 +1,7 @@
 module.exports = {  
   entry: {
     'core': './src/main.ts',
-    'rainbow': './src/main-rainbow.ts',
+    'rainbow': './src/themes/rainbow/theme.less'
   },
   output: {
     path: './dist',
@@ -14,7 +14,8 @@ module.exports = {
     preLoaders: [
         {
             test: /\.ts$/,
-            loader: "tslint"
+            loader: "tslint",
+            exclude: "node_modules"
         }
     ],
     loaders: [

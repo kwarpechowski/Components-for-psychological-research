@@ -1,26 +1,24 @@
-.color-lines(@n, @y, @color, @i: 0) when (@i <= @n) {
-  .line.line_@{i}{
-    .color-rows(@y, desaturate(@color, @i*4));
-  }
-  .color-lines(@n, @y, @color, (@i + 1));
-}
-
-
-.color-rows(@n, @color, @i: 0) when (@i < @n) {
+.color-rows(@color, @i: 4, @m: 0%) when (@i >= 0){
   .row_@{i} {
-    circle {
-      fill: darken(@color, @i*10);
-    }
+    fill: lighten(@color, @m);
 
-    &:hover circle{
-    	fill: darken(@color, @i*20);
-    }
-
-    &.active circle{
-    	fill: #666;
+    &.active {
+      fill: darken(@color, 30%);
     }
   }
-  .color-rows(@n, @color, (@i + 1));
+  .color-rows(@color, (@i - 1), (@m + 10));
 }
 
-.color-lines(20, 5, #ffdddd);
+.color-lines(@i, @n, @color1, @color2, @m: 20%) when (@i <= @n) {
+  .line_@{i}{
+    .color-rows(mix(@color2, @color1, @m));
+  }
+  .color-lines((@i + 1), @n, @color1, @color2, (@m + 20%));
+}
+
+.gew-instance {
+  .color-lines(0, 5, red, yellow);
+  .color-lines(6, 10, yellow, green);
+  .color-lines(11, 15, green, blue);
+  .color-lines(16, 20, blue, red);
+}

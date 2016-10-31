@@ -6,7 +6,7 @@
   height: 100%;
 
   .line {
-    circle {
+    > * {
       cursor: pointer;
     }
 
@@ -32,8 +32,8 @@
   }
 
 
-  .line circle:hover {
-      fill: yellow;
+  .line >:not(.active):hover {
+      fill: #666;
   }
 
   .line .active {
