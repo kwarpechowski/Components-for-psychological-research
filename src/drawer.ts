@@ -28,9 +28,7 @@ export class Drawer {
 
     let g  = document.createElementNS("http://www.w3.org/2000/svg", "g");
     g.setAttribute("class", this.config.classes.mainGroup);
-    this.svg.appendChild(g);
     this.mainElement = g;
-
 
     this.textSizer = new Subject();
 
@@ -109,23 +107,26 @@ export class Drawer {
     this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
+  private showInDOM(): void {
+    this.svg.appendChild(this.mainElement);
+  }
+
   run(): void {
 
     this.gc.create();
 
     this.gc.getGroups().forEach((group: Group) => {
       this.mainElement.appendChild(group.create());
-
       let text = group.getText();
       this.mainElement.appendChild(text.create());
       text.repaint(this.textSizer);
-
-    })
+    });
 
     this.setPosition();
     this.drawAxis();
     this.drawHeaders();
     this.drawBorder();
+    this.showInDOM();
   }
 
   circleClick(): any {
