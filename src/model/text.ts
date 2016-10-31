@@ -9,10 +9,12 @@ export class Text implements ElementInterface {
   element: SVGGElement;
   index: number;
   group: Group;
+  private txt: string;
 
-  constructor(group: Group) {
+  constructor(txt: string, group: Group) {
     this.group = group;
     this.index = group.index;
+    this.txt = txt;
   }
 
   create(): SVGGElement {
@@ -24,7 +26,7 @@ export class Text implements ElementInterface {
     this.element.setAttribute("y", position.y);
     this.element.setAttribute("id", "text_" + this.index);
 
-    let textNode = document.createTextNode(this.group.config.labels[this.index - 1]);
+    let textNode = document.createTextNode(this.txt);
     this.element.appendChild(textNode);
 
     return this.element;
@@ -35,7 +37,7 @@ export class Text implements ElementInterface {
       let el = document.getElementById("text_" + this.index);
       let width = el.getBoundingClientRect().width;
       let x = parseInt(el.getAttribute("x"), 10);
-      this.element.setAttribute("x", (x - width).toString());
+      el.setAttribute("x", (x - width).toString());
       textSizer.onNext(width);
     }
   }

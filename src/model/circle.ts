@@ -18,6 +18,20 @@ export class Circle implements ElementInterface {
     this.index = index;
   }
 
+  private getTitle(): string {
+    return `Element ${this.index}`;
+  }
+
+  private bindEvents(): void {
+    let source = Observable.fromEvent(this.element, "click");
+
+    let subscription = source.subscribe(() => {
+      if (!this.isActive) {
+        this.group.setActive(this);
+      }
+    });
+  }
+
   create(): SVGElement {
     let position = this.group.getElementPosition();
 
@@ -36,20 +50,6 @@ export class Circle implements ElementInterface {
     this.element.appendChild(c);
 
     return this.element;
-  }
-
-  private getTitle(): string {
-    return `Element ${this.index}`;
-  }
-
-  private bindEvents(): void {
-    let source = Observable.fromEvent(this.element, "click");
-
-    let subscription = source.subscribe(() => {
-      if (!this.isActive) {
-        this.group.setActive(this);
-      }
-    });
   }
 
   enable(): void {

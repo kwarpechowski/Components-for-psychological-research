@@ -24,7 +24,7 @@ export class Group implements ElementInterface {
     this.changeObserver = new Subject();
   }
 
-  public create(): SVGElement {
+  create(): SVGElement {
 
     this.element  = DrawHelper.createElement("g");
     let classes = [
@@ -37,7 +37,7 @@ export class Group implements ElementInterface {
     return this.element;
   }
 
-  public getText(): Text {
+  getText(): Text {
     return this.text;
   }
 
@@ -56,7 +56,7 @@ export class Group implements ElementInterface {
     });
 
     this.odstep += Text.spacerSize;
-    this.text = new Text(this);
+    this.text = new Text(this.config.labels[this.index - 1], this);
   }
 
   getElementPosition(): Position {
