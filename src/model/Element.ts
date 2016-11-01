@@ -2,7 +2,9 @@ import { Group }  from "./Group";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
 import { Position }  from "./Position";
-import { Observable } from "rx";
+
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/fromEvent";
 
 export class Element implements ElementInterface {
   index: number;

@@ -1,4 +1,4 @@
-import { Line } from "./model/line";
+import { Line } from "./model/Line";
 import { ClassesInterface } from "./interface/ClassesInterface";
 import { ConfigInterface } from "./interface/ConfigInterface";
 

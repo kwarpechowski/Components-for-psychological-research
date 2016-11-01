@@ -3,7 +3,7 @@ import { Element } from "./model/Element";
 import { Config }  from "./config";
 import { ClickEvent } from "./model/ClickEvent";
 
-import { Observable, Subject } from "rx";
+import { Subject } from "rxjs/Subject";
 
 export class GroupContainer {
   changeObserver: Subject<any>;
@@ -19,7 +19,7 @@ export class GroupContainer {
     this.changeObserver = new Subject();
     this.changeObserver.subscribe(() => {
       if (this.groups.length === Object.keys(this.groupStatus).length) {
-        this.completeObserver.onNext(this.groupStatus);
+        this.completeObserver.next(this.groupStatus);
       }
     });
   }
@@ -30,7 +30,7 @@ export class GroupContainer {
 
       g.changeObserver.subscribe((element: Element) => {
         this.groupStatus[g.index] = element.index;
-        this.changeObserver.onNext(this.groupStatus);
+        this.changeObserver.next(this.groupStatus);
       });
       this.groups.push(g);
     }

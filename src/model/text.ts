@@ -1,7 +1,7 @@
 import { Group }  from "./Group";
 import { ElementInterface } from "../interface/ElementInterface";
 
-import { Subject } from "rx";
+import { Subject } from "rxjs/Subject";
 
 export class Text implements ElementInterface {
   static spacerSize: number = 40;
@@ -37,7 +37,7 @@ export class Text implements ElementInterface {
       let width = el.getBoundingClientRect().width;
       let x = parseInt(el.getAttribute("x"), 10);
       el.setAttribute("x", (x - width).toString());
-      textSizer.onNext(width);
+      textSizer.next(width);
     }
   }
 

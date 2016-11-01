@@ -1,4 +1,4 @@
 export class ClickEvent {
-	circleIndex: number;
-	groupIndex: number;
+  circleIndex: number;
+  groupIndex: number;
 }

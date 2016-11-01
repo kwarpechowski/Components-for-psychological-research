@@ -1,10 +1,9 @@
 import { Config }  from "./config";
 import { Group } from "./model/Group";
 import { Text } from "./model/Text";
-import { ClickEvent } from "./model/ClickEvent";
 import { DrawHelper } from "./helpers/DrawHelper";
 import { GroupContainer } from "./GroupContainer";
-import { Subject } from "rx";
+import { Subject } from "rxjs/Subject";
 
 export class Drawer {
   private mainElement: SVGGElement;

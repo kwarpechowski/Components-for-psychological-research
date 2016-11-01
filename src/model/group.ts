@@ -4,10 +4,8 @@ import { Position }  from "./Position";
 import { Text }  from "./Text";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
-import { Drawer }  from "../drawer";
 
-import { Observable, Subject } from "rx";
-
+import { Subject } from "rxjs/Subject";
 
 export class Group implements ElementInterface {
   element: SVGElement;
@@ -70,7 +68,7 @@ export class Group implements ElementInterface {
     });
     element.enable();
 
-    this.changeObserver.onNext(element);
+    this.changeObserver.next(element);
   }
 
   getElementPosition(): Position {

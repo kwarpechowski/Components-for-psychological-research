@@ -1,6 +1,7 @@
 {
     "files": [
-        "node_modules/rx/ts/rx.all.d.ts",
+        "node_modules/@types/jasmine/index.d.ts",
+        "node_modules/rxjs/Rx.d.ts",
         "src/main.ts"
     ],
     "compilerOptions": {
