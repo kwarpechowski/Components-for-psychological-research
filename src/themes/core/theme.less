@@ -10,24 +10,12 @@
       cursor: pointer;
     }
 
-    .row_0 {
-      fill: @base;
+    &.even > * {
+      fill: #f2f2f2;
     }
 
-    .row_1 {
-      fill: darken(@base, 5%);
-    }
-
-    .row_2 {
-      fill: darken(@base, 10%);
-    }
-
-    .row_3 {
-      fill: darken(@base, 15%);
-    }
-
-    .row_4 {
-      fill: darken(@base, 20%);
+    &.odd > * {
+      fill: #ccc;
     }
   }
 

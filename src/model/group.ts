@@ -31,6 +31,11 @@ export class Group implements ElementInterface {
       this.config.classes.line,
       this.config.classes.line + "_" + this.index
     ];
+    if (this.index % 2 === 0 ) {
+      classes.push("even");
+    } else {
+      classes.push("odd");
+    }
     this.element.setAttribute("class", classes.join(" "));
 
     this.run();
