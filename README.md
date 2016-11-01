@@ -1,6 +1,8 @@
 # The Geneva Emotion Wheel
 
-[![Dependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=dependencies) [![devDependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/dev-status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=devDependencies)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badge/)
+[![Dependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=dependencies)
+[![devDependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/dev-status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=devDependencies)
 
 ##Examples
 <a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples/rainbow/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/sample.png" width="500"/></a>
