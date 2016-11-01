@@ -64,6 +64,15 @@ export class Group implements ElementInterface {
     this.text = new Text(this.config.labels[this.index - 1], this);
   }
 
+  setActive(element: Element) {
+    this.elements.forEach(c => {
+      c.disable();
+    });
+    element.enable();
+
+    this.changeObserver.onNext(element);
+  }
+
   getElementPosition(): Position {
     let oy = Math.sin(this.getPosition());
     let ox = Math.cos(this.getPosition());
@@ -75,14 +84,5 @@ export class Group implements ElementInterface {
       x: sizeX.toString(),
       y: sizeY.toString()
     };
-  }
-
-  setActive(element: Element) {
-    this.elements.forEach(c => {
-      c.disable();
-    });
-    element.enable();
-
-    this.changeObserver.onNext(element);
   }
 }

@@ -65,7 +65,7 @@ export class Config {
 
   getLines(): Array<Line> {
     if (!this.lines.length) {
-      // TODO KW konfig
+      // TODO KW config
       this.lines.push(new Line(10));
       this.lines.push(new Line(15));
       this.lines.push(new Line(20));

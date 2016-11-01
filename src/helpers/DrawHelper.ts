@@ -1,5 +1,3 @@
-import { Config }  from "../config";
-
 export class DrawHelper {
 
   static createElement(name: string): SVGElement {

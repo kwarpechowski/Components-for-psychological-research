@@ -1,4 +1,3 @@
-import { Config }  from "../config";
 import { Group }  from "./Group";
 import { ElementInterface } from "../interface/ElementInterface";
 

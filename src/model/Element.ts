@@ -1,7 +1,7 @@
 import { Group }  from "./Group";
 import { ElementInterface } from "../interface/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
-
+import { Position }  from "./Position";
 import { Observable } from "rx";
 
 export class Element implements ElementInterface {
@@ -33,7 +33,7 @@ export class Element implements ElementInterface {
   }
 
   create(): SVGElement {
-    let position = this.group.getElementPosition();
+    let position: Position = this.group.getElementPosition();
 
     this.element = DrawHelper.createElement("a");
     this.element.setAttributeNS("http://www.w3.org/1999/xlink", "href", "javascript:;");
