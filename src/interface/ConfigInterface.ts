@@ -26,4 +26,6 @@ export interface ConfigInterface {
   headerTop: string;
 
   showHeader: boolean;
+
+  maxElements: number;
 }

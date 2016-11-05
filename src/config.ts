@@ -39,6 +39,8 @@ export class Config {
 
   showHeader: boolean = true;
 
+  maxElements: number = 20;
+
   classes: ClassesInterface = {
     mainGroup: "main_group",
     lineAxis: "line_axis",

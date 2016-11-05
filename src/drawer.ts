@@ -5,6 +5,9 @@ import { DrawHelper } from "./helpers/DrawHelper";
 import { GroupContainer } from "./GroupContainer";
 import { Subject } from "rxjs/Subject";
 
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/fromEvent";
+
 export class Drawer {
   private mainElement: SVGGElement;
   private svg: SVGElement;
@@ -77,9 +80,15 @@ export class Drawer {
   private drawHeaders(): void {
     if (this.config.showHeader) {
       let headerTop = DrawHelper.drawHeader(this.config.R / 2 * -1, this.config.headerTop);
-      let headerBottom = DrawHelper.drawHeader(this.config.R / 2, this.config.headerBottom);
+      let source = Observable.fromEvent(headerTop, "click");
+
+      source.subscribe(() => {
+        this.gc.clearAll();
+      });
 
       this.mainElement.appendChild(headerTop);
+
+      let headerBottom = DrawHelper.drawHeader(this.config.R / 2, this.config.headerBottom);
       this.mainElement.appendChild(headerBottom);
     }
   }

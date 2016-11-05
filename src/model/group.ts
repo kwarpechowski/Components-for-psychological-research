@@ -15,12 +15,30 @@ export class Group implements ElementInterface {
   changeObserver: Subject<any>;
   private elements: Array<Element> = [];
   private text: Text;
+  private activeElement: Element; // TODO KW a moze usunac ta jakos zmienna
+  private changed: boolean = false;
 
   constructor(config: Config, index: number) {
     this.index = index;
     this.config = config;
     this.changeObserver = new Subject();
   }
+
+  getActiveElement(): Element {
+    return this.activeElement;
+  }
+
+  getActiveElementIndex(): number {
+    if (this.activeElement) {
+      return this.activeElement.index;
+    }
+    return null;
+  }
+
+  isChanged(): boolean {
+    return this.changed;
+  }
+
 
   create(): SVGElement {
 
@@ -62,13 +80,37 @@ export class Group implements ElementInterface {
     this.text = new Text(this.config.labels[this.index - 1], this);
   }
 
-  setActive(element: Element) {
-    this.elements.forEach(c => {
-      c.disable();
-    });
-    element.enable();
+  setActive(element: Element): void {
+    // no ale nie mozna ustawiac actibe element dopoki nie ma pewnosci, ze mozna, a to dopiero po change observer sie zdecyduje
+    if (this.activeElement) {
+      this.changed = true;
+    }
+    this.activeElement = element;
+    this.changeObserver.next(this);
+  }
 
-    this.changeObserver.next(element);
+  unsetActive(): void {
+    if (this.activeElement) {
+      this.disable();
+      this.changeObserver.next(this);
+    }
+  }
+
+  public enable(): void {
+    if (this.activeElement) {
+      this.elements.forEach(c => {
+        c.disable();
+      });
+      this.activeElement.enable();
+    }
+  }
+
+  disable() {
+    if (this.activeElement) {
+      this.activeElement.disable();
+      this.activeElement = null;
+      this.changed = false;
+    }
   }
 
   getElementPosition(): Position {
@@ -82,5 +124,9 @@ export class Group implements ElementInterface {
       x: sizeX.toString(),
       y: sizeY.toString()
     };
+  }
+
+  removeTemp() {
+    this.activeElement = null;
   }
 }

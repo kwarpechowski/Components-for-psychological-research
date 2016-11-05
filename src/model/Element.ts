@@ -28,7 +28,9 @@ export class Element implements ElementInterface {
     let source = Observable.fromEvent(this.element, "click");
 
     let subscription = source.subscribe(() => {
-      if (!this.isActive) {
+      if (this.isActive) {
+        this.group.unsetActive();
+      } else {
         this.group.setActive(this);
       }
     });

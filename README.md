@@ -38,6 +38,7 @@ npm i the-geneva-emotion-wheel
 | `showHeader`| boolean | true | |
 | `headerTop`| string | No emotion | |
 | `headerBottom`| string | Other emotion | |
+| `maxElements`| number | 20 | |
 
 ###labels<a name="labels"></a>
 ```javascript
