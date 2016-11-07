@@ -70,18 +70,16 @@ export class Group implements ElementInterface {
   private run(): void {
     this.config.getLines().forEach((line, index) => {
       let size = line.getSize();
-      this.odstep += size * 2; // TODO KW magic numbers
+      this.odstep += size + 10;
       let element = new Element(this, size, index);
       this.elements.push(element);
       this.element.appendChild(element.create());
+      this.odstep += size; // TODO KW magic numbers
     });
-
-    this.odstep += Text.spacerSize;
     this.text = new Text(this.config.labels[this.index - 1], this);
   }
 
   setActive(element: Element): void {
-    // no ale nie mozna ustawiac actibe element dopoki nie ma pewnosci, ze mozna, a to dopiero po change observer sie zdecyduje
     if (this.activeElement) {
       this.changed = true;
     }

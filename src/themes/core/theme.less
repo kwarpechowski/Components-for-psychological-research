@@ -38,4 +38,25 @@
   .line_border {
     .line_axis();
   }
+
+  .text-label {
+    p {
+      display: inline-block;
+      color: #fff;
+      margin: 0;
+      padding: 10px;
+  }
+
+    &.right p {
+      text-align: right;
+    }
+
+    &.odd p {
+      color: red
+    }
+
+    &.even p {
+      color: blue;
+    }
+  }
 }

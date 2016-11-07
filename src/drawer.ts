@@ -53,7 +53,7 @@ export class Drawer {
   }
 
   private getRealR(): number {
-    return this.config.R + this.maxTextWidth + Text.spacerSize + this.countLineSize();
+    return this.config.R + this.maxTextWidth + 50 + this.countLineSize();
   }
 
   private drawAxis(): void {
@@ -95,9 +95,9 @@ export class Drawer {
 
   private drawBorder(): void {
     if (this.config.showBorder) {
-      let outsideBorder = DrawHelper.drawBorder(this.getRealR());
-      outsideBorder.setAttribute("class", this.config.classes.lineBorder);
-      this.mainElement.appendChild(outsideBorder);
+      // let outsideBorder = DrawHelper.drawBorder(this.getRealR());
+      // outsideBorder.setAttribute("class", this.config.classes.lineBorder);
+      // this.mainElement.appendChild(outsideBorder);
 
       let insideBorder = DrawHelper.drawBorder(this.config.R);
       insideBorder.setAttribute("class", this.config.classes.lineBorder);

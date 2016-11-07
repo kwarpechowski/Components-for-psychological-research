@@ -32,7 +32,7 @@ npm i the-geneva-emotion-wheel
 | `R`         | number | 80 | |
 | `labels`    | Array <string>  | [click](#labels) | |
 | `element`   | string  | drawer | |
-| `showLines` | boolean | true | |
+| `showLines` | boolean | false | |
 | `showBorder` | boolean | true | |
 | `classes`   | Object  | [click](#classes) ||
 | `showHeader`| boolean | true | |
@@ -43,26 +43,26 @@ npm i the-geneva-emotion-wheel
 ###labels<a name="labels"></a>
 ```javascript
 [
-    "Interest",
-    "Amusement",
-    "Pride",
-    "Joy",
-    "Pleasure",
-    "Contentment",
-    "Love",
-    "Admiration",
-    "Relief",
-    "Comassion",
-    "Sadness",
-    "Guilt",
-    "Regret",
-    "Shame",
-    "Disappointment",
-    "Fear",
-    "Disgust",
-    "Contempt",
-    "Hate",
-    "Anger"
+   "Involvement\nInterest",
+   "Amusement\nLaughter",
+   "Pride\nElation",
+   "Happiness\nJoy",
+   "Enjoyment\nPleasure",
+   "Tenderness\nFeeling love",
+   "Wonderment\nFeeling awe",
+   "Feeling disburdened\nRelief",
+   "Astonishment\nSuprise",
+   "Longing\nNostalgia",
+   "Pity\nCompassion",
+   "Sadness\nDespair",
+   "Worry\nFear",
+   "Embarrassment\nShame",
+   "Guilt\nRemorse",
+   "Disappointment\nRegreat",
+   "Envy\nJealousy",
+   "Disgust\nRepulsion",
+   "Contempt\nScorn",
+   "Irritation\nAnger"
   ];
 ```
 

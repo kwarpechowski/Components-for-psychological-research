@@ -5,31 +5,31 @@ import { ConfigInterface } from "./interface/ConfigInterface";
 export class Config {
   R: number = 80;
   labels: Array<string> = [
-    "Interest",
-    "Amusement",
-    "Pride",
-    "Joy",
-    "Pleasure",
-    "Contentment",
-    "Love",
-    "Admiration",
-    "Relief",
-    "Comassion",
-    "Sadness",
-    "Guilt",
-    "Regret",
-    "Shame",
-    "Disappointment",
-    "Fear",
-    "Disgust",
-    "Contempt",
-    "Hate",
-    "Anger"
+    "Involvement\nInterest",
+    "Amusement\nLaughter",
+    "Pride\nElation",
+    "Happiness\nJoy",
+    "Enjoyment\nPleasure",
+    "Tenderness\nFeeling love",
+    "Wonderment\nFeeling awe",
+    "Feeling disburdened\nRelief",
+    "Astonishment\nSuprise",
+    "Longing\nNostalgia",
+    "Pity\nCompassion",
+    "Sadness\nDespair",
+    "Worry\nFear",
+    "Embarrassment\nShame",
+    "Guilt\nRemorse",
+    "Disappointment\nRegreat",
+    "Envy\nJealousy",
+    "Disgust\nRepulsion",
+    "Contempt\nScorn",
+    "Irritation\nAnger"
   ];
 
   element: string = "drawer";
 
-  showLines: boolean = true;
+  showLines: boolean = false;
 
   showBorder: boolean = true;
 
