@@ -1,6 +1,6 @@
 @base: #f4f4f4;
 
-.gew-instance {
+.gew-instance svg {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   width: 100%;
   height: 100%;
@@ -58,5 +58,29 @@
     &.even p {
       color: blue;
     }
+  }
+}
+
+.gew-instance {
+  position: relative;
+  overflow: hidden;
+}
+
+.gew-instance .prompt {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  background: #fff;
+  opacity: 0;
+  transition: all 500ms ease-in;
+  border-radius: 50%;
+  border: 1px solid #000;
+
+  &.active {
+    top: 50%;
+    opacity: 1;
   }
 }

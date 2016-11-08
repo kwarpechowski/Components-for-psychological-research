@@ -1,6 +1,6 @@
 import { Config }  from "./config";
 import { Group } from "./model/Group";
-import { Text } from "./model/Text";
+import { Prompt } from "./model/Prompt";
 import { DrawHelper } from "./helpers/DrawHelper";
 import { GroupContainer } from "./GroupContainer";
 import { Subject } from "rxjs/Subject";
@@ -15,15 +15,16 @@ export class Drawer {
   private maxTextWidth: number = 0;
   private gc: GroupContainer;
   private config: Config;
+  private otherEmotion: Prompt;
 
   constructor(config: Config) {
     this.config = config;
     let container = document.getElementById(this.config.element);
+    container.setAttribute("class", "gew-instance")
     this.svg = DrawHelper.createElement("svg");
     this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
     this.svg.setAttribute("version", "1.1");
-    this.svg.setAttribute("class", "gew-instance");
     container.appendChild(this.svg);
 
     this.mainElement  = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -39,6 +40,8 @@ export class Drawer {
     });
 
     this.gc = new GroupContainer(this.config);
+    this.otherEmotion = new Prompt();
+    container.appendChild(this.otherEmotion.create());
 
   }
 
@@ -78,6 +81,7 @@ export class Drawer {
   }
 
   private drawHeaders(): void {
+    // TODO KW podzielic na dwie metody
     if (this.config.showHeader) {
       let headerTop = DrawHelper.drawHeader(this.config.R / 2 * -1, this.config.headerTop);
       let source = Observable.fromEvent(headerTop, "click");
@@ -89,6 +93,12 @@ export class Drawer {
       this.mainElement.appendChild(headerTop);
 
       let headerBottom = DrawHelper.drawHeader(this.config.R / 2, this.config.headerBottom);
+      headerBottom.setAttribute("title", "click if you feel other emotion"); // TODO KW translate
+      let source2 = Observable.fromEvent(headerBottom, "click");
+      source2.subscribe(() => {
+        this.gc.clearAll();
+        this.otherEmotion.show();
+      });
       this.mainElement.appendChild(headerBottom);
     }
   }
