@@ -68,19 +68,22 @@
 
 .gew-instance .prompt {
   position: absolute;
-  top: -200px;
+  top: 50%;
   left: 50%;
-  width: 200px;
-  height: 200px;
+  width: 0;
+  height: 0;
   margin: -100px 0 0 -100px;
   background: #fff;
   opacity: 0;
-  transition: all 500ms ease-in;
+  transition: opacity 500ms ease-in;
   border-radius: 50%;
-  border: 1px solid #000;
+  text-align: center;
+  box-shadow: 0 0 50px #000;
+  overflow: hidden;
 
   &.active {
-    top: 50%;
+    width: 200px;
+    height: 200px;
     opacity: 1;
   }
 }

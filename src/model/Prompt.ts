@@ -1,14 +1,64 @@
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/fromEvent";
+
 export class Prompt {
     private el: HTMLElement;
+    private isActive: boolean;
 
     constructor() {
+        this.isActive = false;
         this.el = document.createElement("div");
         this.el.setAttribute("class", "prompt");
+        this.el.innerHTML = `
+            <p>
+                <input type="text" />
+            </p>
+            <p>
+                <button class="save_btn">Zapisz</button>
+            </p>
+            <p>
+                <button class="cancel_btn">Anuluj</button>
+            </p>
+         `;
+        this.bindSaveBtn();
+        this.bindCancelBtn();
     }
 
-    show() {
-        let classes = this.el.getAttribute("class");
-        this.el.setAttribute("class", classes + " active");
+    bindSaveBtn(): void {
+        let btn = this.el.querySelector(".save_btn");
+
+        let source = Observable.fromEvent(btn, "click");
+        source.subscribe(() => {
+            this.hide();
+            // TODO KW zapisywanie logiki
+            // TODO KW
+        });
+    }
+
+    bindCancelBtn(): void {
+        let btn = this.el.querySelector(".cancel_btn");
+
+        let source = Observable.fromEvent(btn, "click");
+        source.subscribe(() => {
+            this.hide();
+            // TODO KW czyszczenie inputu
+        });
+    }
+
+    hide(): void {
+        if (this.isActive) {
+            let classes = this.el.getAttribute("class");
+            this.el.setAttribute("class", classes.replace(" active", ""));
+            this.isActive = false;
+        }
+    }
+
+    show(): void {
+        if (!this.isActive) {
+            let classes = this.el.getAttribute("class");
+            this.el.setAttribute("class", classes + " active");
+            this.isActive = true;
+        }
     }
 
     create(): HTMLElement {
