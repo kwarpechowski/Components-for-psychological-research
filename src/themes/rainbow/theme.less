@@ -10,7 +10,7 @@
 }
 
 .color-lines(@i, @n, @color1, @color2, @m: 20%) when (@i <= @n) {
-  .line_@{i}{
+  .line.line_@{i}{
     .color-rows(mix(@color2, @color1, @m));
   }
   .color-lines((@i + 1), @n, @color1, @color2, (@m + 20%));
