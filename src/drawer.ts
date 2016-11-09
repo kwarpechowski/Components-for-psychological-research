@@ -129,6 +129,11 @@ export class Drawer {
 
     this.gc.getGroups().forEach((group: Group) => {
       this.mainElement.appendChild(group.create());
+
+      if (typeof this.config.checkedElements[group.index - 1] === "number") {
+        group.setActiveIndex(this.config.checkedElements[group.index - 1]);
+      }
+
       let text = group.getText();
       this.mainElement.appendChild(text.create());
       text.repaint(this.textSizer);

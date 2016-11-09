@@ -5,7 +5,7 @@
 [![devDependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/dev-status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=devDependencies)
 
 ##Examples
-<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples/rainbow/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/sample.png" width="500"/></a>
+<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/sample.png" width="500"/></a>
 
 All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples?style=centerme)
 
@@ -39,6 +39,7 @@ npm i the-geneva-emotion-wheel
 | `headerTop`| string | No emotion | |
 | `headerBottom`| string | Other emotion | |
 | `maxElements`| number | 20 | |
+| `checkedElements`| Array<number> | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
 
 ###labels<a name="labels"></a>
 ```javascript

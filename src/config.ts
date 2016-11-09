@@ -41,6 +41,8 @@ export class Config {
 
   maxElements: number = 20;
 
+  checkedElements: Array<number> = [];
+
   classes: ClassesInterface = {
     mainGroup: "main_group",
     lineAxis: "line_axis",

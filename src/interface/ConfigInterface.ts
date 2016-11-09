@@ -28,4 +28,6 @@ export interface ConfigInterface {
   showHeader: boolean;
 
   maxElements: number;
+
+  checkedElements: Array<number>;
 }

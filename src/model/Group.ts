@@ -87,6 +87,12 @@ export class Group implements ElementInterface {
     this.changeObserver.next(this);
   }
 
+  setActiveIndex(index: number): void {
+    this.activeElement = this.elements[index];
+    this.changed = true;
+    this.enable();
+  }
+
   unsetActive(): void {
     if (this.activeElement) {
       this.disable();
