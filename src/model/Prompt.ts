@@ -14,10 +14,8 @@ export class Prompt {
                 <input type="text" />
             </p>
             <p>
-                <button class="save_btn">Zapisz</button>
-            </p>
-            <p>
-                <button class="cancel_btn">Anuluj</button>
+                <button class="save_btn">Save</button>
+                <button class="cancel_btn">Cancel</button>
             </p>
          `;
         this.bindSaveBtn();
@@ -57,6 +55,7 @@ export class Prompt {
         if (!this.isActive) {
             let classes = this.el.getAttribute("class");
             this.el.setAttribute("class", classes + " active");
+            this.el.querySelector("input").focus();
             this.isActive = true;
         }
     }
