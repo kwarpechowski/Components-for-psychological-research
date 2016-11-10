@@ -1,11 +1,14 @@
 import { Observable } from "rxjs/Observable";
+import { Subject } from "rxjs/Subject";
 import "rxjs/add/observable/fromEvent";
 
 export class Prompt {
     private el: HTMLElement;
     private isActive: boolean;
+    onSave: Subject<string>;
 
     constructor() {
+        this.onSave = new Subject();
         this.isActive = false;
         this.el = document.createElement("div");
         this.el.setAttribute("class", "prompt");
@@ -28,8 +31,10 @@ export class Prompt {
         let source = Observable.fromEvent(btn, "click");
         source.subscribe(() => {
             this.hide();
-            // TODO KW zapisywanie logiki
-            // TODO KW
+            let val = this.el.querySelector("input").value;
+            if (val) {
+                this.onSave.next(val);
+            }
         });
     }
 

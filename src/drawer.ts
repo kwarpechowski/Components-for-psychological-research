@@ -21,6 +21,7 @@ export class Drawer {
     this.config = config;
     let container = document.getElementById(this.config.element);
     container.setAttribute("class", "gew-instance")
+    // TODO KW przeniesc tworzenie pojedynczych elementow do jednego template
     this.svg = DrawHelper.createElement("svg");
     this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
@@ -40,9 +41,17 @@ export class Drawer {
     });
 
     this.gc = new GroupContainer(this.config);
-    this.otherEmotion = new Prompt();
-    container.appendChild(this.otherEmotion.create());
+    let promptElemenent = this.createPrompt();
+    container.appendChild(promptElemenent);
+  }
 
+  private createPrompt(): HTMLElement {
+    this.otherEmotion = new Prompt();
+    this.otherEmotion.onSave.subscribe((val) => {
+      this.gc.clearAll();
+      console.log("sub", val);
+    });
+    return this.otherEmotion.create();
   }
 
   private countLineSize(): number {
@@ -96,7 +105,6 @@ export class Drawer {
       headerBottom.setAttribute("title", "click if you feel other emotion"); // TODO KW translate
       let source2 = Observable.fromEvent(headerBottom, "click");
       source2.subscribe(() => {
-        this.gc.clearAll();
         this.otherEmotion.show();
       });
       this.mainElement.appendChild(headerBottom);
