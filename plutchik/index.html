@@ -1,0 +1,346 @@
+<html>
+<head>
+    <title>GEW</title>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            margin: 0;
+        }
+        .pl {
+            width: 100%;
+            height: 100%;
+        }
+        .circle3 {
+            fill: none;
+            stroke: #000;
+            stroke-dasharray: 3,3;
+        }
+
+        svg path {
+            fill: red;
+            stroke: #333;
+            stroke-width: 1;
+        }
+
+        svg path:hover {
+            fill: #ccc;
+        }
+
+        .zero_0 {
+            fill: #FFE854;
+        }
+
+        .jeden_0 {
+            fill: #FFFF54;
+        }
+
+        .dwa_0 {
+            fill: #FFFFB1;
+        }
+
+        .trzy_0 {
+            fill: #FEFFDD;
+        }
+
+
+
+
+        .zero_1 {
+            fill: #00B400;
+        }
+
+        .jeden_1 {
+            fill: #54FF54;
+        }
+
+        .dwa_1 {
+            fill: #8CFF8C;
+        }
+
+        .trzy_1 {
+            fill: #C5FFC5;
+        }
+
+
+        .zero_2 {
+            fill: #008000;
+        }
+
+        .jeden_2 {
+            fill: #009600;
+        }
+
+        .dwa_2 {
+            fill: #8CC68C;
+        }
+
+        .trzy_2 {
+            fill: #C5E2C5;
+        }
+
+
+
+        .zero_3 {
+            fill: #0089E0;
+        }
+
+        .jeden_3 {
+            fill: #59BDFF;
+        }
+
+        .dwa_3 {
+            fill: #A5DBFF;
+        }
+
+        .trzy_3 {
+            fill: #D5EEFF;
+        }
+
+
+
+        .zero_4 {
+            fill: #0000C8;
+        }
+
+        .jeden_4 {
+            fill: #5151FF;
+        }
+
+        .dwa_4 {
+            fill: #8C8CFF;
+        }
+
+        .trzy_4 {
+            fill: #C5C5FF;
+        }
+
+
+        .zero_5 {
+            fill: #DE00DE;
+        }
+
+        .jeden_5 {
+            fill: #FF54FF;
+        }
+
+        .dwa_5 {
+            fill: #FFC6FF;
+        }
+
+        .trzy_5 {
+            fill: #FFE2FF;
+        }
+
+
+
+        .zero_6 {
+            fill: #D40000;
+        }
+
+        .jeden_6 {
+            fill: #FF0000;
+        }
+
+        .dwa_6 {
+            fill: #FF8C8C;
+        }
+
+        .trzy_6 {
+            fill: #FFC5C5;
+        }
+
+
+        .zero_7 {
+            fill: #FF7D00;
+        }
+
+        .jeden_7 {
+            fill: #FFA854;
+        }
+
+        .dwa_7 {
+            fill: #FFC48C;
+        }
+
+        .trzy_7 {
+            fill: #FFE1C5;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="pl" id="svg" viewBox="0 0 500 500">
+
+            <circle cx="250" cy="250" r="150" class="circle3"/>
+        </svg>
+    </div>
+    <script>
+        var svg =  document.getElementById("svg");
+
+        var positions = [];
+        var positionsTwo = [];
+        var positionsThree = [];
+        var positionsFour = [];
+
+
+        var getPosition = function(index, maxElements){
+            var cw = maxElements / 4;
+            return (90 / cw) * (index - cw - 0.5) * Math.PI / 180;
+        }
+
+        var R = 100;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positions.push({
+                x: sizeX,
+                y: sizeY
+            });
+
+        }
+
+        for(var i = 0; i < positions.length; i++) {
+
+            if (i === 0) {
+                var last = positions[positions.length - 1];
+            } else {
+                var last = positions[i-1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
+            a.setAttribute("href", "javascript:;")
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "zero_"+i);
+            el.setAttribute("d", "M250,250  L" + last.x + ","+  last.y +"  A" + R+ "," + R + " 0 0,1 "+ positions[i].x+","+ positions[i].y+" z");
+
+            a.appendChild(el);
+            svg.appendChild(a);
+        }
+
+
+        var R1 = 150;
+        for(var i = 0; i < 16; i++) {
+            var position = getPosition(i, 16);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R1;
+            var sizeX = 250 + ox * R1;
+
+            positionsTwo.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+        var n = 0;
+
+        for(var i=0; i < 8; i++) {
+
+            if (i === 0) {
+                var last = positions[positions.length - 1];
+            } else {
+                var last = positions[i-1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
+            a.setAttribute("href", "javascript:;")
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "jeden_"+i)
+            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[n+1].x+" "+positionsTwo[n+1].y+" A 150 150 0 0,0 "+positionsTwo[n].x+" "+positionsTwo[n].y+" A 450 450 0 0,1 "+last.x+" "+last.y+" A 100 100 0 0,1 "+positions[i].x + " " + positions[i].y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+            n+=2;
+        }
+
+
+
+
+        var R2 = 200;
+        for(var i = 0; i < 32; i++) {
+            var position = getPosition(i, 32);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R2;
+            var sizeX = 250 + ox * R2;
+
+            positionsThree.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+        var n = 0;
+
+        for(var i = 0; i < 16; i+=2) {
+            if (i === 0) {
+                var last = positionsTwo[0];
+            } else {
+                var last = positionsTwo[i];
+            }
+
+            var num = n/4;
+
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
+            a.setAttribute("href", "javascript:;")
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "dwa_" + num);
+            el.setAttribute("d", "M"+positionsTwo[i+1].x + " " +positionsTwo[i+1].y +  "A 350 350 0 0,0 "+positionsThree[n+1].x+" "+positionsThree[n+1].y+" A 350 350 0 0,0 "+positionsThree[n].x+" "+positionsThree[n].y+" A 350 350 0 0,0 "+last.x+" "+last.y+" A 250 250 1 0,1 "+positionsTwo[i+1].x + " " + positionsTwo[i+1].y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+            n+=4;
+        }
+
+
+
+
+        var getPositionF = function(index){
+            var cw = 2;
+            return ((90 / cw) * (index - cw - 0.5) - 23) * Math.PI / 180;
+        };
+
+        var R3 = 250;
+        for(var i = 0; i < 16; i++) {
+            var position = getPositionF(i, 8);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R3;
+            var sizeX = 250 + ox * R3;
+
+            positionsFour.push({
+                x: sizeX,
+                y: sizeY
+            });
+
+        }
+
+
+
+        for(var i = 0; i < 32; i+=4) {
+            var num = i/4;
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
+            a.setAttribute("href", "javascript:;")
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "trzy_"+num);
+            el.setAttribute("d", "M"+positionsThree[i].x + " " + positionsThree[i].y +  "A 350 350 0 0,1 "+positionsFour[i/4+1].x + " " + positionsFour[i/4+1].y+" A 350 350 1 0,1 "+positionsThree[i+1].x+" "+positionsThree[i+1].y + " A " + R3 +  " " + R3 +  " 1 0,0 "+ positionsThree[i].x + " " + positionsThree[i].y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+        }
+
+
+    </script>
+</body>

@@ -1,0 +1,279 @@
+<html>
+<head>
+    <title>GEW</title>
+    <meta charset="utf-8" />
+    <style>
+        body {
+            margin: 0;
+        }
+        .pl {
+            width: 100%;
+            height: 100%;
+        }
+
+        svg path {
+            stroke: #fff;
+            fill: #ccc;
+        }
+
+        svg a:hover path {
+            fill: #000;
+        }
+
+        svg a:hover text {
+            fill: red;
+        }
+
+        .four-0 {
+            fill: green;
+        }
+        .three-0 {
+            fill: yellow;
+        }
+        .two-0 {
+            fill: blue;
+        }
+        .one-0 {
+            fill: pink;
+        }
+
+        .one-1 {
+            fill: #fbfff9;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 500 500">
+            <defs id="defs">
+            </defs>
+        </svg>
+    </div>
+    <script>
+        var svg =  document.getElementById("svg");
+        var defs = document.getElementById("defs");
+        var positions = [];
+        var positionsTwo = [];
+        var positionsThree = [];
+        var positionsFour = [];
+        var positionsPart = [];
+
+        var getPosition = function(index, maxElements, move){
+            if(!move) {
+                move = 0;
+            }
+            var cw = maxElements / 4;
+            return ((90 / cw) * (index - cw - 0.5) - move) * Math.PI / 180;
+        }
+
+        var R = 50;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positions.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+        var R = 75;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positionsPart.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+        var R = 100;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positionsTwo.push({
+                x: sizeX,
+                y: sizeY
+            });
+
+        }
+
+        var R = 150;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positionsThree.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+
+        var R = 200;
+        var maxElements = 8;
+        for(var i = 1; i<=maxElements; i++) {
+            var position = getPosition(i, maxElements, 23);
+            var oy = Math.sin(position);
+            var ox = Math.cos(position);
+            var sizeY = 250 + oy * R;
+            var sizeX = 250 + ox * R;
+            positionsFour.push({
+                x: sizeX,
+                y: sizeY
+            });
+        }
+
+
+
+
+        for(var i=0; i <8; i++) {
+            if(i===0) {
+                var last = positionsFour[positionsFour.length-1];
+                var three = positionsThree[positionsThree.length-1];
+            } else {
+                var last = positionsFour[i - 1];
+                var three = positionsThree[i - 1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "four-"+i);
+            el.setAttribute("d", "M"+last.x + " " + last.y +  "A 200 200 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A 200 200 1 0,0 "+three.x+" "+three.y + " A 200 200 1 0,0 "+ last.x + " " + last.y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+//            var size = document.getElementsByClassName("four-"+i)[0].getBBox();
+//            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+//            txt.setAttribute("dx", size.x + size.width/2);
+//            txt.setAttribute("dy", size.y + size.height/2);
+//            txt.setAttribute("class", "txt");
+//            txt.setAttribute("text-anchor", "middle");
+//            var textNode = document.createTextNode("txt"+i);
+//            txt.appendChild(textNode);
+//            a.appendChild(txt);
+        }
+
+
+        for(var i = 0; i<8; i++) {
+
+            if(i===0) {
+                var last = positionsThree[positionsThree.length-1];
+            } else {
+                var last = positionsThree[i-1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
+            a.setAttribute("href", "javascript:;")
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "three-"+i);
+            el.setAttribute("d", "M"+last.x + " " + last.y +  "A 200 200 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A 200 200 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A 200 200 1 0,0 "+ last.x + " " + last.y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+//            var size = document.getElementsByClassName("three-"+i)[0].getBBox();
+//            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+//            txt.setAttribute("dx", size.x + size.width/2);
+//            txt.setAttribute("dy", size.y + size.height/2);
+//            txt.setAttribute("class", "txt");
+//            txt.setAttribute("text-anchor", "middle");
+//            var textNode = document.createTextNode("txt"+i);
+//            txt.appendChild(textNode);
+//            a.appendChild(txt);
+        }
+
+
+        for(var i=0; i <8; i++) {
+            if(i===0) {
+                var last = positionsThree[positionsThree.length-1];
+                var two = positionsTwo[positionsTwo.length-1];
+            } else {
+                var last = positionsThree[i - 1];
+                var two = positionsTwo[i - 1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
+
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            el.setAttribute("class", "two-"+i);
+            el.setAttribute("d", "M"+last.x + " " + last.y + "A 150 150 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A 100 100 1 0,0 " + two.x + " "+ two.y  +" L "+ last.x + " " + last.y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+
+        }
+
+        for(var i=0; i <8; i++) {
+
+            if(i===0) {
+                var last = positionsTwo[positionsTwo.length-1];
+                var lastPart = positionsPart[positionsPart.length-1];
+                var one = positions[positions.length-1];
+            } else {
+                var last = positionsTwo[i - 1];
+                var lastPart = positionsPart[i - 1];
+                var one = positions[i - 1];
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
+            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
+
+            el.setAttribute("class", "one-"+i);
+            el.setAttribute("d", "M"+last.x + " " + last.y + "A 100 100 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A 50 50 1 0,0 " + one.x + " "+ one.y  +" L "+ last.x + " " + last.y);
+
+            a.appendChild(el);
+            svg.appendChild(a);
+
+            var size = document.getElementsByClassName("one-"+i)[0].getBBox();
+            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            txt.setAttribute("x", 0);
+            txt.setAttribute("y", 0);
+            txt.setAttribute("font-family", "Arial");
+            txt.setAttribute("font-size", "10");
+
+
+            txt.setAttribute("text-anchor", "middle");
+            var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
+            textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#one"+i);
+            textPath.setAttribute("startOffset", "50%");
+            var textNode = document.createTextNode("test"+i);
+            textPath.appendChild(textNode);
+            txt.appendChild(textPath);
+            a.appendChild(txt);
+
+
+            var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            p.setAttribute("id", "one"+i);
+            p.setAttribute("d", "M" + lastPart.x +" " +lastPart.y + "  L " + positionsPart[i].x + " "+ positionsPart[i].y  +"");
+            defs.appendChild(p);
+        }
+
+
+
+    </script>
+</body>
