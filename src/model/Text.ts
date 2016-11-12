@@ -48,6 +48,7 @@ export class Text implements ElementInterface {
   }
 
   repaint(textSizer: Subject<number>): void {
+    // TODO KW - przy muliinstacne będzie zle
     let el = document.getElementById("text_" + this.index);
     let size = el.getBoundingClientRect();
     let x = parseInt(el.getAttribute("x"), 10);
