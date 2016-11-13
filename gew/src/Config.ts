@@ -1,6 +1,6 @@
 import { Line } from "./model/Line";
-import { ClassesInterface } from "./interface/ClassesInterface";
-import { ConfigInterface } from "./interface/ConfigInterface";
+import { ClassesInterface } from "./interfaces/ClassesInterface";
+import { ConfigInterface } from "./interfaces/ConfigInterface";
 
 export class Config {
   R: number = 80;

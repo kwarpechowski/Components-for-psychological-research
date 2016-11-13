@@ -1,5 +1,5 @@
 import { Group }  from "./Group";
-import { ElementInterface } from "../interface/ElementInterface";
+import { ElementInterface } from "../interfaces/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
 import { Position }  from "./Position";
 

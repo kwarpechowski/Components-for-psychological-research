@@ -2,7 +2,7 @@ import { Config }  from "../Config";
 import { Element }  from "./Element";
 import { Position }  from "./Position";
 import { Text }  from "./Text";
-import { ElementInterface } from "../interface/ElementInterface";
+import { ElementInterface } from "../interfaces/ElementInterface";
 import { DrawHelper } from "../helpers/DrawHelper";
 
 import { Subject } from "rxjs/Subject";
