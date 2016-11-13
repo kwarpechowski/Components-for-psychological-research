@@ -26,61 +26,58 @@
 
         svg text {
             font-family: Tahoma;
-            font-size: 10px;
+            font-size: 9px;
             text-anchor:  middle;
         }
 
-        .four0 {
-            fill: green;
-        }
-        .three0 {
-            fill: yellow;
-        }
-        .two0 {
-            fill: blue;
-        }
-        .one0 {
-            fill: pink;
-        }
-
-        .one1 {
-            fill: #fbfff9;
-        }
     </style>
 </head>
 <body>
-    <div>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 400 400">
-            <defs id="defs">
-            </defs>
-        </svg>
-    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 400 400">
+        <defs id="defs">
+        </defs>
+    </svg>
     <script>
         var svg =  document.getElementById("svg");
-        var defs = document.getElementById("defs");
+        var defs = svg.getElementById("defs");
         var maxElements = 8;
-        var centerPoint = 200;
-        var R1 = 50;
-        var R2 = 100;
-        var R3 = 150;
-        var R4 = 200;
 
-        var createPath = function(opt) {
-            var id = opt.id + opt.i;
+        var R = [
+            {
+                r: 50,
+                labels: ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'],
+                id: 'one'
+            }, {
+                r: 100,
+                labels: ['joy', 'trust', 'fear', 'surprise', 'sadness', 'disgust', 'anger', 'anticipation'],
+                id: 'two'
+            }, {
+                r: 150,
+                labels: ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'boredom', 'annoyance', 'interest'],
+                id: 'three'
+            }, {
+                r: 200,
+                labels: ['optimistm', 'love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness'],
+                id: 'four'
+            }
+        ];
+
+        var centerPoint = R[3].r;
+
+        var createElement = function(opt) {
+            var id = opt.line.id + opt.i;
             var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
             a.setAttribute("href", "javascript:;");
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("d", opt.path);
             el.setAttribute("class", id);
             a.appendChild(el);
-            svg.appendChild(a);
-
 
             var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
             var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
             textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
             textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(opt.text);
+            var textNode = document.createTextNode(opt.line.labels[opt.i]);
             textPath.appendChild(textNode);
             txt.appendChild(textPath);
             a.appendChild(txt);
@@ -95,6 +92,7 @@
             }
 
             defs.appendChild(p);
+            svg.appendChild(a);
         };
 
         var getPosition = function(index, move){
@@ -111,67 +109,55 @@
 
             for(var i = 1; i<=maxElements; i++) {
                 var position = getPosition(i, move);
-                var oy = Math.sin(position);
-                var ox = Math.cos(position);
-                var sizeY = centerPoint + oy * R;
-                var sizeX = centerPoint + ox * R;
                 tab.push({
-                    x: sizeX,
-                    y: sizeY
+                    x:  centerPoint + Math.cos(position) * R,
+                    y:  centerPoint + Math.sin(position) * R
                 });
             }
             return tab;
         };
 
-        var positions = createCoords(R1);
-        var positionsPart = createCoords((R1+R2) / 2);
-        var positionsTwo = createCoords(R2);
-        var positionsPartTwo = createCoords((R2+R3) / 2);
-        var positionsThree = createCoords(R3);
-        var positionsPartThree = createCoords((R3+R4) / 2);
-        var positionsPartFour = createCoords(190, 26);
-        var positionsPartFourP = createCoords(190, 20);
-        var positionsFour = createCoords(R4, 23);
+        var positions = createCoords(R[0].r);
+        var positionsPart = createCoords((R[0].r + R[1].r) / 2);
+        var positionsTwo = createCoords(R[1].r);
+        var positionsPartTwo = createCoords((R[1].r + R[2].r) / 2);
+        var positionsThree = createCoords(R[2].r);
+        var positionsPartThree = createCoords((R[2].r + R[3].r) / 2);
+        var positionsPartFour = createCoords((R[2].r + R[3].r) / 2 + 10, 26);
+        var positionsPartFourP = createCoords((R[2].r + R[3].r) / 2 + 10, 20);
+        var positionsFour = createCoords(R[3].r, 23);
 
         for(var i = 0; i < maxElements; i++) {
-            if(i===0) {
-                var index = 7;
-            } else {
-                var index = i-1;
-            }
+            var index = (i === 0 ?  maxElements - 1 : i -1 );
 
-            createPath({
+            createElement({
                 i: i,
-                id: "one",
-                text: "testA_" + i,
-                path: "M"+positionsTwo[index].x + " " + positionsTwo[index].y + "A " + R2 + " " + R2 + " 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A " + R1 + " " + R1 + " 1 0,0 " + positions[index].x + " "+ positions[index].y  +" L "+ positionsTwo[index].x + " " + positionsTwo[index].y,
+                line: R[0],
+                path: "M"+positionsTwo[index].x + " " + positionsTwo[index].y + "A " + R[1].r + " " + R[1].r + " 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A " + R[0].r + " " + R[0].r + " 1 0,0 " + positions[index].x + " "+ positions[index].y  +" L "+ positionsTwo[index].x + " " + positionsTwo[index].y,
                 textPath: "M" + positionsPart[index].x +" " +positionsPart[index].y + "  L " + positionsPart[i].x + " "+ positionsPart[i].y,
                 textReversPath: "M" + positionsPart[i].x +" " +positionsPart[i].y + "  L " + positionsPart[index].x + " "+ positionsPart[index].y
             });
 
-            createPath({
+            createElement({
                 i: i,
-                id: "two",
-                text: "testB_" + i,
-                path: "M"+positionsThree[index].x + " " + positionsThree[index].y + "A " + R3 + " " + R3 + " 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A " + R2 + " " + R2 + " 1 0,0 " + positionsTwo[index].x + " "+ positionsTwo[index].y  +" L "+ positionsThree[index].x + " " + positionsThree[index].y,
+                line: R[1],
+                path: "M"+positionsThree[index].x + " " + positionsThree[index].y + "A " + R[2].r + " " + R[2].r + " 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A " + R[1].r + " " + R[1].r + " 1 0,0 " + positionsTwo[index].x + " "+ positionsTwo[index].y  +" L "+ positionsThree[index].x + " " + positionsThree[index].y,
                 textPath: "M" + positionsPartTwo[index].x +" " +positionsPartTwo[index].y + "  L " + positionsPartTwo[i].x + " "+ positionsPartTwo[i].y,
                 textReversPath: "M" + positionsPartTwo[i].x +" " +positionsPartTwo[i].y + "  L " + positionsPartTwo[index].x + " "+ positionsPartTwo[index].y
             });
 
-            createPath({
+            createElement({
                 i: i,
-                id: "three",
-                text: "testC_" + i,
-                path: "M"+positionsThree[index].x + " " + positionsThree[index].y +  "A " + R4 + " " + R4 + " 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A " + R4 + " " + R4 + " 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A " + R4 + " " + R4 + " 1 0,0 "+ positionsThree[index].x + " " + positionsThree[index].y,
+                line: R[2],
+                path: "M"+positionsThree[index].x + " " + positionsThree[index].y +  "A " + R[3].r + " " + R[3].r + " 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A " + R[3].r + " " + R[3].r + " 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A " + R[3].r + " " + R[3].r + " 1 0,0 "+ positionsThree[index].x + " " + positionsThree[index].y,
                 textPath: "M" + positionsPartThree[index].x +" " +positionsPartThree[index].y + "  L " + positionsPartThree[i].x + " "+ positionsPartThree[i].y,
                 textReversPath: "M" + positionsPartThree[i].x +" " +positionsPartThree[i].y + "  L " + positionsPartThree[index].x + " "+ positionsPartThree[index].y
             });
 
-            createPath({
+            createElement({
                 i: i,
-                id: "four",
-                text: "testD_" + i,
-                path: "M"+positionsFour[index].x + " " + positionsFour[index].y +  "A " + R4 + " " + R4 + " 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A " + R4 + " " + R4 + " 1 0,0 "+positionsThree[index].x+" "+positionsThree[index].y + " A " + R4 + " " + R4 + " 1 0,0 "+ positionsFour[index].x + " " + positionsFour[index].y,
+                line: R[3],
+                path: "M"+positionsFour[index].x + " " + positionsFour[index].y +  "A " + R[3].r + " " + R[3].r + " 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A " + R[3].r + " " + R[3].r + " 1 0,0 "+positionsThree[index].x+" "+positionsThree[index].y + " A " + R[3].r + " " + R[3].r + " 1 0,0 "+ positionsFour[index].x + " " + positionsFour[index].y,
                 textPath: "M" + positionsPartFourP[index].x +" " +positionsPartFourP[index].y + "  L " + positionsPartFour[i].x + " "+ positionsPartFour[i].y,
                 textReversPath: "M" + positionsPartFour[i].x +" " +positionsPartFour[i].y + "  L " + positionsPartFourP[index].x + " "+ positionsPartFourP[index].y
             });
