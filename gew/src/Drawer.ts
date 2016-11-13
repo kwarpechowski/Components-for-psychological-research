@@ -1,4 +1,4 @@
-import { Config }  from "./config";
+import { Config }  from "./Config";
 import { Group } from "./model/Group";
 import { Prompt } from "./model/Prompt";
 import { DrawHelper } from "./helpers/DrawHelper";

@@ -1,4 +1,4 @@
-import { Config }  from "../config";
+import { Config }  from "../Config";
 import { Element }  from "./Element";
 import { Position }  from "./Position";
 import { Text }  from "./Text";

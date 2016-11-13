@@ -1,6 +1,5 @@
 import { Group } from "./model/Group";
-import { Element } from "./model/Element";
-import { Config }  from "./config";
+import { Config }  from "./Config";
 
 import { Subject } from "rxjs/Subject";
 
