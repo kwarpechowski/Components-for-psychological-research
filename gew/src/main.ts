@@ -2,7 +2,7 @@
 import "!style!css!less!./themes/core/theme.less";
 import { Config }  from "./config";
 import { ConfigInterface } from "./interface/ConfigInterface";
-import { Drawer }  from "./drawer";
+import { Drawer }  from "./Drawer";
 
 window["GEW"] = function (userConfig: ConfigInterface) {
   let config = new Config(userConfig);

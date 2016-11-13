@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
   "dependencies": {},
   "devDependencies": {
+    "@types/chai": "^3.4.34",
     "@types/jasmine": "^2.5.37",
     "css-loader": "^0.25.0",
     "jasmine-core": "^2.5.2",
@@ -31,7 +32,7 @@
     "less-loader": "^2.2.3",
     "rxjs": "^5.0.0-rc.1",
     "style-loader": "^0.13.1",
-    "ts-loader": "^0.9.5",
+    "ts-loader": "^1.2.0",
     "tslint": "^3.15.1",
     "tslint-loader": "^2.1.5",
     "typescript": "^2.0.6"
