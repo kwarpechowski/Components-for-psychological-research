@@ -42,9 +42,6 @@
             fill: #FEFFDD;
         }
 
-
-
-
         .zero_1 {
             fill: #00B400;
         }
@@ -61,7 +58,6 @@
             fill: #C5FFC5;
         }
 
-
         .zero_2 {
             fill: #008000;
         }
@@ -77,8 +73,6 @@
         .trzy_2 {
             fill: #C5E2C5;
         }
-
-
 
         .zero_3 {
             fill: #0089E0;
@@ -181,26 +175,50 @@
         var positionsTwo = [];
         var positionsThree = [];
         var positionsFour = [];
+        var centerPoint = 250;
 
-
-        var getPosition = function(index, maxElements){
+        var getPosition = function(index, maxElements, move){
+            if(!move) {
+                move = 0;
+            }
             var cw = maxElements / 4;
-            return (90 / cw) * (index - cw - 0.5) * Math.PI / 180;
-        }
+            return ((90 / cw) * (index - cw - 0.5) - move) * Math.PI / 180;
+        };
+
+
+        var createCoords = function(R, maxElements, move) {
+            var tab = [];
+
+            for(var i = 1; i<=maxElements; i++) {
+                var position = getPosition(i, maxElements, move);
+                tab.push({
+                    x:  centerPoint + Math.cos(position) * R,
+                    y:  centerPoint + Math.sin(position) * R
+                });
+            }
+            return tab;
+        };
 
         var R = 100;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positions.push({
-                x: sizeX,
-                y: sizeY
-            });
+        positions = createCoords(R, 8);
 
+        var R1 = 150;
+        positionsTwo = createCoords(R1, 16);
+
+        var R2 = 200;
+        var positionsThree = createCoords(R2, 32);
+
+
+        var R3 = 250;
+       // var positionsFour = createCoords(R3, 8, 23)
+
+
+        for(var i = 0; i < 16; i++) {
+            var position = getPosition(i, 8, 23);
+            positionsFour.push({
+                x:  centerPoint + Math.cos(position) * R3,
+                y:  centerPoint + Math.sin(position) * R3
+            });
         }
 
         for(var i = 0; i < positions.length; i++) {
@@ -211,8 +229,8 @@
                 var last = positions[i-1];
             }
 
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
-            a.setAttribute("href", "javascript:;")
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("class", "zero_"+i);
@@ -222,78 +240,49 @@
             svg.appendChild(a);
         }
 
-
-        var R1 = 150;
-        for(var i = 0; i < 16; i++) {
-            var position = getPosition(i, 16);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R1;
-            var sizeX = 250 + ox * R1;
-
-            positionsTwo.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
         var n = 0;
 
         for(var i=0; i < 8; i++) {
 
             if (i === 0) {
                 var last = positions[positions.length - 1];
+                var t = positionsTwo.length - 1
             } else {
                 var last = positions[i-1];
+                var t = n -1;
             }
 
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
-            a.setAttribute("href", "javascript:;")
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "jeden_"+i)
-            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[n+1].x+" "+positionsTwo[n+1].y+" A 150 150 0 0,0 "+positionsTwo[n].x+" "+positionsTwo[n].y+" A 450 450 0 0,1 "+last.x+" "+last.y+" A 100 100 0 0,1 "+positions[i].x + " " + positions[i].y);
+            el.setAttribute("class", "jeden_"+i);
+            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[n].x+" "+positionsTwo[n].y+" A 150 150 0 0,0 "+positionsTwo[t].x+" "+positionsTwo[t].y+" A 450 450 0 0,1 "+last.x+" "+last.y+" A 100 100 0 0,1 "+positions[i].x + " " + positions[i].y);
 
             a.appendChild(el);
             svg.appendChild(a);
             n+=2;
         }
 
-
-
-
-        var R2 = 200;
-        for(var i = 0; i < 32; i++) {
-            var position = getPosition(i, 32);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R2;
-            var sizeX = 250 + ox * R2;
-
-            positionsThree.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
         var n = 0;
 
         for(var i = 0; i < 16; i+=2) {
             if (i === 0) {
-                var last = positionsTwo[0];
+                var last = positionsTwo[positionsTwo.length-1];
+                var t = positionsThree.length - 1;
             } else {
-                var last = positionsTwo[i];
+                var last = positionsTwo[i-1];
+                var t = n - 1;
             }
 
             var num = n/4;
 
-
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
-            a.setAttribute("href", "javascript:;")
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("class", "dwa_" + num);
-            el.setAttribute("d", "M"+positionsTwo[i+1].x + " " +positionsTwo[i+1].y +  "A 350 350 0 0,0 "+positionsThree[n+1].x+" "+positionsThree[n+1].y+" A 350 350 0 0,0 "+positionsThree[n].x+" "+positionsThree[n].y+" A 350 350 0 0,0 "+last.x+" "+last.y+" A 250 250 1 0,1 "+positionsTwo[i+1].x + " " + positionsTwo[i+1].y);
+            el.setAttribute("d", "M"+positionsTwo[i].x + " " +positionsTwo[i].y +  "A 350 350 0 0,0 "+positionsThree[n].x+" "+positionsThree[n].y+" A 350 350 0 0,0 "+positionsThree[t].x+" "+positionsThree[t].y+" A 350 350 0 0,0 "+last.x+" "+last.y+" A 250 250 1 0,1 "+positionsTwo[i].x + " " + positionsTwo[i].y);
 
             a.appendChild(el);
             svg.appendChild(a);
@@ -301,46 +290,25 @@
             n+=4;
         }
 
-
-
-
-        var getPositionF = function(index){
-            var cw = 2;
-            return ((90 / cw) * (index - cw - 0.5) - 23) * Math.PI / 180;
-        };
-
-        var R3 = 250;
-        for(var i = 0; i < 16; i++) {
-            var position = getPositionF(i, 8);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R3;
-            var sizeX = 250 + ox * R3;
-
-            positionsFour.push({
-                x: sizeX,
-                y: sizeY
-            });
-
-        }
-
-
-
         for(var i = 0; i < 32; i+=4) {
             var num = i/4;
 
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a")
-            a.setAttribute("href", "javascript:;")
+            if (i === 0) {
+                var t = positionsThree.length - 1;
+            } else {
+                var t = i - 1;
+            }
+
+            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
+            a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("class", "trzy_"+num);
-            el.setAttribute("d", "M"+positionsThree[i].x + " " + positionsThree[i].y +  "A 350 350 0 0,1 "+positionsFour[i/4+1].x + " " + positionsFour[i/4+1].y+" A 350 350 1 0,1 "+positionsThree[i+1].x+" "+positionsThree[i+1].y + " A " + R3 +  " " + R3 +  " 1 0,0 "+ positionsThree[i].x + " " + positionsThree[i].y);
+            el.setAttribute("d", "M"+positionsThree[t].x + " " + positionsThree[t].y +  "A 350 350 0 0,1 "+positionsFour[i/4+1].x + " " + positionsFour[i/4+1].y+" A 350 350 1 0,1 "+positionsThree[i].x+" "+positionsThree[i].y + " A " + R3 +  " " + R3 +  " 1 0,0 "+ positionsThree[t].x + " " + positionsThree[t].y);
 
             a.appendChild(el);
             svg.appendChild(a);
 
         }
-
-
     </script>
 </body>
