@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>GEW</title>
+    <title>Plutchik Mobile - prototype</title>
     <meta charset="utf-8" />
     <style>
         body {
@@ -46,14 +46,11 @@
         .one1 {
             fill: #fbfff9;
         }
-
-
-
     </style>
 </head>
 <body>
     <div>
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 500 500">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 400 400">
             <defs id="defs">
             </defs>
         </svg>
@@ -61,16 +58,12 @@
     <script>
         var svg =  document.getElementById("svg");
         var defs = document.getElementById("defs");
-        var positions = [];
-        var positionsTwo = [];
-        var positionsThree = [];
-        var positionsFour = [];
-        var positionsPart = [];
-        var positionsPartTwo = [];
-        var positionsPartThree = [];
-        var positionsPartFour = [];
-        var positionsPartFourP = [];
-
+        var maxElements = 8;
+        var centerPoint = 200;
+        var R1 = 50;
+        var R2 = 100;
+        var R3 = 150;
+        var R4 = 200;
 
         var createPath = function(opt) {
             var id = opt.id + opt.i;
@@ -104,144 +97,43 @@
             defs.appendChild(p);
         };
 
-        var getPosition = function(index, maxElements, move){
+        var getPosition = function(index, move){
             if(!move) {
                 move = 0;
             }
             var cw = maxElements / 4;
             return ((90 / cw) * (index - cw - 0.5) - move) * Math.PI / 180;
-        }
-
-        var R = 50;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positions.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 75;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsPart.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 100;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsTwo.push({
-                x: sizeX,
-                y: sizeY
-            });
-
-        }
-
-        var R = 125;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsPartTwo.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 150;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsThree.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 175;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsPartThree.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 190;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements, 26);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsPartFour.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
-
-        var R = 190;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements, 20);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsPartFourP.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
+        };
 
 
-        var R = 200;
-        var maxElements = 8;
-        for(var i = 1; i<=maxElements; i++) {
-            var position = getPosition(i, maxElements, 23);
-            var oy = Math.sin(position);
-            var ox = Math.cos(position);
-            var sizeY = 250 + oy * R;
-            var sizeX = 250 + ox * R;
-            positionsFour.push({
-                x: sizeX,
-                y: sizeY
-            });
-        }
+        var createCoords = function(R, move) {
+            var tab = [];
 
+            for(var i = 1; i<=maxElements; i++) {
+                var position = getPosition(i, move);
+                var oy = Math.sin(position);
+                var ox = Math.cos(position);
+                var sizeY = centerPoint + oy * R;
+                var sizeX = centerPoint + ox * R;
+                tab.push({
+                    x: sizeX,
+                    y: sizeY
+                });
+            }
+            return tab;
+        };
 
-        for(var i=0; i <8; i++) {
+        var positions = createCoords(R1);
+        var positionsPart = createCoords((R1+R2) / 2);
+        var positionsTwo = createCoords(R2);
+        var positionsPartTwo = createCoords((R2+R3) / 2);
+        var positionsThree = createCoords(R3);
+        var positionsPartThree = createCoords((R3+R4) / 2);
+        var positionsPartFour = createCoords(190, 26);
+        var positionsPartFourP = createCoords(190, 20);
+        var positionsFour = createCoords(R4, 23);
+
+        for(var i = 0; i < maxElements; i++) {
             if(i===0) {
                 var index = 7;
             } else {
@@ -250,43 +142,39 @@
 
             createPath({
                 i: i,
-                id: "four",
-                text: "testD_" + i,
-                path: "M"+positionsFour[index].x + " " + positionsFour[index].y +  "A 200 200 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A 200 200 1 0,0 "+positionsThree[index].x+" "+positionsThree[index].y + " A 200 200 1 0,0 "+ positionsFour[index].x + " " + positionsFour[index].y,
-                textPath: "M" + positionsPartFourP[index].x +" " +positionsPartFourP[index].y + "  L " + positionsPartFour[i].x + " "+ positionsPartFour[i].y,
-                textReversPath: "M" + positionsPartFour[i].x +" " +positionsPartFour[i].y + "  L " + positionsPartFourP[index].x + " "+ positionsPartFourP[index].y
-            });
-
-            createPath({
-                i: i,
-                id: "three",
-                text: "testC_" + i,
-                path: "M"+positionsThree[index].x + " " + positionsThree[index].y +  "A 200 200 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A 200 200 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A 200 200 1 0,0 "+ positionsThree[index].x + " " + positionsThree[index].y,
-                textPath: "M" + positionsPartThree[index].x +" " +positionsPartThree[index].y + "  L " + positionsPartThree[i].x + " "+ positionsPartThree[i].y,
-                textReversPath: "M" + positionsPartThree[i].x +" " +positionsPartThree[i].y + "  L " + positionsPartThree[index].x + " "+ positionsPartThree[index].y
+                id: "one",
+                text: "testA_" + i,
+                path: "M"+positionsTwo[index].x + " " + positionsTwo[index].y + "A " + R2 + " " + R2 + " 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A " + R1 + " " + R1 + " 1 0,0 " + positions[index].x + " "+ positions[index].y  +" L "+ positionsTwo[index].x + " " + positionsTwo[index].y,
+                textPath: "M" + positionsPart[index].x +" " +positionsPart[index].y + "  L " + positionsPart[i].x + " "+ positionsPart[i].y,
+                textReversPath: "M" + positionsPart[i].x +" " +positionsPart[i].y + "  L " + positionsPart[index].x + " "+ positionsPart[index].y
             });
 
             createPath({
                 i: i,
                 id: "two",
                 text: "testB_" + i,
-                path: "M"+positionsThree[index].x + " " + positionsThree[index].y + "A 150 150 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A 100 100 1 0,0 " + positionsTwo[index].x + " "+ positionsTwo[index].y  +" L "+ positionsThree[index].x + " " + positionsThree[index].y,
+                path: "M"+positionsThree[index].x + " " + positionsThree[index].y + "A " + R3 + " " + R3 + " 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A " + R2 + " " + R2 + " 1 0,0 " + positionsTwo[index].x + " "+ positionsTwo[index].y  +" L "+ positionsThree[index].x + " " + positionsThree[index].y,
                 textPath: "M" + positionsPartTwo[index].x +" " +positionsPartTwo[index].y + "  L " + positionsPartTwo[i].x + " "+ positionsPartTwo[i].y,
                 textReversPath: "M" + positionsPartTwo[i].x +" " +positionsPartTwo[i].y + "  L " + positionsPartTwo[index].x + " "+ positionsPartTwo[index].y
             });
 
             createPath({
                 i: i,
-                id: "one",
-                text: "testA_" + i,
-                path: "M"+positionsTwo[index].x + " " + positionsTwo[index].y + "A 100 100 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A 50 50 1 0,0 " + positions[index].x + " "+ positions[index].y  +" L "+ positionsTwo[index].x + " " + positionsTwo[index].y,
-                textPath: "M" + positionsPart[index].x +" " +positionsPart[index].y + "  L " + positionsPart[i].x + " "+ positionsPart[i].y,
-                textReversPath: "M" + positionsPart[i].x +" " +positionsPart[i].y + "  L " + positionsPart[index].x + " "+ positionsPart[index].y
+                id: "three",
+                text: "testC_" + i,
+                path: "M"+positionsThree[index].x + " " + positionsThree[index].y +  "A " + R4 + " " + R4 + " 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A " + R4 + " " + R4 + " 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A " + R4 + " " + R4 + " 1 0,0 "+ positionsThree[index].x + " " + positionsThree[index].y,
+                textPath: "M" + positionsPartThree[index].x +" " +positionsPartThree[index].y + "  L " + positionsPartThree[i].x + " "+ positionsPartThree[i].y,
+                textReversPath: "M" + positionsPartThree[i].x +" " +positionsPartThree[i].y + "  L " + positionsPartThree[index].x + " "+ positionsPartThree[index].y
             });
 
+            createPath({
+                i: i,
+                id: "four",
+                text: "testD_" + i,
+                path: "M"+positionsFour[index].x + " " + positionsFour[index].y +  "A " + R4 + " " + R4 + " 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A " + R4 + " " + R4 + " 1 0,0 "+positionsThree[index].x+" "+positionsThree[index].y + " A " + R4 + " " + R4 + " 1 0,0 "+ positionsFour[index].x + " " + positionsFour[index].y,
+                textPath: "M" + positionsPartFourP[index].x +" " +positionsPartFourP[index].y + "  L " + positionsPartFour[i].x + " "+ positionsPartFour[i].y,
+                textReversPath: "M" + positionsPartFour[i].x +" " +positionsPartFour[i].y + "  L " + positionsPartFourP[index].x + " "+ positionsPartFourP[index].y
+            });
         }
-
-
-
     </script>
 </body>
