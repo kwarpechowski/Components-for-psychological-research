@@ -1,11 +1,13 @@
 module.exports = {  
   entry: {
-    'core': './gew/src/main.ts',
-    'rainbow': './gew/src/themes/rainbow/theme.less'
+    'core-gew': './gew/src/main.ts',
+    'rainbow-gew': './gew/src/themes/rainbow/theme.less',
+      'core-plutchik': './plutchik/src/main.ts',
+      'core-plutchik-mobile': './plutchik-mobile/src/main.ts'
   },
   output: {
-    path: './gew/dist', // TODO KW MANY ENDPOINTS
-    filename: "[name]-gew.js"
+    path: './dist', // TODO KW MANY ENDPOINTS
+    filename: "[name].js"
   },
   resolve: {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
