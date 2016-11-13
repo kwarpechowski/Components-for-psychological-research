@@ -2,7 +2,7 @@
     "files": [
         "node_modules/@types/jasmine/index.d.ts",
         "node_modules/rxjs/Rx.d.ts",
-        "src/main.ts"
+        "gew/src/main.ts"
     ],
     "compilerOptions": {
         "module": "commonjs",

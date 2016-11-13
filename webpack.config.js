@@ -1,10 +1,10 @@
 module.exports = {  
   entry: {
-    'core': './src/main.ts',
-    'rainbow': './src/themes/rainbow/theme.less'
+    'core': './gew/src/main.ts',
+    'rainbow': './gew/src/themes/rainbow/theme.less'
   },
   output: {
-    path: './dist',
+    path: './gew/dist', // TODO KW MANY ENDPOINTS
     filename: "[name]-gew.js"
   },
   resolve: {
