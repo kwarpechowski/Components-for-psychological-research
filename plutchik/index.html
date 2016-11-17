@@ -239,31 +239,19 @@
 
 
         var R3 = 250;
-       // var positionsFour = createCoords(R3, 16, 12);
+        var positionsFour = createCoords(R3, 16, 11.5);
 
-
-        for(var i = 1; i <= 16; i++) {
-            var position = getPosition(i, 16, 11.5);
-            positionsFour.push({
-                x:  centerPoint.x + Math.cos(position) * R3,
-                y:  centerPoint.y + Math.sin(position) * R3
-            });
-        }
 
         for(var i = 0; i < 8; i++) {
 
-            if (i === 0) {
-                var last = positions[positions.length - 1];
-            } else {
-                var last = positions[i-1];
-            }
+            var index = (i === 0 ?  8 - 1 : i - 1 );
 
             var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
             a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("class", "zero_"+i);
-            el.setAttribute("d", "M" + centerPoint.x + "," + centerPoint.y+ " L" + last.x + ","+  last.y +"  A" + R+ "," + R + " 0 0,1 "+ positions[i].x+","+ positions[i].y+" z");
+            el.setAttribute("d", "M" + centerPoint.x + "," + centerPoint.y+ " L" + positions[index].x + ","+  positions[index].y +"  A" + R+ "," + R + " 0 0,1 "+ positions[i].x+","+ positions[i].y+" z");
 
             a.appendChild(el);
 
@@ -288,17 +276,14 @@
         }
 
 
-
-        var n = 0;
-
         for(var i=0; i < 8; i++) {
 
+            var index = (i === 0 ?  8 - 1 : i - 1 );
+
             if (i === 0) {
-                var last = positions[positions.length - 1];
                 var t = positionsTwo.length - 1
             } else {
-                var last = positions[i-1];
-                var t = n -1;
+                var t = i*2 -1;
             }
 
             var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
@@ -306,7 +291,7 @@
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
             el.setAttribute("class", "jeden_"+i);
-            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[n].x+" "+positionsTwo[n].y+" A " + R1 + " " + R1 + " 0 0,0 "+positionsTwo[t].x+" "+positionsTwo[t].y+" A 450 450 0 0,1 "+last.x+" "+last.y+" A " + R + " " + R + " 0 0,1 "+positions[i].x + " " + positions[i].y);
+            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[i*2].x+" "+positionsTwo[i*2].y+" A " + R1 + " " + R1 + " 0 0,0 "+positionsTwo[t].x+" "+positionsTwo[t].y+" A 450 450 0 0,1 "+positions[index].x+" "+positions[index].y+" A " + R + " " + R + " 0 0,1 "+positions[i].x + " " + positions[i].y);
 
             a.appendChild(el);
             svg.appendChild(a);
@@ -314,7 +299,7 @@
             var id = "two-"+i;
             var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
             p.setAttribute("id", id);
-            p.setAttribute("d", createPath(i, positionsPart[i], positionsTwoPart[n]));
+            p.setAttribute("d", createPath(i, positionsPart[i], positionsTwoPart[i*2]));
             defs.appendChild(p);
 
             var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -325,34 +310,26 @@
             textPath.appendChild(textNode);
             txt.appendChild(textPath);
             a.appendChild(txt);
-
-            n+=2;
         }
 
-        var n = 0;
+        for(var i = 0; i < 8; i++) {
 
-        for(var i = 0; i < 16; i+=2) {
             if (i === 0) {
                 var last = positionsTwo[positionsTwo.length-1];
                 var t = positionsThree.length - 1;
             } else {
-                var last = positionsTwo[i-1];
-                var t = n - 1;
+                var last = positionsTwo[i*2-1];
+                var t = i*4 - 1;
             }
-
-            var num = n/4;
-
+            
             var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
             a.setAttribute("href", "javascript:;");
 
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "dwa_" + num);
-            el.setAttribute("d", "M"+positionsTwo[i].x + " " +positionsTwo[i].y +  "A 450 450 0 0,0 "+positionsThree[n].x+" "+positionsThree[n].y+" A 450 450 0 0,0 "+positionsThree[t].x+" "+positionsThree[t].y+" A 450 450 0 0,0 "+last.x+" "+last.y+" A " + R1 + " " + R1 + " 1 0,1 "+positionsTwo[i].x + " " + positionsTwo[i].y);
-
+            el.setAttribute("class", "dwa_" + i);
+            el.setAttribute("d", "M"+positionsTwo[i*2].x + " " +positionsTwo[i*2].y +  "A 450 450 0 0,0 "+positionsThree[i*4].x+" "+positionsThree[i*4].y+" A 450 450 0 0,0 "+positionsThree[t].x+" "+positionsThree[t].y+" A 450 450 0 0,0 "+last.x+" "+last.y+" A " + R1 + " " + R1 + " 1 0,1 "+positionsTwo[i*2].x + " " + positionsTwo[i*2].y);
             a.appendChild(el);
             svg.appendChild(a);
-
-            n+=4;
         }
 
         for(var i = 0; i < 32; i+=4) {
@@ -414,6 +391,5 @@
             txt.appendChild(textPath);
             svg.appendChild(txt);
         }
-
     </script>
 </body>
