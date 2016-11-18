@@ -5,163 +5,170 @@
     <style>
         body {
             margin: 0;
+            background: linear-gradient(to bottom, #fcfcfc 0%,#fff 100%); 
         }
         .pl {
             width: 100%;
             height: 100%;
         }
+
         .circle3 {
             fill: none;
             stroke: #ccc;
             stroke-dasharray: 3,4;
         }
 
-        svg path {
-
-        }
-
-        svg path:hover {
+       svg path {
             fill: #ccc;
         }
 
+        svg a:hover path {
+            fill: #000;
+        }
+
+        svg a:hover text {
+            fill: red;
+        }
+
         svg text {
-            text-anchor: middle;
-            font-size: 9px;
             font-family: Tahoma;
+            font-size: 9px;
+            text-anchor:  middle;
+            text-rendering: optimizeSpeed;
+        }
+        
+
+        .one0 {
+            fill: #fffa66;
         }
 
-        .zero_0 {
-            fill: #FFE854;
+        .one1 {
+            fill: #a6ff66;
         }
 
-        .jeden_0 {
-            fill: #FFFF54;
+        .one2 {
+            fill: #66ffb8;
         }
 
-        .dwa_0 {
-            fill: #FFFFB1;
+        .one3 {
+            fill: #66d4ff;
         }
 
-        .trzy_0 {
-            fill: #FEFFDD;
+        .one4 {
+            fill: #667aff;
         }
 
-        .zero_1 {
-            fill: #00B400;
+        .one5 {
+            fill: #eb66ff;
         }
 
-        .jeden_1 {
-            fill: #54FF54;
+        .one6 {
+            fill: #ff6666;
         }
 
-        .dwa_1 {
-            fill: #8CFF8C;
-        }
-
-        .trzy_1 {
-            fill: #C5FFC5;
-        }
-
-        .zero_2 {
-            fill: #008000;
-        }
-
-        .jeden_2 {
-            fill: #009600;
-        }
-
-        .dwa_2 {
-            fill: #8CC68C;
-        }
-
-        .trzy_2 {
-            fill: #C5E2C5;
-        }
-
-        .zero_3 {
-            fill: #0089E0;
-        }
-
-        .jeden_3 {
-            fill: #59BDFF;
-        }
-
-        .dwa_3 {
-            fill: #A5DBFF;
-        }
-
-        .trzy_3 {
-            fill: #D5EEFF;
+        .one7 {
+            fill: #ffd466;
         }
 
 
-
-        .zero_4 {
-            fill: #0000C8;
+        .two0 {
+            fill: #fffc99;
         }
 
-        .jeden_4 {
-            fill: #5151FF;
+        .two1 {
+            fill: #c4ff99;
         }
 
-        .dwa_4 {
-            fill: #8C8CFF;
+        .two2 {
+            fill: #99ffd0;
         }
 
-        .trzy_4 {
-            fill: #C5C5FF;
+        .two3 {
+            fill: #99e2ff;
         }
 
-
-        .zero_5 {
-            fill: #DE00DE;
+        .two4 {
+            fill: #99a7ff;
         }
 
-        .jeden_5 {
-            fill: #FF54FF;
+        .two5 {
+            fill: #f299ff;
         }
 
-        .dwa_5 {
-            fill: #FFC6FF;
+        .two6 {
+            fill: #ff9999;
         }
 
-        .trzy_5 {
-            fill: #FFE2FF;
+        .two7 {
+            fill: #ffe299;
         }
 
 
 
-        .zero_6 {
-            fill: #D40000;
+        .three0 {
+            fill: #fffecc;
         }
 
-        .jeden_6 {
-            fill: #FF0000;
+        .three1 {
+            fill: #e2ffcc;
         }
 
-        .dwa_6 {
-            fill: #FF8C8C;
+        .three2 {
+            fill: #ccffe8;
         }
 
-        .trzy_6 {
-            fill: #FFC5C5;
+        .three3 {
+            fill: #ccf1ff;
+        }
+
+        .three4 {
+            fill: #ccd3ff;
+        }
+
+        .three5 {
+            fill: #f9ccff;
+        }
+
+        .three6 {
+            fill: #ffcccc;
+        }
+
+        .three7 {
+            fill: #fff1cc;
         }
 
 
-        .zero_7 {
-            fill: #FF7D00;
+
+        .four0 {
+            fill: #fffef3;
         }
 
-        .jeden_7 {
-            fill: #FFA854;
+        .four1 {
+            fill: #f9fdf0;
         }
 
-        .dwa_7 {
-            fill: #FFC48C;
+        .four2 {
+            fill: #f3fff4;
         }
 
-        .trzy_7 {
-            fill: #FFE1C5;
+        .four3 {
+            fill: #ebf8f7;
+        }
+
+        .four4 {
+            fill: #f3f8ff;
+        }
+
+        .four5 {
+            fill: #f8f3ff;
+        }
+
+        .four6 {
+            fill: #faeef5;
+        }
+
+        .four7 {
+            fill: #fff7f3;
         }
     </style>
 </head>
@@ -176,44 +183,28 @@
         var svg =  document.getElementById("svg");
         var defs = svg.getElementById("defs");
 
-
-        var labels1 = ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'];
-        var labels2 = ['joy', 'trust', 'fear', 'supriste', 'sadness', 'disgust', 'anger', 'anticipation'];
-        var labels3 = ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'boredom', 'annoyance', 'interest'];
-        var labels4 = ['love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness', 'optimistm'];
-
-        var positions = [];
-        var positionsTwo = [];
-        var positionsThree = [];
-        var positionsFour = [];
         var centerPoint = {
             x: 250,
             y: 250
         };
 
-
         var createPath = function(i, p1, p2) {
-            if (i <= 4) {
+            if (i <= 3) {
                 var p = "M"+ p1.x + " " + p1.y+ " L "+p2.x+" "+ p2.y;
             } else {
                 var p = "M"+ p2.x + " " + p2.y+ " L "+p1.x+" "+ p1.y;
             }
-
             return p;
         };
-
         var getPosition = function(index, maxElements, move){
             if(!move) {
                 move = 0;
             }
             var cw = maxElements / 4;
-            return ((90 / cw) * (index - cw - 0.5) - move) * Math.PI / 180;
+            return ((90 / cw) * (index - cw - 0.45) - move) * Math.PI / 180;
         };
-
-
         var createCoords = function(R, maxElements, move) {
             var tab = [];
-
             for(var i = 1; i<=maxElements; i++) {
                 var position = getPosition(i, maxElements, move);
                 tab.push({
@@ -224,172 +215,93 @@
             return tab;
         };
 
-        var R = 100;
-        positions = createCoords(R, 8);
+         var R = [
+            {
+                r: 100,
+                labels: ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'],
+                id: 'one'
+            }, {
+                r: 156,
+                labels: ['joy', 'trust', 'fear', 'surprise', 'sadness', 'disgust', 'anger', 'anticipation'],
+                id: 'two'
+            }, {
+                r: 250,
+                labels: ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'boredom', 'annoyance', 'interest'],
+                id: 'three'
+            }, {
+                r: 250,
+                    labels: ['optimistm', 'love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness'],
+                id: 'four'
+            }
+        ];
 
-        var positionsPart = createCoords(R, 8, 24);
-
-        var R1 = 150;
-        positionsTwo = createCoords(R1, 16);
-
-        var positionsTwoPart = createCoords(R1, 16, 12);
-
-        var R2 = 200;
-        var positionsThree = createCoords(R2, 32);
-
-
-        var R3 = 250;
-        var positionsFour = createCoords(R3, 16, 11.5);
-
-
-        for(var i = 0; i < 8; i++) {
-
-            var index = (i === 0 ?  8 - 1 : i - 1 );
-
+        var createElement = function(opt) {
+            var id = opt.line.id + opt.i;
             var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
             a.setAttribute("href", "javascript:;");
-
             var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "zero_"+i);
-            el.setAttribute("d", "M" + centerPoint.x + "," + centerPoint.y+ " L" + positions[index].x + ","+  positions[index].y +"  A" + R+ "," + R + " 0 0,1 "+ positions[i].x+","+ positions[i].y+" z");
-
+            el.setAttribute("d", opt.path);
+            el.setAttribute("class", id);
             a.appendChild(el);
-
-
-            var id = "one-"+i;
-            var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            p.setAttribute("id", id);
-            p.setAttribute("d", createPath(i, centerPoint, positionsPart[i]));
-            defs.appendChild(p);
 
             var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
             var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
             textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
             textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(labels1[i]);
+            var textNode = document.createTextNode(opt.line.labels[opt.i]);
             textPath.appendChild(textNode);
             txt.appendChild(textPath);
             a.appendChild(txt);
 
-
-            svg.appendChild(a);
-        }
-
-
-        for(var i=0; i < 8; i++) {
-
-            var index = (i === 0 ?  8 - 1 : i - 1 );
-
-            if (i === 0) {
-                var t = positionsTwo.length - 1
-            } else {
-                var t = i*2 -1;
-            }
-
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
-            a.setAttribute("href", "javascript:;");
-
-            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "jeden_"+i);
-            el.setAttribute("d", "M"+positions[i].x + " " +positions[i].y +  "A 450 450 0 0,1 "+positionsTwo[i*2].x+" "+positionsTwo[i*2].y+" A " + R1 + " " + R1 + " 0 0,0 "+positionsTwo[t].x+" "+positionsTwo[t].y+" A 450 450 0 0,1 "+positions[index].x+" "+positions[index].y+" A " + R + " " + R + " 0 0,1 "+positions[i].x + " " + positions[i].y);
-
-            a.appendChild(el);
-            svg.appendChild(a);
-
-            var id = "two-"+i;
             var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
             p.setAttribute("id", id);
-            p.setAttribute("d", createPath(i, positionsPart[i], positionsTwoPart[i*2]));
+            p.setAttribute("d", opt.textPath);
+    
             defs.appendChild(p);
+            svg.appendChild(a);
+        };
 
-            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
-            textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
-            textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(labels2[i]);
-            textPath.appendChild(textNode);
-            txt.appendChild(textPath);
-            a.appendChild(txt);
-        }
+        var positions = createCoords(R[0].r, 8);
+        var positionsPart = createCoords(R[0].r, 8, 22.5);
+        var positionsTwo = createCoords(R[1].r, 16);
+        var positionsTwoPart = createCoords(R[1].r, 16, 11.5);
+        var positionsFour = createCoords(R[3].r, 16, 12);
 
         for(var i = 0; i < 8; i++) {
 
-            if (i === 0) {
-                var last = positionsTwo[positionsTwo.length-1];
-                var t = positionsThree.length - 1;
-            } else {
-                var last = positionsTwo[i*2-1];
-                var t = i*4 - 1;
-            }
+            var index = (i === 0 ?  8 - 1 : i - 1 );
+
+            createElement({
+              i: i,
+              line: R[0],
+              path: "M" + centerPoint.x + "," + centerPoint.y+ " L" + positions[index].x + ","+  positions[index].y +"  A" + R[0].r+ "," + R[0].r + " 0 0,1 "+ positions[i].x+","+ positions[i].y+" z",
+              textPath: createPath(i, centerPoint, positionsPart[i])
+            });
+   
+
+            createElement({
+              i: i,
+              line: R[1],
+              path: "M"+positions[i].x + " " +positions[i].y +  "A " + centerPoint.x + " " + centerPoint.y + " 0 0,0 "+positionsTwo[i*2].x+" "+positionsTwo[i*2].y+" A " + R[1].r + " " + R[1].r + " 0 0,0 "+positionsTwo[index*2+1].x+" "+positionsTwo[index*2+1].y+" A " + centerPoint.x + " " + centerPoint.y + " 1 0,0 "+positions[index].x+" "+positions[index].y+" A " + R[0].r + " " + R[0].r + " 1 0,1 "+positions[i].x + " " + positions[i].y,
+              textPath:  createPath(i, positionsPart[i], positionsTwoPart[i*2])
+            });
             
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
-            a.setAttribute("href", "javascript:;");
+            
+            var index = (i === 0 ?  15 : i*2-1 );
+            createElement({
+              i: i,
+              line: R[2],
+              path: "M"+positionsTwo[i*2].x + " " +positionsTwo[i*2].y +" A 450 450 0 0,0 "+positionsFour[i*2].x+" "+positionsFour[i*2].y+" A 450 450 0 0,0 "+positionsTwo[index].x+" "+positionsTwo[index].y+" A " + R[1].r + " " + R[1].r + " 1 0,1 "+positionsTwo[i*2].x + " " + positionsTwo[i*2].y,
+              textPath: createPath(i, positionsTwoPart[i*2], positionsFour[i*2])
+            });
 
-            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "dwa_" + i);
-            el.setAttribute("d", "M"+positionsTwo[i*2].x + " " +positionsTwo[i*2].y +  "A 450 450 0 0,0 "+positionsThree[i*4].x+" "+positionsThree[i*4].y+" A 450 450 0 0,0 "+positionsThree[t].x+" "+positionsThree[t].y+" A 450 450 0 0,0 "+last.x+" "+last.y+" A " + R1 + " " + R1 + " 1 0,1 "+positionsTwo[i*2].x + " " + positionsTwo[i*2].y);
-            a.appendChild(el);
-            svg.appendChild(a);
-        }
-
-        for(var i = 0; i < 32; i+=4) {
-            var num = i/4;
-
-            if (i === 0) {
-                var t = positionsThree.length - 1;
-            } else {
-                var t = i - 1;
-            }
-
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
-            a.setAttribute("href", "javascript:;");
-
-            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("class", "trzy_"+num);
-
-            el.setAttribute("d", "M"+positionsThree[t].x + " " + positionsThree[t].y +  "A 450 450 0 0,1 "+positionsFour[i/2].x + " " + positionsFour[i/2].y+" A 450 450 1 0,1 "+positionsThree[i].x+" "+positionsThree[i].y + " A 450 450 1 0,0 "+ positionsThree[t].x + " " + positionsThree[t].y);
-
-            a.appendChild(el);
-            svg.appendChild(a);
-
-            var index = Math.floor(num);
-
-            var id = "four-"+i/4+1;
-            var move = 5;
-            var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            p.setAttribute("id", id);
-
-            p.setAttribute("d", createPath(index, positionsTwoPart[i/2], positionsFour[i/2]));
-            defs.appendChild(p);
-
-            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
-            textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
-            textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(labels3[index]);
-            textPath.appendChild(textNode);
-            txt.appendChild(textPath);
-            svg.appendChild(txt);
-        }
-
-        for(var i = 1; i <=positionsFour.length; i+=2) {
-            var id = "fourp-" + i;
-
-            var index = Math.floor(i/2);
-
-            var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            p.setAttribute("id", id);
-            p.setAttribute("d",  createPath(index+1, positions[index], positionsFour[i]));
-            defs.appendChild(p);
-
-            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
-            textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
-            textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(labels4[index]);
-            textPath.appendChild(textNode);
-            txt.appendChild(textPath);
-            svg.appendChild(txt);
+             var index = (i === 7 ?  0 : i*2+2 );
+             createElement({
+              i: i,
+              line: R[3],
+              path: "M"+positionsFour[i*2].x + " " + positionsFour[i*2].y +  "A " + centerPoint.x + " " + centerPoint.y + " 0 0,1 "+positionsFour[index].x + " " + positionsFour[index].y+" A 450 450 1 0,0 "+positions[i].x+" "+positions[i].y + " A 450 450 0 0,0 "+ positionsFour[i*2].x + " " + positionsFour[i*2].y,
+              textPath: createPath(i, positions[i], positionsFour[i*2+1])
+             });
         }
     </script>
 </body>

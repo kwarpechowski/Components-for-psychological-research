@@ -12,6 +12,12 @@
             height: 100%;
         }
 
+        .circle3 {
+            fill: none;
+            stroke: #ccc;
+            stroke-dasharray: 3,4;
+        }
+
         svg path {
             fill: #ccc;
         }
@@ -167,13 +173,53 @@
     </style>
 </head>
 <body>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 400 400">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.1" class="pl" id="svg" viewBox="0 0 500 500">
         <defs id="defs">
         </defs>
     </svg>
     <script>
         var svg =  document.getElementById("svg");
         var defs = svg.getElementById("defs");
+
+        
+        var centerPoint = {
+            x: 250,
+            y: 250
+        };
+
+        
+        var createPath = function(i, p1, p2) {
+            if ( i < 3 || i > 6) {
+                var p = "M"+ p1.x + " " + p1.y+ " L "+p2.x+" "+ p2.y;
+            } else {
+                var p = "M"+ p2.x + " " + p2.y+ " L "+p1.x+" "+ p1.y;
+            }
+            return p;
+        };
+
+
+       var getPosition = function(index, maxElements, move){
+            if(!move) {
+                move = 0;
+            }
+            var cw = maxElements / 4;
+            return ((90 / cw) * (index - cw - 0.45) - move) * Math.PI / 180;
+        };
+
+        var createCoords = function(R, move) {
+            var tab = [];
+
+            for(var i = 1; i<=maxElements; i++) {
+                var position = getPosition(i, maxElements, move);
+                tab.push({
+                    x:  centerPoint.x + Math.cos(position) * R,
+                    y:  centerPoint.y + Math.sin(position) * R
+                });
+            }
+            return tab;
+        };
+
+
         var maxElements = 8;
 
         var R = [
@@ -182,21 +228,20 @@
                 labels: ['ecstasy', 'admiration', 'terror', 'amazement', 'grief', 'loathing', 'rage', 'vigilance'],
                 id: 'one'
             }, {
-                r: 100,
+                r: 110,
                 labels: ['joy', 'trust', 'fear', 'surprise', 'sadness', 'disgust', 'anger', 'anticipation'],
                 id: 'two'
             }, {
-                r: 150,
+                r: 175,
                 labels: ['serenity', 'acceptance', 'apprehension', 'distraction', 'pensiveness', 'boredom', 'annoyance', 'interest'],
                 id: 'three'
             }, {
-                r: 200,
+                r: 250,
                     labels: ['optimistm', 'love', 'submission', 'awe', 'disapproval', 'remorse', 'contempt', 'aggressiveness'],
                 id: 'four'
             }
         ];
 
-        var centerPoint = R[3].r;
 
         var createElement = function(opt) {
             var id = opt.line.id + opt.i;
@@ -218,37 +263,10 @@
 
             var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
             p.setAttribute("id", id);
-
-            if(i < 3 || i > 5) {
-                p.setAttribute("d", opt.textPath);
-            } else {
-                p.setAttribute("d", opt.textReversPath);
-            }
-
+            p.setAttribute("d", opt.textPath);
+    
             defs.appendChild(p);
             svg.appendChild(a);
-        };
-
-        var getPosition = function(index, move){
-            if(!move) {
-                move = 0;
-            }
-            var cw = maxElements / 4;
-            return ((90 / cw) * (index - cw - 0.5) - move) * Math.PI / 180;
-        };
-
-
-        var createCoords = function(R, move) {
-            var tab = [];
-
-            for(var i = 1; i<=maxElements; i++) {
-                var position = getPosition(i, move);
-                tab.push({
-                    x:  centerPoint + Math.cos(position) * R,
-                    y:  centerPoint + Math.sin(position) * R
-                });
-            }
-            return tab;
         };
 
         var positions = createCoords(R[0].r);
@@ -268,32 +286,28 @@
                 i: i,
                 line: R[0],
                 path: "M"+positionsTwo[index].x + " " + positionsTwo[index].y + "A " + R[1].r + " " + R[1].r + " 1 0,1 " + positionsTwo[i].x + " "+ positionsTwo[i].y  +" L" + positions[i].x + " "+ positions[i].y + "A " + R[0].r + " " + R[0].r + " 1 0,0 " + positions[index].x + " "+ positions[index].y  +" L "+ positionsTwo[index].x + " " + positionsTwo[index].y,
-                textPath: "M" + positionsPart[index].x +" " +positionsPart[index].y + "  L " + positionsPart[i].x + " "+ positionsPart[i].y,
-                textReversPath: "M" + positionsPart[i].x +" " +positionsPart[i].y + "  L " + positionsPart[index].x + " "+ positionsPart[index].y
+                textPath: createPath(i, positionsPart[index], positionsPart[i])
             });
 
             createElement({
                 i: i,
                 line: R[1],
                 path: "M"+positionsThree[index].x + " " + positionsThree[index].y + "A " + R[2].r + " " + R[2].r + " 1 0,1 " + positionsThree[i].x + " "+ positionsThree[i].y  +" L" + positionsTwo[i].x + " "+ positionsTwo[i].y + "A " + R[1].r + " " + R[1].r + " 1 0,0 " + positionsTwo[index].x + " "+ positionsTwo[index].y  +" L "+ positionsThree[index].x + " " + positionsThree[index].y,
-                textPath: "M" + positionsPartTwo[index].x +" " +positionsPartTwo[index].y + "  L " + positionsPartTwo[i].x + " "+ positionsPartTwo[i].y,
-                textReversPath: "M" + positionsPartTwo[i].x +" " +positionsPartTwo[i].y + "  L " + positionsPartTwo[index].x + " "+ positionsPartTwo[index].y
+                textPath: createPath(i, positionsPartTwo[index], positionsPartTwo[i])
             });
 
             createElement({
                 i: i,
                 line: R[2],
                 path: "M"+positionsThree[index].x + " " + positionsThree[index].y +  "A " + R[3].r + " " + R[3].r + " 0 0,1 "+positionsThree[i].x + " " + positionsThree[i].y+" A " + R[3].r + " " + R[3].r + " 1 0,0 "+positionsFour[i].x+" "+positionsFour[i].y + " A " + R[3].r + " " + R[3].r + " 1 0,0 "+ positionsThree[index].x + " " + positionsThree[index].y,
-                textPath: "M" + positionsPartThree[index].x +" " +positionsPartThree[index].y + "  L " + positionsPartThree[i].x + " "+ positionsPartThree[i].y,
-                textReversPath: "M" + positionsPartThree[i].x +" " +positionsPartThree[i].y + "  L " + positionsPartThree[index].x + " "+ positionsPartThree[index].y
+                textPath: createPath(i, positionsPartThree[index], positionsPartThree[i])
             });
 
             createElement({
                 i: i,
                 line: R[3],
                 path: "M"+positionsFour[index].x + " " + positionsFour[index].y +  "A " + R[3].r + " " + R[3].r + " 0 0,1 "+positionsFour[i].x + " " + positionsFour[i].y+" A " + R[3].r + " " + R[3].r + " 1 0,0 "+positionsThree[index].x+" "+positionsThree[index].y + " A " + R[3].r + " " + R[3].r + " 1 0,0 "+ positionsFour[index].x + " " + positionsFour[index].y,
-                textPath: "M" + positionsPartFourP[index].x +" " +positionsPartFourP[index].y + "  L " + positionsPartFour[i].x + " "+ positionsPartFour[i].y,
-                textReversPath: "M" + positionsPartFour[i].x +" " +positionsPartFour[i].y + "  L " + positionsPartFourP[index].x + " "+ positionsPartFourP[index].y
+                textPath: createPath(i, positionsPartFourP[index], positionsPartFour[i])
             });
         }
     </script>
