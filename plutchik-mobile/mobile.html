@@ -181,13 +181,12 @@
         var svg =  document.getElementById("svg");
         var defs = svg.getElementById("defs");
 
-        
+
         var centerPoint = {
             x: 250,
             y: 250
         };
 
-        
         var createPath = function(i, p1, p2) {
             if ( i < 3 || i > 6) {
                 var p = "M"+ p1.x + " " + p1.y+ " L "+p2.x+" "+ p2.y;

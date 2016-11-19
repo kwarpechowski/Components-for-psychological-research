@@ -2,175 +2,7 @@
 <head>
     <title>GEW</title>
     <meta charset="utf-8" />
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom, #fcfcfc 0%,#fff 100%); 
-        }
-        .pl {
-            width: 100%;
-            height: 100%;
-        }
-
-        .circle3 {
-            fill: none;
-            stroke: #ccc;
-            stroke-dasharray: 3,4;
-        }
-
-       svg path {
-            fill: #ccc;
-        }
-
-        svg a:hover path {
-            fill: #000;
-        }
-
-        svg a:hover text {
-            fill: red;
-        }
-
-        svg text {
-            font-family: Tahoma;
-            font-size: 9px;
-            text-anchor:  middle;
-            text-rendering: optimizeSpeed;
-        }
-        
-
-        .one0 {
-            fill: #fffa66;
-        }
-
-        .one1 {
-            fill: #a6ff66;
-        }
-
-        .one2 {
-            fill: #66ffb8;
-        }
-
-        .one3 {
-            fill: #66d4ff;
-        }
-
-        .one4 {
-            fill: #667aff;
-        }
-
-        .one5 {
-            fill: #eb66ff;
-        }
-
-        .one6 {
-            fill: #ff6666;
-        }
-
-        .one7 {
-            fill: #ffd466;
-        }
-
-
-        .two0 {
-            fill: #fffc99;
-        }
-
-        .two1 {
-            fill: #c4ff99;
-        }
-
-        .two2 {
-            fill: #99ffd0;
-        }
-
-        .two3 {
-            fill: #99e2ff;
-        }
-
-        .two4 {
-            fill: #99a7ff;
-        }
-
-        .two5 {
-            fill: #f299ff;
-        }
-
-        .two6 {
-            fill: #ff9999;
-        }
-
-        .two7 {
-            fill: #ffe299;
-        }
-
-
-
-        .three0 {
-            fill: #fffecc;
-        }
-
-        .three1 {
-            fill: #e2ffcc;
-        }
-
-        .three2 {
-            fill: #ccffe8;
-        }
-
-        .three3 {
-            fill: #ccf1ff;
-        }
-
-        .three4 {
-            fill: #ccd3ff;
-        }
-
-        .three5 {
-            fill: #f9ccff;
-        }
-
-        .three6 {
-            fill: #ffcccc;
-        }
-
-        .three7 {
-            fill: #fff1cc;
-        }
-
-
-
-        .four0 {
-            fill: #fffef3;
-        }
-
-        .four1 {
-            fill: #f9fdf0;
-        }
-
-        .four2 {
-            fill: #f3fff4;
-        }
-
-        .four3 {
-            fill: #ebf8f7;
-        }
-
-        .four4 {
-            fill: #f3f8ff;
-        }
-
-        .four5 {
-            fill: #f8f3ff;
-        }
-
-        .four6 {
-            fill: #faeef5;
-        }
-
-        .four7 {
-            fill: #fff7f3;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
     <div>
@@ -179,6 +11,7 @@
             </defs>
         </svg>
     </div>
+    <script src="core.js"></script>
     <script>
         var svg =  document.getElementById("svg");
         var defs = svg.getElementById("defs");
@@ -186,33 +19,6 @@
         var centerPoint = {
             x: 250,
             y: 250
-        };
-
-        var createPath = function(i, p1, p2) {
-            if (i <= 3) {
-                var p = "M"+ p1.x + " " + p1.y+ " L "+p2.x+" "+ p2.y;
-            } else {
-                var p = "M"+ p2.x + " " + p2.y+ " L "+p1.x+" "+ p1.y;
-            }
-            return p;
-        };
-        var getPosition = function(index, maxElements, move){
-            if(!move) {
-                move = 0;
-            }
-            var cw = maxElements / 4;
-            return ((90 / cw) * (index - cw - 0.45) - move) * Math.PI / 180;
-        };
-        var createCoords = function(R, maxElements, move) {
-            var tab = [];
-            for(var i = 1; i<=maxElements; i++) {
-                var position = getPosition(i, maxElements, move);
-                tab.push({
-                    x:  centerPoint.x + Math.cos(position) * R,
-                    y:  centerPoint.y + Math.sin(position) * R
-                });
-            }
-            return tab;
         };
 
          var R = [
@@ -234,32 +40,6 @@
                 id: 'four'
             }
         ];
-
-        var createElement = function(opt) {
-            var id = opt.line.id + opt.i;
-            var a = document.createElementNS("http://www.w3.org/2000/svg", "a");
-            a.setAttribute("href", "javascript:;");
-            var el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            el.setAttribute("d", opt.path);
-            el.setAttribute("class", id);
-            a.appendChild(el);
-
-            var txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            var textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
-            textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href","#" +id);
-            textPath.setAttribute("startOffset", "50%");
-            var textNode = document.createTextNode(opt.line.labels[opt.i]);
-            textPath.appendChild(textNode);
-            txt.appendChild(textPath);
-            a.appendChild(txt);
-
-            var p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            p.setAttribute("id", id);
-            p.setAttribute("d", opt.textPath);
-    
-            defs.appendChild(p);
-            svg.appendChild(a);
-        };
 
         var positions = createCoords(R[0].r, 8);
         var positionsPart = createCoords(R[0].r, 8, 22.5);
