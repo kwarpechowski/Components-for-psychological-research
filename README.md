@@ -7,4 +7,9 @@
 ##Compotents
 * [The Genewa Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/gew)
 * [Plutchik Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/plutchik)
-* [Plutchik Emotion Wheel - mobile](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/plutchik-mobile)
+
+##Build
+```
+npm i webpack -g
+npm run build
+```

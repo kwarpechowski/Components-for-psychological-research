@@ -14,4 +14,8 @@ export class Point {
   getY(): number {
     return this.y
   }
+
+  public toString = () : string => {
+    return `${this.getX()} ${this.getY()} `;
+  }
 }

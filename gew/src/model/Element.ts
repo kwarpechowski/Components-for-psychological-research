@@ -9,8 +9,8 @@ import "rxjs/add/observable/fromEvent";
 export class Element implements ElementInterface {
   index: number;
   element: SVGElement;
-  private isActive: boolean;
   private group: Group;
+  private isActive: boolean;
   static activeClass: string = "active";
   private size: number;
 

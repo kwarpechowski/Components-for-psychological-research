@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Plutchik</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div id="drawing"></div>
+<script type="text/javascript" src="../../../dist/core-plutchik.js"></script>
+<script>
+    var plutchik = new Plutchik({
+        element: 'drawing'
+    });
+
+    var action = plutchik.elementClick();
+    action.subscribe(function(data) {
+        console.log('clicked', data);
+    });
+</script>
+</body>
+
+</html>

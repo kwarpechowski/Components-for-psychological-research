@@ -153,7 +153,7 @@ export class Drawer {
     this.drawBorder();
   }
 
-  circleClick(): any {
+  elementClick(): any {
     return this.gc.changeObserver;
   }
 

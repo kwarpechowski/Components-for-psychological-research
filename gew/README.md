@@ -4,10 +4,6 @@
 
 All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/samples?style=centerme)
 
-##Instalation
-```
-npm i the-geneva-emotion-wheel
-```
 ##Usage
 ```html
 <div id="drawing"></div>
@@ -71,11 +67,6 @@ npm i the-geneva-emotion-wheel
     line: "line",
     circlePrefix: "row_"
 }
-```
-##Build
-```
-npm i webpack -g
-npm run build
 ```
 ##API
 ###circleClick

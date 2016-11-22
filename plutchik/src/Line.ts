@@ -16,4 +16,8 @@ export class Line {
   getId(): string {
     return this.id;
   }
+
+  public toString = () : string => {
+    return `${this.getR()} ${this.getR()} `;
+  }
 }

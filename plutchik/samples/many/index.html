@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>Plutchik</title>
+    <meta charset="utf-8" />
+    <style>
+        div {
+            width: 450px;
+            float: left;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="drawing"></div>
+<div id="drawing2"></div>
+<script type="text/javascript" src="../../../dist/core-plutchik.js"></script>
+<script>
+    Plutchik({
+        element: 'drawing',
+    });
+    Plutchik({
+        element: 'drawing2',
+        isMobile: true
+    });
+</script>
+</body>
+
+</html>
