@@ -1,9 +1,9 @@
-# Plutchnik Emotion Wheel
+# Plutchik Emotion Wheel
 
 ##Examples
-<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchnik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchnik/sample.png" width="500"/></a>
+<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchik/sample.png" width="500"/></a>
 
-All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchnik/samples?style=centerme)
+All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchik/samples?style=centerme)
 
 ##Usage
 ```html
