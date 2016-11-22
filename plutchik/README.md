@@ -1,5 +1,10 @@
 # Plutchnik Emotion Wheel
 
+##Examples
+<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchnik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchnik/sample.png" width="500"/></a>
+
+All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchnik/samples?style=centerme)
+
 ##Usage
 ```html
 <div id="drawing"></div>
