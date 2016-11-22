@@ -111,7 +111,7 @@ export class Drawer {
            A ${this.centerPoint} 0 0,0 ${positionsTwo[i * 2]}
            A ${R[1]} 0 0,0 ${positionsTwo[index * 2 + 1]}
            A ${this.centerPoint} 1 0,0 ${positions[index]}
-           A ${R[1]} 1 0,1 ${positions[i]}`,
+           A ${R[0]} 1 0,1 ${positions[i]}`,
           textPath: this.createPath(i, positionsPart[i], positionsTwoPart[i * 2])
         }));
 
