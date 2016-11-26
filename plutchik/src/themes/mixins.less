@@ -8,9 +8,19 @@
       fill: darken(@color, 50%);
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
+      outline: 0;
       path {
         fill: darken(@color, 25%);
+      }
+    }
+
+    &:focus {
+      path {
+        stroke: #000;
+        stroke-width: 2;
+        stroke-linejoin: round;
       }
     }
 

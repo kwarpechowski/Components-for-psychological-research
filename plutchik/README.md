@@ -23,7 +23,8 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 | ----------- |:---------------:| --------------:|------------:|
 | `element`   | string  | drawer | |
 | `isMobile`   | boolean  | false | |
-| `labels`    | Array <Array<string>>  | [click](#labels) | |
+| `lang` | string | en | available: 'en'|
+| `labels`    | Array <Array<string>>  | [] |  [example](#labels) |
 | `checkedElements`    | Array <string>  | [] | |
 
 

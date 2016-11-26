@@ -84,6 +84,7 @@ export class Element {
       let classes = this.element.getAttribute("class");
       if (classes) {
         classes = classes.replace(Element.activeClass, "");
+        classes = classes.replace(" ", "");
       }
       this.element.setAttribute("class", classes);
     }

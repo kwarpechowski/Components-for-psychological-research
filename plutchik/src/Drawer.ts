@@ -1,8 +1,8 @@
-import { Config }  from "./Config";
-import { Point }  from "./Point";
-import { Line }  from "./Line";
-import { Option }  from "./Option";
-import { Element }  from "./Element";
+import { Config }  from "./config/Config";
+import { Point }  from "./models/Point";
+import { Line }  from "./models/Line";
+import { Option }  from "./models/Option";
+import { Element }  from "./models/Element";
 import {DrawHelper} from "./helpers/DrawHelper";
 import { Subject } from "rxjs/Subject";
 
@@ -81,12 +81,12 @@ export class Drawer {
     }
 
     runDefault(): void {
-
+        let labels = this.config.getLabels();
       let R = new Array<Line>();
-      R.push(new Line(100, this.config.labels[0], 0));
-      R.push(new Line(156, this.config.labels[1], 1));
-      R.push(new Line(250, this.config.labels[2], 2));
-      R.push(new Line(250, this.config.labels[3], 3));
+      R.push(new Line(100, labels[0], 0));
+      R.push(new Line(156, labels[1], 1));
+      R.push(new Line(250, labels[2], 2));
+      R.push(new Line(250, labels[3], 3));
 
       let positions = this.createCoords(R[0].getR(), 8, undefined);
       let positionsPart = this.createCoords(R[0].getR(), 8, 22.5);

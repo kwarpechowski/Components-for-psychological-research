@@ -1,6 +1,6 @@
 /// <reference path="../../typings/index.d.ts" />`
 import "!style!css!less!./themes/core/theme.less";
-import { Config }  from "./Config";
+import { Config }  from "./config/Config";
 import { ConfigInterface } from "./interfaces/ConfigInterface";
 import { Drawer }  from "./Drawer";
 
