@@ -7,35 +7,36 @@ import {DrawHelper} from "./helpers/DrawHelper";
 import { Subject } from "rxjs/Subject";
 
 export class Drawer {
-    private mainElement: SVGGElement;
     private svg: SVGElement;
     private defs: SVGElement;
     private config: Config;
     private centerPoint: Point;
-    private changeObserver: Subject<Element>;
+    private changeObserver: Subject<any>;
+    private elements: Array<Element>;
 
     constructor(config: Config) {
       this.config = config;
-        this.changeObserver = new Subject<Element>();
+        this.changeObserver = new Subject<any>();
+        this.elements = [];
 
       this.centerPoint = new Point(250, 250);
 
       let container = document.getElementById(this.config.element);
       container.setAttribute("class", "gew-instance")
       this.svg = DrawHelper.createElement("svg");
+        this.svg.setAttribute("class", "plutchik");
       this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
       this.svg.setAttribute("version", "1.1");
       this.svg.setAttribute("viewBox", "0 0 500 500");
-      this.defs = DrawHelper.createElement("defs");
+          this.defs = DrawHelper.createElement("defs");
       this.svg.appendChild(this.defs);
       container.appendChild(this.svg);
     }
 
-    createPath(i: number, p1: Point, p2: Point): string {
+    createPath(i: number, p1: Point, p2: Point, config: Array<number>): string {
       let a: Point;
       let b: Point;
-      let config = [0, 1, 2, 3];
       if (config.indexOf(i) >= 0) {
         a = p1;
         b = p2;
@@ -50,6 +51,10 @@ export class Drawer {
       elements.forEach((element) => {
         this.defs.appendChild(element.getDef());
         this.svg.appendChild(element.draw());
+
+        if (this.config.checkedElements.indexOf(element.txt) >= 0) {
+            element.enable();
+        }
       });
     }
 
@@ -78,10 +83,10 @@ export class Drawer {
     runDefault(): void {
 
       let R = new Array<Line>();
-      R.push(new Line(100, this.config.labels[0], "one"));
-      R.push(new Line(156, this.config.labels[1], "two"));
-      R.push(new Line(250, this.config.labels[2], "three"));
-      R.push(new Line(250, this.config.labels[3], "four"));
+      R.push(new Line(100, this.config.labels[0], 0));
+      R.push(new Line(156, this.config.labels[1], 1));
+      R.push(new Line(250, this.config.labels[2], 2));
+      R.push(new Line(250, this.config.labels[3], 3));
 
       let positions = this.createCoords(R[0].getR(), 8, undefined);
       let positionsPart = this.createCoords(R[0].getR(), 8, 22.5);
@@ -101,18 +106,18 @@ export class Drawer {
           path: `M ${this.centerPoint}
            L ${positions[index]}
            A ${R[0]} 0 0,1 ${positions[i]}`,
-          textPath: this.createPath(i, this.centerPoint, positionsPart[i])
+          textPath: this.createPath(i, this.centerPoint, positionsPart[i], [0, 1, 2, 3])
         }));
 
         elements.push(this.createElement({
           i: i,
           line: R[1],
           path: `M ${positions[i]}
-           A ${this.centerPoint} 0 0,0 ${positionsTwo[i * 2]}
+           A 450 450 0 0,0 ${positionsTwo[i * 2]}
            A ${R[1]} 0 0,0 ${positionsTwo[index * 2 + 1]}
-           A ${this.centerPoint} 1 0,0 ${positions[index]}
+           A 450 450 1 0,0 ${positions[index]}
            A ${R[0]} 1 0,1 ${positions[i]}`,
-          textPath: this.createPath(i, positionsPart[i], positionsTwoPart[i * 2])
+          textPath: this.createPath(i, positionsPart[i], positionsTwoPart[i * 2], [0, 1, 2, 3])
         }));
 
         index = (i === 0 ?  15 : i * 2 - 1);
@@ -124,7 +129,7 @@ export class Drawer {
            A 450 450 0 0,0 ${positionsFour[i * 2]}
            A 450 450 0 0,0 ${positionsTwo[index]}
            A ${R[1]} 1 0,1 ${positionsTwo[i * 2]}`,
-          textPath: this.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2])
+          textPath: this.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2], [0, 1, 2, 3])
         }));
 
         index = (i === 7 ?  0 : i * 2 + 2);
@@ -135,7 +140,7 @@ export class Drawer {
            A ${this.centerPoint} 0 0,1 ${positionsFour[index]}
            A 450 450 1 0,0 ${positions[i]}
            A 450 450 0 0,0 ${positionsFour[i * 2]}`,
-          textPath: this.createPath(i, positions[i], positionsFour[i * 2 + 1])
+          textPath: this.createPath(i, positions[i], positionsFour[i * 2 + 1], [0, 1, 2, 3])
         }));
 
         this.render(elements);
@@ -144,10 +149,10 @@ export class Drawer {
 
     runMobile(): void {
       let R = new Array<Line>();
-      R.push(new Line(50, this.config.labels[0], "one"));
-      R.push(new Line(110, this.config.labels[1], "two"));
-      R.push(new Line(175, this.config.labels[2], "three"));
-      R.push(new Line(250, this.config.labels[3], "four"));
+      R.push(new Line(50, this.config.labels[0], 0));
+      R.push(new Line(110, this.config.labels[1], 1));
+      R.push(new Line(175, this.config.labels[2], 2));
+      R.push(new Line(250, this.config.labels[3], 3));
 
       let positions = this.createCoords(R[0].getR(), 8, undefined);
       let positionsPart = this.createCoords((R[0].getR() + R[1].getR()) / 2, 8, undefined);
@@ -168,11 +173,11 @@ export class Drawer {
           i: i,
           line: R[0],
           path: `M ${positionsTwo[index]}
-            A ${R[1]} 1 0,1 ${positionsTwo[i]}
+            A ${R[0]} 1 0,1 ${positionsTwo[i]}
             L ${positions[i]}
             A ${R[0]} 1 0,0  ${positions[index]}
             L ${positionsTwo[index]}`,
-          textPath: this.createPath(i, positionsPart[index], positionsPart[i])
+          textPath: this.createPath(i, positionsPart[index], positionsPart[i], [0, 1, 6, 7])
         }));
 
         elements.push(this.createElement({
@@ -183,7 +188,7 @@ export class Drawer {
                L ${positionsTwo[i]}
                A ${R[1]} 1 0,0 ${positionsTwo[index]}
                L ${positionsThree[index]}`,
-            textPath: this.createPath(i, positionsPartTwo[index], positionsPartTwo[i])
+            textPath: this.createPath(i, positionsPartTwo[index], positionsPartTwo[i], [0, 1, 6, 7])
         }));
 
       elements.push(this.createElement({
@@ -193,17 +198,19 @@ export class Drawer {
             A ${R[3]} 0 0,1 ${positionsThree[i]}
             A ${R[3]} 1 0,0 ${positionsFour[i]}
             A ${R[3]} 1 0,0 ${positionsThree[index]}`,
-          textPath: this.createPath(i, positionsPartThree[index], positionsPartThree[i])
+          textPath: this.createPath(i, positionsPartThree[index], positionsPartThree[i], [0, 1, 6, 7])
       }));
+
+      index = (i === 7 ?  0 : i + 1);
 
       elements.push(this.createElement({
           i: i,
           line: R[3],
-          path: `M ${positionsFour[index]}
-            A ${R[3]} 0 0,1 ${positionsFour[i]}
-            A ${R[3]} 1 0,0 ${positionsThree[index]}
-            A ${R[3]} 1 0,0 ${positionsFour[index]}`,
-          textPath: this.createPath(i, positionsPartFourP[index], positionsPartFour[i])
+          path: `M ${positionsFour[i]}
+            A ${R[3]} 0 0,1 ${positionsFour[index]}
+            A ${R[3]} 1 0,0 ${positionsThree[i]}
+            A ${R[3]} 1 0,0 ${positionsFour[i]}`,
+          textPath: this.createPath(i, positionsPartFourP[i], positionsPartFour[index], [0, 1, 6, 7])
       }));
 
         this.render(elements);
@@ -211,10 +218,19 @@ export class Drawer {
     }
     private createElement(opt: Option): Element {
         let element = new Element(opt);
-        element.changeObserver.subscribe((el: Element) => {
-           this.changeObserver.next(el);
+        element.changeObserver.subscribe(() => {
+           this.changeObserver.next(this.getData());
         });
+        this.elements.push(element);
         return element;
+    }
+
+    getData(): Object {
+        let data = {};
+        this.elements.forEach((element: Element) => {
+           data[element.txt] = element.isActive;
+        });
+        return data;
     }
 
     run(): void {

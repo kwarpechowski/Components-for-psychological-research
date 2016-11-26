@@ -9,6 +9,7 @@ export class Config {
         ["serenity", "acceptance", "apprehension", "distraction", "pensiveness", "boredom", "annoyance", "interest"],
         ["optimistm", "love", "submission", "awe", "disapproval", "emorse", "contempt", "aggressiveness"]
     ];
+    checkedElements: Array<string> = [];
 
     constructor (config: ConfigInterface) {
         Object.keys(config).forEach((key) => {

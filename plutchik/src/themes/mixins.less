@@ -1,0 +1,26 @@
+.color-element(@color, @i, @j) {
+  &.p-@{i}-@{j} {
+    path {
+      fill: @color;
+    }
+
+    text {
+      fill: darken(@color, 50%);
+    }
+
+    &:hover {
+      path {
+        fill: darken(@color, 25%);
+      }
+    }
+
+    &.active {
+      path {
+        fill: darken(@color, 75%);
+      }
+      text {
+        fill: lighten(@color, 30%);
+      }
+    }
+  }
+}

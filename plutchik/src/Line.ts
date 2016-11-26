@@ -1,9 +1,9 @@
 export class Line {
   private r: number;
   public labels: Array<string>;
-  private id: string;
+  private id: number;
 
-  constructor(r: number, labels: Array<string>, id: string) {
+  constructor(r: number, labels: Array<string>, id: number) {
     this.r = r;
     this.labels = labels;
     this.id = id;
@@ -13,7 +13,7 @@ export class Line {
     return this.r;
   }
 
-  getId(): string {
+  getId(): number {
     return this.id;
   }
 

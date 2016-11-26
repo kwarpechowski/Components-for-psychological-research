@@ -1,0 +1,33 @@
+@import "../mixins.less";
+
+@s: 90%;
+@l: 40%;
+@n:2;
+@x:45;
+
+.colorize-loop (@i) when (@i < 8) {
+  @h: @n + (@x * @i);
+  .color-element(hsl(@h, @s, @l), 0, @i);
+  .color-element(hsl(@h, @s, @l), 1, @i);
+  .color-element(hsl(@h, @s, @l), 2, @i);
+  .color-element(average(hsl(@h, @s, @l), hsl(@n + (@x * (@i+1)), @s, @l)), 3, @i);
+  .colorize-loop(@i + 1);
+}
+
+
+svg.plutchik path {
+  stroke: #000;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+svg.plutchik  {
+
+  a {
+    .colorize-loop(0);
+
+    &:hover path {
+      color: #fff;
+    }
+  }
+}

@@ -2,7 +2,8 @@ module.exports = {
   entry: {
     'core-gew': './gew/src/main.ts',
     'rainbow-gew': './gew/src/themes/rainbow/theme.less',
-      'core-plutchik': './plutchik/src/main.ts'
+      'core-plutchik': './plutchik/src/main.ts',
+      'dark-plutchik': './plutchik/src/themes/dark/theme.less'
   },
   output: {
     path: './dist', // TODO KW MANY ENDPOINTS

@@ -24,6 +24,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 | `element`   | string  | drawer | |
 | `isMobile`   | boolean  | false | |
 | `labels`    | Array <Array<string>>  | [click](#labels) | |
+| `checkedElements`    | Array <string>  | [] | |
 
 
 ###labels<a name="labels"></a>

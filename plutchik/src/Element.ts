@@ -5,16 +5,16 @@ import "rxjs/add/observable/fromEvent";
 
 export class Element {
   private id: string;
-  private txt: string;
+  public txt: string;
   private path: string;
   private textPath: string;
   private element: SVGAElement;
-  private isActive: boolean;
+  public isActive: boolean;
   static activeClass: string = "active";
   changeObserver: Subject<any>;
 
   constructor(opt: Option) {
-    this.id = (opt.line.getId() + opt.i).toString();
+    this.id = "p-" + (opt.line.getId() + "-" + opt.i).toString();
     this.txt = opt.line.labels[opt.i];
     this.path = opt.path;
     this.textPath = opt.textPath;
@@ -24,10 +24,11 @@ export class Element {
   draw(): SVGAElement {
     this.element = document.createElementNS("http://www.w3.org/2000/svg", "a");
     this.element.setAttribute("href", "javascript:;");
+    this.element.setAttribute("class", this.id);
+    this.element.setAttribute("title", this.txt);
 
     let el = document.createElementNS("http://www.w3.org/2000/svg", "path");
     el.setAttribute("d", this.path);
-    el.setAttribute("class", this.id);
     this.element.appendChild(el);
 
     let txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
