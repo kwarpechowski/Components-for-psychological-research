@@ -32,11 +32,29 @@ svg.plutchik {
         font-family: Tahoma;
         font-size: 10px;
         text-anchor:  middle;
-        text-rendering: optimizeSpeed;
+        fill: #000;
     }
 
     a {
         .colorize-loop(0);
+
+        &:hover {
+            path {
+                fill: #999;
+            }
+            text {
+                fill: #fff;
+            }
+        }
+
+        &.active  {
+            path {
+                fill: #000;
+            }
+            text {
+                fill: #fff;
+            }
+        }
     }
 
 }

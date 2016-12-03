@@ -2,37 +2,43 @@ import { Option }  from "./Option";
 import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/observable/fromEvent";
+import {Drawer} from "../Drawer";
+import {DrawHelper} from "../helpers/DrawHelper";
 
 export class Element {
+  static activeClass: string = "active";
   private id: string;
-  public txt: string;
   private path: string;
   private textPath: string;
-  private element: SVGAElement;
-  public isActive: boolean;
-  static activeClass: string = "active";
+  private element: SVGElement
+  private drawer: Drawer;
+  txt: string;
+  isActive: boolean;
   changeObserver: Subject<any>;
 
-  constructor(opt: Option) {
+  constructor(opt: Option, drawer: Drawer) {
     this.id = "p-" + (opt.line.getId() + "-" + opt.i).toString();
     this.txt = opt.line.labels[opt.i];
     this.path = opt.path;
     this.textPath = opt.textPath;
+    this.drawer = drawer;
     this.changeObserver = new Subject();
   }
 
-  draw(): SVGAElement {
-    this.element = document.createElementNS("http://www.w3.org/2000/svg", "a");
-    this.element.setAttribute("href", "javascript:;");
-    this.element.setAttribute("class", this.id);
-    this.element.setAttribute("title", this.txt);
+  draw(): SVGElement {
+    this.element = DrawHelper.createElement("a", {
+      href: "javascript:;",
+      "class": this.id,
+      title: this.txt
+    });
 
-    let el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    el.setAttribute("d", this.path);
+    let el = DrawHelper.createElement("path", {
+      d: this.path
+    });
     this.element.appendChild(el);
 
-    let txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
-    let textPath = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
+    let txt = DrawHelper.createElement("text");
+    let textPath = DrawHelper.createElement("textPath");
     textPath.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#" + this.id);
     textPath.setAttribute("startOffset", "50%");
     let textNode = document.createTextNode(this.txt);
@@ -46,26 +52,26 @@ export class Element {
   }
 
   getDef(): SVGElement {
-    let p = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    p.setAttribute("id", this.id);
-    p.setAttribute("d", this.textPath);
-    return p;
+    return DrawHelper.createElement("path", {
+      id: this.id,
+      d: this.textPath
+    });
   }
 
-  private bindEvents(): void {
+  private bindEvents() {
     let source = Observable.fromEvent(this.element, "click");
 
-    let subscription = source.subscribe(() => {
+    source.subscribe(() => {
       if (this.isActive) {
         this.disable();
-      } else {
+      } else if (this.drawer.ifCanChange()) {
         this.enable();
       }
       this.changeObserver.next(this);
     });
   }
 
-  enable(): void {
+  enable() {
     if (!this.isActive) {
       this.isActive = true;
       let classes = this.element.getAttribute("class");
@@ -78,7 +84,7 @@ export class Element {
     }
   }
 
-  disable(): void {
+  disable() {
     if (this.isActive) {
       this.isActive = false;
       let classes = this.element.getAttribute("class");

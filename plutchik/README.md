@@ -26,6 +26,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 | `lang` | string | en | available: 'en'|
 | `labels`    | Array <Array<string>>  | [] |  [example](#labels) |
 | `checkedElements`    | Array <string>  | [] | |
+| `maxElements`| number | 32 | |
 
 
 ###labels<a name="labels"></a>

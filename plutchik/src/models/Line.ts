@@ -1,6 +1,6 @@
 export class Line {
-  private r: number;
-  public labels: Array<string>;
+  r: number;
+  labels: Array<string>;
   private id: number;
 
   constructor(r: number, labels: Array<string>, id: number) {
@@ -9,15 +9,11 @@ export class Line {
     this.id = id;
   }
 
-  getR(): number {
-    return this.r;
-  }
-
   getId(): number {
     return this.id;
   }
 
   public toString = () : string => {
-    return `${this.getR()} ${this.getR()} `;
+    return `${this.r} ${this.r} `;
   }
 }

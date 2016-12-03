@@ -4,4 +4,5 @@ export interface ConfigInterface {
     labels: Array<Array<string>>;
     checkedElements: Array<string>;
     lang: string;
+    maxElements: number;
 }

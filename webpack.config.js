@@ -1,4 +1,6 @@
-module.exports = {  
+var webpack = require('webpack');
+
+module.exports = {
   entry: {
     'core-gew': './gew/src/main.ts',
     'rainbow-gew': './gew/src/themes/rainbow/theme.less',
@@ -33,5 +35,13 @@ module.exports = {
   tslint: {
       failOnHint: true,
       configuration: require('./tslint.json')
-    }
+  },
+
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
+    ]
 };

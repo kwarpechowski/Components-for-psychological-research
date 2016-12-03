@@ -23,28 +23,23 @@ export class Drawer {
 
       let container = document.getElementById(this.config.element);
       container.setAttribute("class", "gew-instance")
-      this.svg = DrawHelper.createElement("svg");
-      this.svg.setAttribute("class", "plutchik");
-      this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-      this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
-      this.svg.setAttribute("version", "1.1");
-      this.svg.setAttribute("viewBox", "0 0 500 500");
+      this.svg = DrawHelper.createElement("svg", {
+        class: "plutchik",
+          xmlns: "http://www.w3.org/2000/svg",
+          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+          version: "1.1",
+          viewBox: "0 0 500 500"
+      });
         this.defs = DrawHelper.createElement("defs");
       this.svg.appendChild(this.defs);
       container.appendChild(this.svg);
     }
 
-    createPath(i: number, p1: Point, p2: Point, config: Array<number>): string {
-      let a: Point;
-      let b: Point;
+    static createPath(i: number, p1: Point, p2: Point, config: Array<number>): string {
       if (config.indexOf(i) >= 0) {
-        a = p1;
-        b = p2;
-      } else {
-        a = p2;
-        b = p1;
+          return `M ${p1} L ${p2}`
       }
-      return `M ${a} L ${b}`;
+        return `M ${p2} L ${p1}`
     }
 
     render(elements: Array<Element>) {
@@ -58,7 +53,7 @@ export class Drawer {
       });
     }
 
-    getPosition(index: number, max: number, move: number): number {
+    static getPosition(index: number, max: number, move: number = 0): number {
       if (!move) {
         move = 0;
       }
@@ -66,33 +61,38 @@ export class Drawer {
       return ((90 / cw) * (index - cw - 0.45) - move) * Math.PI / 180;
     }
 
-    createCoords(r: number, max: number, move: number): Array<Point> {
+    createCoords(r: number, max: number, move?: number): Array<Point> {
         let tab = new Array<Point>();
 
         for (let i = 1; i <= max; i++) {
-            let position = this.getPosition(i, max, move);
+            let position = Drawer.getPosition(i, max, move);
             tab.push(new Point(
-              this.centerPoint.getX() + Math.cos(position) * r,
-              this.centerPoint.getY() + Math.sin(position) * r,
+              this.centerPoint.x + Math.cos(position) * r,
+              this.centerPoint.y + Math.sin(position) * r,
             ));
         }
 
         return tab;
     }
 
-    runDefault(): void {
+    private getLines(nums: Array<number>): Array<Line> {
         let labels = this.config.getLabels();
-      let R = new Array<Line>();
-      R.push(new Line(100, labels[0], 0));
-      R.push(new Line(156, labels[1], 1));
-      R.push(new Line(250, labels[2], 2));
-      R.push(new Line(250, labels[3], 3));
+        let arr = new Array<Line>();
+        nums.forEach((num, index) => {
+            arr.push(new Line(num, labels[index], index));
+        });
+        return arr;
+    }
 
-      let positions = this.createCoords(R[0].getR(), 8, undefined);
-      let positionsPart = this.createCoords(R[0].getR(), 8, 22.5);
-      let positionsTwo = this.createCoords(R[1].getR(), 16, undefined);
-      let positionsTwoPart = this.createCoords(R[1].getR(), 16, 11.5);
-      let positionsFour = this.createCoords(R[3].getR(), 16, 12);
+    private runDefault() {
+        let R = this.getLines([80, 144, 250, 250]);
+        let textMoveElements = [0, 1, 2, 3];
+
+        let positions = this.createCoords(R[0].r, 8);
+        let positionsPart = this.createCoords(R[0].r, 8, 22.5);
+        let positionsTwo = this.createCoords(R[1].r, 16);
+        let positionsTwoPart = this.createCoords(R[1].r, 16, 11.5);
+        let positionsFour = this.createCoords(R[3].r, 16, 12);
 
       for (let i = 0; i < 8; i++) {
 
@@ -106,7 +106,7 @@ export class Drawer {
           path: `M ${this.centerPoint}
            L ${positions[index]}
            A ${R[0]} 0 0,1 ${positions[i]}`,
-          textPath: this.createPath(i, this.centerPoint, positionsPart[i], [0, 1, 2, 3])
+          textPath: Drawer.createPath(i, this.centerPoint, positionsPart[i], textMoveElements)
         }));
 
         elements.push(this.createElement({
@@ -117,7 +117,7 @@ export class Drawer {
            A ${R[1]} 0 0,0 ${positionsTwo[index * 2 + 1]}
            A 450 450 1 0,0 ${positions[index]}
            A ${R[0]} 1 0,1 ${positions[i]}`,
-          textPath: this.createPath(i, positionsPart[i], positionsTwoPart[i * 2], [0, 1, 2, 3])
+          textPath: Drawer.createPath(i, positionsPart[i], positionsTwoPart[i * 2], textMoveElements)
         }));
 
         index = (i === 0 ?  15 : i * 2 - 1);
@@ -129,7 +129,7 @@ export class Drawer {
            A 450 450 0 0,0 ${positionsFour[i * 2]}
            A 450 450 0 0,0 ${positionsTwo[index]}
            A ${R[1]} 1 0,1 ${positionsTwo[i * 2]}`,
-          textPath: this.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2], [0, 1, 2, 3])
+          textPath: Drawer.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2], textMoveElements)
         }));
 
         index = (i === 7 ?  0 : i * 2 + 2);
@@ -140,29 +140,26 @@ export class Drawer {
            A ${this.centerPoint} 0 0,1 ${positionsFour[index]}
            A 450 450 1 0,0 ${positions[i]}
            A 450 450 0 0,0 ${positionsFour[i * 2]}`,
-          textPath: this.createPath(i, positions[i], positionsFour[i * 2 + 1], [0, 1, 2, 3])
+          textPath: Drawer.createPath(i, positions[i], positionsFour[i * 2 + 1], textMoveElements)
         }));
 
         this.render(elements);
       }
     }
 
-    runMobile(): void {
-      let R = new Array<Line>();
-      R.push(new Line(50, this.config.labels[0], 0));
-      R.push(new Line(110, this.config.labels[1], 1));
-      R.push(new Line(175, this.config.labels[2], 2));
-      R.push(new Line(250, this.config.labels[3], 3));
+    private runMobile() {
+        let R = this.getLines([50, 110, 175, 250]);
+        let textMoveElements = [0, 1, 6, 7];
 
-      let positions = this.createCoords(R[0].getR(), 8, undefined);
-      let positionsPart = this.createCoords((R[0].getR() + R[1].getR()) / 2, 8, undefined);
-      let positionsTwo = this.createCoords(R[1].getR(), 8, undefined);
-      let positionsPartTwo = this.createCoords((R[1].getR() + R[2].getR()) / 2, 8, undefined);
-      let positionsThree = this.createCoords(R[2].getR(), 8, undefined);
-      let positionsPartThree = this.createCoords((R[2].getR() + R[3].getR()) / 2, 8, undefined);
-      let positionsPartFour = this.createCoords((R[2].getR() + R[3].getR()) / 2 + 10, 8, 26);
-      let positionsPartFourP = this.createCoords((R[2].getR() + R[3].getR()) / 2 + 10, 8, 20);
-      let positionsFour = this.createCoords(R[3].getR(), 8, 23);
+      let positions = this.createCoords(R[0].r, 8);
+      let positionsPart = this.createCoords((R[0].r + R[1].r) / 2, 8);
+      let positionsTwo = this.createCoords(R[1].r, 8);
+      let positionsPartTwo = this.createCoords((R[1].r + R[2].r) / 2, 8);
+      let positionsThree = this.createCoords(R[2].r, 8);
+      let positionsPartThree = this.createCoords((R[2].r + R[3].r) / 2, 8);
+      let positionsPartFour = this.createCoords((R[2].r + R[3].r) / 2 + 10, 8, 26);
+      let positionsPartFourP = this.createCoords((R[2].r + R[3].r) / 2 + 10, 8, 20);
+      let positionsFour = this.createCoords(R[3].r, 8, 23);
 
       for (let i = 0; i < 8; i++) {
         let index = (i === 0 ?  8 - 1 : i - 1);
@@ -177,7 +174,7 @@ export class Drawer {
             L ${positions[i]}
             A ${R[0]} 1 0,0  ${positions[index]}
             L ${positionsTwo[index]}`,
-          textPath: this.createPath(i, positionsPart[index], positionsPart[i], [0, 1, 6, 7])
+          textPath: Drawer.createPath(i, positionsPart[index], positionsPart[i], textMoveElements)
         }));
 
         elements.push(this.createElement({
@@ -188,7 +185,7 @@ export class Drawer {
                L ${positionsTwo[i]}
                A ${R[1]} 1 0,0 ${positionsTwo[index]}
                L ${positionsThree[index]}`,
-            textPath: this.createPath(i, positionsPartTwo[index], positionsPartTwo[i], [0, 1, 6, 7])
+            textPath: Drawer.createPath(i, positionsPartTwo[index], positionsPartTwo[i], textMoveElements)
         }));
 
       elements.push(this.createElement({
@@ -198,7 +195,7 @@ export class Drawer {
             A ${R[3]} 0 0,1 ${positionsThree[i]}
             A ${R[3]} 1 0,0 ${positionsFour[i]}
             A ${R[3]} 1 0,0 ${positionsThree[index]}`,
-          textPath: this.createPath(i, positionsPartThree[index], positionsPartThree[i], [0, 1, 6, 7])
+          textPath: Drawer.createPath(i, positionsPartThree[index], positionsPartThree[i], textMoveElements)
       }));
 
       index = (i === 7 ?  0 : i + 1);
@@ -210,14 +207,14 @@ export class Drawer {
             A ${R[3]} 0 0,1 ${positionsFour[index]}
             A ${R[3]} 1 0,0 ${positionsThree[i]}
             A ${R[3]} 1 0,0 ${positionsFour[i]}`,
-          textPath: this.createPath(i, positionsPartFourP[i], positionsPartFour[index], [0, 1, 6, 7])
+          textPath: Drawer.createPath(i, positionsPartFourP[i], positionsPartFour[index], textMoveElements)
       }));
 
         this.render(elements);
       }
     }
     private createElement(opt: Option): Element {
-        let element = new Element(opt);
+        let element = new Element(opt, this);
         element.changeObserver.subscribe(() => {
            this.changeObserver.next(this.getData());
         });
@@ -227,20 +224,25 @@ export class Drawer {
 
     getData(): Object {
         let data = {};
-        this.elements.forEach((element: Element) => {
+        this.elements.forEach((element) => {
            data[element.txt] = element.isActive;
         });
         return data;
     }
 
-    run(): void {
+    ifCanChange(): boolean {
+        return this.elements.filter((element) => {
+            return element.isActive;
+        }).length < this.config.maxElements;
+    }
+
+    run() {
         if (this.config.isMobile) {
             this.runMobile();
         } else {
             this.runDefault();
         }
     }
-
 
     elementClick(): any {
         return this.changeObserver;

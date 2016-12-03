@@ -7,6 +7,7 @@ export class Config {
     labels: Array<Array<string>> = [];
     checkedElements: Array<string> = [];
     lang: string = "en";
+    maxElements: number = 32;
 
     constructor (config: ConfigInterface) {
         Object.keys(config).forEach((key) => {

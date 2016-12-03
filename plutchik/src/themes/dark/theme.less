@@ -14,17 +14,16 @@
   .colorize-loop(@i + 1);
 }
 
-
-svg.plutchik path {
-  stroke: #000;
-  stroke-width: 2;
-  stroke-linejoin: round;
-}
-
 svg.plutchik  {
 
   a {
     .colorize-loop(0);
+
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
 
     &:hover path {
       color: #fff;
