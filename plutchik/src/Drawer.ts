@@ -24,12 +24,12 @@ export class Drawer {
       let container = document.getElementById(this.config.element);
       container.setAttribute("class", "gew-instance")
       this.svg = DrawHelper.createElement("svg");
-        this.svg.setAttribute("class", "plutchik");
+      this.svg.setAttribute("class", "plutchik");
       this.svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       this.svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
       this.svg.setAttribute("version", "1.1");
       this.svg.setAttribute("viewBox", "0 0 500 500");
-          this.defs = DrawHelper.createElement("defs");
+        this.defs = DrawHelper.createElement("defs");
       this.svg.appendChild(this.defs);
       container.appendChild(this.svg);
     }
