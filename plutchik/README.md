@@ -24,8 +24,8 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 | `element`   | string  | #drawer | |
 | `isMobile`   | boolean  | false | |
 | `lang` | string | en | available: 'en', 'pl'|
-| `labels`    | Array <Array<string>>  | [] |  [example](#labels) |
-| `checkedElements` | Array <string>  | [] | |
+| `labels`    | ``Array<Array<string>> ``  | [] |  [example](#labels) |
+| `checkedElements` |  ``Array <string> ``  | [] | |
 | `maxElements`| number | 32 | |
 
 
