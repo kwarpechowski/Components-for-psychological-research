@@ -68,7 +68,7 @@ export class Drawer {
     return this.config.R + this.maxTextWidth + 50 + this.countLineSize();
   }
 
-  private drawAxis(): void {
+  private drawAxis() {
     if (this.config.showLines) {
       let size = this.getRealR();
       this.drawLine(size * -1, 0, this.config.R * -1, 0);
@@ -89,7 +89,7 @@ export class Drawer {
     this.mainElement.appendChild(line);
   }
 
-  private drawHeaders(): void {
+  private drawHeaders() {
     // TODO KW podzielic na dwie metody
     if (this.config.showHeader) {
       let headerTop = DrawHelper.drawHeader(this.config.R / 2 * -1, this.config.headerTop);
@@ -111,7 +111,7 @@ export class Drawer {
     }
   }
 
-  private drawBorder(): void {
+  private drawBorder()  {
     if (this.config.showBorder) {
       // let outsideBorder = DrawHelper.drawBorder(this.getRealR());
       // outsideBorder.setAttribute("class", this.config.classes.lineBorder);
@@ -123,7 +123,7 @@ export class Drawer {
     }
   }
 
-  private setPosition(): void {
+  private setPosition() {
     let halfWidth = this.getRealR();
     let width = halfWidth * 2;
 
@@ -131,7 +131,7 @@ export class Drawer {
     this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
   }
 
-  run(): void {
+  run() {
 
     this.gc.create();
 

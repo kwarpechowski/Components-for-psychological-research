@@ -79,7 +79,7 @@ export class Group implements ElementInterface {
     this.text = new Text(this.config.labels[this.index - 1], this);
   }
 
-  setActive(element: Element): void {
+  setActive(element: Element) {
     if (this.activeElement) {
       this.changed = true;
     }
@@ -87,20 +87,20 @@ export class Group implements ElementInterface {
     this.changeObserver.next(this);
   }
 
-  setActiveIndex(index: number): void {
+  setActiveIndex(index: number) {
     this.activeElement = this.elements[index];
     this.changed = true;
     this.enable();
   }
 
-  unsetActive(): void {
+  unsetActive() {
     if (this.activeElement) {
       this.disable();
       this.changeObserver.next(this);
     }
   }
 
-  public enable(): void {
+  public enable() {
     if (this.activeElement) {
       this.elements.forEach(c => {
         c.disable();

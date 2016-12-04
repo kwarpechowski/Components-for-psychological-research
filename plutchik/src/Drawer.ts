@@ -21,8 +21,8 @@ export class Drawer {
 
       this.centerPoint = new Point(250, 250);
 
-      let container = document.getElementById(this.config.element);
-      container.setAttribute("class", "gew-instance")
+      let container = document.querySelector(this.config.element);
+      container.setAttribute("class", "plutchik-instance");
       this.svg = DrawHelper.createElement("svg", {
         class: "plutchik",
           xmlns: "http://www.w3.org/2000/svg",
@@ -33,13 +33,6 @@ export class Drawer {
         this.defs = DrawHelper.createElement("defs");
       this.svg.appendChild(this.defs);
       container.appendChild(this.svg);
-    }
-
-    static createPath(i: number, p1: Point, p2: Point, config: Array<number>): string {
-      if (config.indexOf(i) >= 0) {
-          return `M ${p1} L ${p2}`
-      }
-        return `M ${p2} L ${p1}`
     }
 
     render(elements: Array<Element>) {
@@ -53,19 +46,11 @@ export class Drawer {
       });
     }
 
-    static getPosition(index: number, max: number, move: number = 0): number {
-      if (!move) {
-        move = 0;
-      }
-      let cw = max / 4;
-      return ((90 / cw) * (index - cw - 0.45) - move) * Math.PI / 180;
-    }
-
     createCoords(r: number, max: number, move?: number): Array<Point> {
         let tab = new Array<Point>();
 
         for (let i = 1; i <= max; i++) {
-            let position = Drawer.getPosition(i, max, move);
+            let position = DrawHelper.getPosition(i, max, move);
             tab.push(new Point(
               this.centerPoint.x + Math.cos(position) * r,
               this.centerPoint.y + Math.sin(position) * r,
@@ -100,24 +85,27 @@ export class Drawer {
 
         let elements = new Array<Element>();
 
+
+          let roundPoint = new Point(450, 450);
+
         elements.push(this.createElement({
           i: i,
           line: R[0],
           path: `M ${this.centerPoint}
            L ${positions[index]}
            A ${R[0]} 0 0,1 ${positions[i]}`,
-          textPath: Drawer.createPath(i, this.centerPoint, positionsPart[i], textMoveElements)
+          textPath: DrawHelper.createPath(i, this.centerPoint, positionsPart[i], textMoveElements)
         }));
 
         elements.push(this.createElement({
           i: i,
           line: R[1],
           path: `M ${positions[i]}
-           A 450 450 0 0,0 ${positionsTwo[i * 2]}
+           A ${roundPoint} 0 0,0 ${positionsTwo[i * 2]}
            A ${R[1]} 0 0,0 ${positionsTwo[index * 2 + 1]}
-           A 450 450 1 0,0 ${positions[index]}
+           A ${roundPoint} 1 0,0 ${positions[index]}
            A ${R[0]} 1 0,1 ${positions[i]}`,
-          textPath: Drawer.createPath(i, positionsPart[i], positionsTwoPart[i * 2], textMoveElements)
+          textPath: DrawHelper.createPath(i, positionsPart[i], positionsTwoPart[i * 2], textMoveElements)
         }));
 
         index = (i === 0 ?  15 : i * 2 - 1);
@@ -126,10 +114,10 @@ export class Drawer {
           i: i,
           line: R[2],
           path: `M ${positionsTwo[i * 2]}
-           A 450 450 0 0,0 ${positionsFour[i * 2]}
-           A 450 450 0 0,0 ${positionsTwo[index]}
+           A ${roundPoint} 0 0,0 ${positionsFour[i * 2]}
+           A ${roundPoint} 0 0,0 ${positionsTwo[index]}
            A ${R[1]} 1 0,1 ${positionsTwo[i * 2]}`,
-          textPath: Drawer.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2], textMoveElements)
+          textPath: DrawHelper.createPath(i, positionsTwoPart[i * 2], positionsFour[i * 2], textMoveElements)
         }));
 
         index = (i === 7 ?  0 : i * 2 + 2);
@@ -138,9 +126,9 @@ export class Drawer {
           line: R[3],
           path: `M ${positionsFour[i * 2]}
            A ${this.centerPoint} 0 0,1 ${positionsFour[index]}
-           A 450 450 1 0,0 ${positions[i]}
-           A 450 450 0 0,0 ${positionsFour[i * 2]}`,
-          textPath: Drawer.createPath(i, positions[i], positionsFour[i * 2 + 1], textMoveElements)
+           A ${roundPoint} 1 0,0 ${positions[i]}
+           A ${roundPoint} 0 0,0 ${positionsFour[i * 2]}`,
+          textPath: DrawHelper.createPath(i, positions[i], positionsFour[i * 2 + 1], textMoveElements)
         }));
 
         this.render(elements);
@@ -174,7 +162,7 @@ export class Drawer {
             L ${positions[i]}
             A ${R[0]} 1 0,0  ${positions[index]}
             L ${positionsTwo[index]}`,
-          textPath: Drawer.createPath(i, positionsPart[index], positionsPart[i], textMoveElements)
+          textPath: DrawHelper.createPath(i, positionsPart[index], positionsPart[i], textMoveElements)
         }));
 
         elements.push(this.createElement({
@@ -185,7 +173,7 @@ export class Drawer {
                L ${positionsTwo[i]}
                A ${R[1]} 1 0,0 ${positionsTwo[index]}
                L ${positionsThree[index]}`,
-            textPath: Drawer.createPath(i, positionsPartTwo[index], positionsPartTwo[i], textMoveElements)
+            textPath: DrawHelper.createPath(i, positionsPartTwo[index], positionsPartTwo[i], textMoveElements)
         }));
 
       elements.push(this.createElement({
@@ -195,7 +183,7 @@ export class Drawer {
             A ${R[3]} 0 0,1 ${positionsThree[i]}
             A ${R[3]} 1 0,0 ${positionsFour[i]}
             A ${R[3]} 1 0,0 ${positionsThree[index]}`,
-          textPath: Drawer.createPath(i, positionsPartThree[index], positionsPartThree[i], textMoveElements)
+          textPath: DrawHelper.createPath(i, positionsPartThree[index], positionsPartThree[i], textMoveElements)
       }));
 
       index = (i === 7 ?  0 : i + 1);
@@ -207,7 +195,7 @@ export class Drawer {
             A ${R[3]} 0 0,1 ${positionsFour[index]}
             A ${R[3]} 1 0,0 ${positionsThree[i]}
             A ${R[3]} 1 0,0 ${positionsFour[i]}`,
-          textPath: Drawer.createPath(i, positionsPartFourP[i], positionsPartFour[index], textMoveElements)
+          textPath: DrawHelper.createPath(i, positionsPartFourP[i], positionsPartFour[index], textMoveElements)
       }));
 
         this.render(elements);

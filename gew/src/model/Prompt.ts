@@ -25,7 +25,7 @@ export class Prompt {
         this.bindCancelBtn();
     }
 
-    bindSaveBtn(): void {
+    bindSaveBtn() {
         let btn = this.el.querySelector(".save_btn");
 
         let source = Observable.fromEvent(btn, "click");
@@ -38,7 +38,7 @@ export class Prompt {
         });
     }
 
-    bindCancelBtn(): void {
+    bindCancelBtn() {
         let btn = this.el.querySelector(".cancel_btn");
 
         let source = Observable.fromEvent(btn, "click");
@@ -48,7 +48,7 @@ export class Prompt {
         });
     }
 
-    hide(): void {
+    hide() {
         if (this.isActive) {
             let classes = this.el.getAttribute("class");
             this.el.setAttribute("class", classes.replace(" active", ""));
@@ -56,7 +56,7 @@ export class Prompt {
         }
     }
 
-    show(): void {
+    show() {
         if (!this.isActive) {
             let classes = this.el.getAttribute("class");
             this.el.setAttribute("class", classes + " active");

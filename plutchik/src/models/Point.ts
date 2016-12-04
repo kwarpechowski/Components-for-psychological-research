@@ -7,7 +7,7 @@ export class Point {
     this.y = y;
   }
 
-  public toString = () : string => {
+  toString = () : string => {
     return `${this.x} ${this.y} `;
   }
 }

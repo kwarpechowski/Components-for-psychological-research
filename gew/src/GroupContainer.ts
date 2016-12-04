@@ -26,12 +26,12 @@ export class GroupContainer {
     return this.groupStatus.filter(g => g).length;
   }
 
-  private setResults(): void {
+  private setResults() {
     this.groupStatus = this.groups.map(group => group.getActiveElementIndex());
     this.changeObserver.next(this.groupStatus);
   }
 
-  clearAll(): void {
+  clearAll() {
     this.groups.forEach(g => g.disable());
     this.setResults();
   }

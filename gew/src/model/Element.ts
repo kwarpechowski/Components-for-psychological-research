@@ -24,10 +24,10 @@ export class Element implements ElementInterface {
     return `Element ${this.index}`;
   }
 
-  private bindEvents(): void {
+  private bindEvents() {
     let source = Observable.fromEvent(this.element, "click");
 
-    let subscription = source.subscribe(() => {
+    source.subscribe(() => {
       if (this.isActive) {
         this.group.unsetActive();
       } else {
@@ -56,7 +56,7 @@ export class Element implements ElementInterface {
     return this.element;
   }
 
-  enable(): void {
+  enable() {
     if (!this.isActive) {
       this.isActive = true;
       let classes = this.element.getAttribute("class");
@@ -69,7 +69,7 @@ export class Element implements ElementInterface {
     }
   }
 
-  disable(): void {
+  disable() {
     if (this.isActive) {
       this.isActive = false;
       let classes = this.element.getAttribute("class");

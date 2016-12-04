@@ -7,12 +7,12 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 
 ##Usage
 ```html
-<div id="drawing"></div>
+<div id="drawer"></div>
 
 <script type="text/javascript" src="dist/core-plutchik.js"></script>
 <script>
     Plutchik({
-      element: 'drawing'
+      element: '#drawer'
     });
 </script>
 ```
@@ -21,11 +21,11 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 
 | Name        | Type            | Default Value  | Description |
 | ----------- |:---------------:| --------------:|------------:|
-| `element`   | string  | drawer | |
+| `element`   | string  | #drawer | |
 | `isMobile`   | boolean  | false | |
-| `lang` | string | en | available: 'en'|
+| `lang` | string | en | available: 'en', 'pl'|
 | `labels`    | Array <Array<string>>  | [] |  [example](#labels) |
-| `checkedElements`    | Array <string>  | [] | |
+| `checkedElements` | Array <string>  | [] | |
 | `maxElements`| number | 32 | |
 
 

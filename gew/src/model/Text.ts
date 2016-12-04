@@ -47,7 +47,7 @@ export class Text implements ElementInterface {
     return this.element;
   }
 
-  repaint(textSizer: Subject<number>): void {
+  repaint(textSizer: Subject<number>) {
     // TODO KW - przy muliinstacne będzie zle
     let el = document.getElementById("text_" + this.index);
     let size = el.getBoundingClientRect();

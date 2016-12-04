@@ -13,7 +13,7 @@ export class Line {
     return this.id;
   }
 
-  public toString = () : string => {
+  toString = () : string => {
     return `${this.r} ${this.r} `;
   }
 }
