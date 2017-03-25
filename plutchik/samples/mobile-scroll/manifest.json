@@ -1,8 +1,8 @@
 {
   "name": "Plutchik",
   "short_name": "Plutchik",
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "theme_color": "#ee6e73",
+  "background_color": "#ffffff",
   "display": "standalone",
   "icons": [
     {
