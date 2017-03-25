@@ -1,6 +1,14 @@
 .color-rows(@color, @i: 4, @m: 0%) when (@i >= 0){
+
+  @keyframes example {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
   .row_@{i} {
+    opacity: 0;
     fill: lighten(@color, @m);
+    animation: example 1s linear unit(@i*100,ms) 1 normal forwards;
 
     &.active {
       fill: darken(@color, 30%);

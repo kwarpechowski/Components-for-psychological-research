@@ -127,8 +127,7 @@ export class Drawer {
     let halfWidth = this.getRealR();
     let width = halfWidth * 2;
 
-    this.mainElement.setAttribute("style", `transform: translate(${halfWidth}px, ${halfWidth}px)`);
-    this.svg.setAttribute("viewBox", `0 0 ${width} ${width}`);
+    this.svg.setAttribute("viewBox", `-${halfWidth} -${halfWidth} ${width} ${width}`);
   }
 
   run() {
