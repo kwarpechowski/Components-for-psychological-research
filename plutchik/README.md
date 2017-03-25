@@ -1,11 +1,11 @@
 # Plutchik Emotion Wheel
 
-##Examples
+## Examples
 <a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchik/sample.png" width="500"/></a>
 
-All examples are localized in [this link](https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchik/samples?style=centerme)
+All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/plutchik/samples?style=centerme)
 
-##Usage
+## Usage
 ```html
 <div id="drawer"></div>
 
@@ -17,7 +17,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 </script>
 ```
 
-##Parameters
+## Parameters
 
 | Name        | Type            | Default Value  | Description |
 | ----------- |:---------------:| --------------:|------------:|
@@ -29,7 +29,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
 | `maxElements`| number | 32 | |
 
 
-###labels<a name="labels"></a>
+### labels<a name="labels"></a>
 ```javascript
 [
    ["ecstasy", "admiration", "terror", "amazement", "grief", "loathing", "rage", "vigilance"],
@@ -39,5 +39,5 @@ All examples are localized in [this link](https://kwarpechowski.github.io/The-Ge
  ];
 ```
 
-##API
-###elementClick
+## API
+### elementClick
