@@ -3,8 +3,7 @@
   "short_name": "Plutchik",
   "theme_color": "#2196f3",
   "background_color": "#2196f3",
-  "display": "minimal-ui",
-  "start_url": "index.html",
+  "display": "standalone",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",
