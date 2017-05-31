@@ -1,7 +1,7 @@
 # Plutchik Emotion Wheel
 
 ## Examples
-<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchik/sample.png" width="500"/></a>
+<a href="https://kwarpechowski.github.io/Components-for-psychological-research/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/plutchik/sample.png" width="500"/></a>
 
 All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/plutchik/samples?style=centerme)
 
