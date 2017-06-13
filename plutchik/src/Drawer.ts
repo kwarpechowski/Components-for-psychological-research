@@ -136,9 +136,8 @@ export class Drawer {
     }
 
     private runMobile() {
-        console.log('runmobile')
         let R = this.getLines([50, 110, 175, 250]);
-        let textMoveElements = [0,1,2,3,4,5,6,7];
+        let textMoveElements = [0,1,2,3,4,5,6,7,8];
 
       let positions = this.createCoords(R[0].r, 8);
       let positionsPart = this.createCoords((R[0].r + R[1].r) / 2, 8);
