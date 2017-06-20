@@ -19,7 +19,7 @@ export class Drawer {
 
   constructor(config: Config) {
     this.config = config;
-    let container = document.getElementById(this.config.element);
+    let container = document.querySelector(this.config.element);
     container.setAttribute("class", "gew-instance")
     // TODO KW przeniesc tworzenie pojedynczych elementow do jednego template
     this.svg = DrawHelper.createElement("svg");
