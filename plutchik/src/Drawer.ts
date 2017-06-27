@@ -215,7 +215,10 @@ export class Drawer {
         this.elements.forEach((element) => {
            data[element.txt] = element.isActive;
         });
-        return data;
+        return {
+            data: data,
+            element: this.svg
+        };
     }
 
     ifCanChange(): boolean {
