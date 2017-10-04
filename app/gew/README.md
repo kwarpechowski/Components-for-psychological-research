@@ -2,7 +2,7 @@
 ## Examples
 <a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/gew/samples/simple/index.html"><img src="https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/blob/master/gew/sample.png" width="500"/></a>
 
-All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/gew/samples/?style=centerme)
+All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/app/gew/samples/?style=centerme)
 
 ## Usage
 ```html
