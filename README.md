@@ -5,8 +5,8 @@
 [![devDependency Status](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel/dev-status.svg)](https://david-dm.org/kwarpechowski/The-Geneva-Emotion-Wheel#info=devDependencies)
 
 ## Compotents
-* [The Genewa Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/gew)
-* [Plutchik Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/plutchik)
+* [The Genewa Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/app/gew)
+* [Plutchik Emotion Wheel](https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/tree/master/app/plutchik)
 
 ## Build
 ```
