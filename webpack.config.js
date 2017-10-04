@@ -1,22 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
 module.exports = {
-    context: path.resolve(__dirname, './src'),
-    entry: {
-        'core-gew': '../gew/src/main.ts',
-        'core-gew-theme': '../gew/src/themes/core/theme.less',
-        'rainbow-gew': '../gew/src/themes/rainbow/theme.less',
-        'core-plutchik': '../plutchik/src/main.ts',
-        'core-plutchik-theme': '../plutchik/src/themes/core/theme.less',
-        'dark-plutchik': '../plutchik/src/themes/dark/theme.less'
-    },
+  context: `${__dirname}/app`,
+  entry: {
+      'core-gew': './gew/src/main.ts',
+      'core-gew-theme': './gew/src/themes/core/theme.less',
+      'rainbow-gew': './gew/src/themes/rainbow/theme.less',
+      'core-plutchik': './plutchik/src/main.ts',
+      'core-plutchik-theme': './plutchik/src/themes/core/theme.less',
+      'dark-plutchik': './plutchik/src/themes/dark/theme.less'
+  },
     output: {
-        path: './dist', // TODO KW MANY ENDPOINTS
-        filename: "[name].js"
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js'
     },
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
-        modules: ['node_modules', path.resolve(__dirname, 'core')]
+        modules: [
+          'node_modules',
+          path.resolve(__dirname, 'app')
+        ]
     },
 
     module: {
