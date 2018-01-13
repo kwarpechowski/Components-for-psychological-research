@@ -26,7 +26,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | `lang` | string | en | available: 'en', 'pl'|
 | `labels`    | ``Array<Array<string>> ``  | [] |  [example](#labels) |
 | `checkedElements` |  ``Array <string> ``  | [] | Array of checked elements|
-| `maxElements`| number | 32 | |
+| `maxElements`| number | 32 | Number of max checked elements |
 
 
 ### labels<a name="labels"></a>
