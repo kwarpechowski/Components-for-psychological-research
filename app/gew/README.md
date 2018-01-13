@@ -22,14 +22,14 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | ----------- |:---------------:| --------------:|------------:|
 | `R`         | number | 80 | |
 | `labels`    | Array <string>  | [click](#labels) | |
-| `element`   | string  | drawer | |
+| `element`   | string  | drawer | DOM reference for render component |
 | `showLines` | boolean | false | |
 | `showBorder` | boolean | true | |
-| `classes`   | Object  | [click](#classes) |CSS classes for custom styling|
 | `showHeader`| boolean | true | |
-| `headerTop`| string | No emotion | |
-| `headerBottom`| string | Other emotion | |
-| `maxElements`| number | 20 | |
+| `classes`   | Object  | [click](#classes) |CSS classes for custom styling|
+| `headerTop`| string | No emotion | Label for top part of white circle |
+| `headerBottom`| string | Other emotion |  Label for bottom part of white circle |
+| `maxElements`| number | 20 |  Number of max checked elements |
 | `checkedElements`| Array<number> | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
 
 ### labels<a name="labels"></a>
