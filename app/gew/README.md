@@ -1,6 +1,6 @@
 # The Geneva Emotion Wheel
 ## Examples
-<a href="https://kwarpechowski.github.io/The-Geneva-Emotion-Wheel/app/gew/samples/simple/index.html"><img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/app/gew/sample.png" width="500"/></a>
+<a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/gew/samples/simple/index.html"><img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/app/gew/sample.png" width="500"/></a>
 
 All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/app/gew/samples/?style=centerme)
 
