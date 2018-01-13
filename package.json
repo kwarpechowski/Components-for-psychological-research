@@ -1,22 +1,21 @@
 {
-  "name": "the-geneva-emotion-wheel",
+  "name": "Components-for-psychological-research",
   "version": "0.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "karma start karma.conf.js --single-run",
     "build": "webpack -p"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel.git"
+    "url": "git+https://github.com/kwarpechowski/Components-for-psychological-research.git"
   },
   "author": "Kamil Warpechowski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel/issues"
+    "url": "https://github.com/kwarpechowski/Components-for-psychological-research/issues"
   },
-  "homepage": "https://github.com/kwarpechowski/The-Geneva-Emotion-Wheel#readme",
+  "homepage": "https://github.com/kwarpechowski/Components-for-psychological-research#readme",
   "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.0.4",
@@ -25,12 +24,6 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.2.1",
     "css-loader": "^0.28.7",
-    "jasmine-core": "^2.5.2",
-    "karma": "^1.3.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-cli": "^1.0.1",
-    "karma-jasmine": "^1.0.2",
-    "karma-typescript": "^3.0.7",
     "less": "^2.7.1",
     "less-loader": "4.0.5",
     "rxjs": "^5.0.0-rc.1",
