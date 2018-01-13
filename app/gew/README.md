@@ -25,7 +25,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | `element`   | string  | drawer | |
 | `showLines` | boolean | false | |
 | `showBorder` | boolean | true | |
-| `classes`   | Object  | [click](#classes) ||
+| `classes`   | Object  | [click](#classes) |CSS classes for custom styling|
 | `showHeader`| boolean | true | |
 | `headerTop`| string | No emotion | |
 | `headerBottom`| string | Other emotion | |
