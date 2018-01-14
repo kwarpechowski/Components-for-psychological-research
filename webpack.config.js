@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+
 module.exports = {
   context: `${__dirname}/app`,
   entry: {
@@ -17,40 +18,41 @@ module.exports = {
     resolve: {
         extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
         modules: [
-          'node_modules',
+          path.join(__dirname, 'node_modules'),
           path.resolve(__dirname, 'app')
         ]
     },
 
     module: {
-        rules: [
+        loaders: [
             {
-                test: /\.ts(x?)$/,
+                test: /\.js$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader'
-                    },
-                    {
-                        loader: 'ts-loader'
-                    }
-                ]
-            }, {
+                loader: 'babel'
+            },
+            {
+                test: /\.ts?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            },
+            {
                 test: /\.ts$/,
                 enforce: 'pre',
                 loader: 'tslint-loader',
                 options: {
                     tsConfigFile: 'tslint.json'
                 }
-            }, {
-            test: /\.less$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "less-loader" // compiles Less to CSS
-            }]
-        }]
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: "style-loader" // creates style nodes from JS strings
+                }, {
+                    loader: "css-loader" // translates CSS into CommonJS
+                }, {
+                    loader: "less-loader" // compiles Less to CSS
+                }]
+            }
+        ],
     }
 };

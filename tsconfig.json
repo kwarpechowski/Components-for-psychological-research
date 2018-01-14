@@ -1,7 +1,6 @@
 {
     "files": [
-        "node_modules/@types/jasmine/index.d.ts",
-        "node_modules/rxjs/Rx.d.ts",
+      "node_modules/rxjs/Rx.d.ts",
       "app/gew/src/main.ts"
     ],
     "compilerOptions": {

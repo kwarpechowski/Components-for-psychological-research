@@ -10,6 +10,6 @@
 
 ## Build
 ```
-npm i webpack -g
+npm install
 npm run build
 ```
