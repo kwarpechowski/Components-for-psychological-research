@@ -2,7 +2,7 @@
 
 ## Examples
 <p align="center"> 
-<a href="https://kwarpechowski.github.io/Components-for-psychological-research/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/app/plutchik/sample.png" width="500"/></a>
+<a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/app/plutchik/sample.png" width="500"/></a>
 </p>
 
 All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/app/plutchik/samples/?style=centerme)
