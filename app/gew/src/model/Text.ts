@@ -79,7 +79,7 @@ export class Text implements ElementInterface {
               translate = "-100%,-50%";
               rotate = 180 + rotate;
           }
-      }else if (part === 2) {
+      } else if (part === 2) {
           rotate =  num * deg;
           translate = "0%,-50%";
           if (this.group.config.isMobile) {
@@ -87,10 +87,10 @@ export class Text implements ElementInterface {
               console.log(rotate);
               rotate = 180 + rotate;
           }
-      }else if (part === 3) {
+      } else if (part === 3) {
           rotate =  -(Math.abs(num - 5) * deg + deg);
           translate = "-100%,-50%";
-      }else if (part === 4) {
+      } else if (part === 4) {
           rotate =  num * 13;
           translate = `calc(-100% - ${deg}px),50%`;
       }
