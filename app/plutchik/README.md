@@ -26,9 +26,9 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | `element`   | string  | #drawer | DOM element for component rendering |
 | `maxElements`| number | 32 | Number of max checked elements |
 | `checkedElements` |  ``Array <string> ``  | [] | Array of checked elements |
+| `labels`    | ``Array<Array<string>> ``  | [] |  [example](#labels) |
 | `isMobile`   | boolean  | false | Flag for render mobile version (without white spaces) |
 | `lang` | string | en | available: 'en', 'pl'|
-| `labels`    | ``Array<Array<string>> ``  | [] |  [example](#labels) |
 
 
 ### labels<a name="labels"></a>
