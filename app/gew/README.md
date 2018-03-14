@@ -23,9 +23,9 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 
 | Name        | Type            | Default Value  | Description |
 | ----------- |:---------------:| --------------:|------------:|
+| `element`   | string  | drawer | DOM reference for render component |
 | `R`         | number | 80 | |
 | `labels`    | Array <string>  | [click](#labels) | |
-| `element`   | string  | drawer | DOM reference for render component |
 | `showLines` | boolean | false | |
 | `showBorder` | boolean | true | |
 | `showHeader`| boolean | true | |
