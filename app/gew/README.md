@@ -25,8 +25,8 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | ----------- |:---------------:| --------------:|------------:|
 | `element`   | string  | drawer | DOM reference for render component |
 | `maxElements`| number | 20 |  Number of max checked elements |
-| `checkedElements`| Array<number> | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
-| `labels`    | Array <string>  | [click](#labels) | |
+| `checkedElements`| ``Array<number>`` | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
+| `labels`    | ``Array <string>``  | [click](#labels) | |
 | `R`         | number | 80 | |
 | `showLines` | boolean | false | |
 | `showBorder` | boolean | true | |
