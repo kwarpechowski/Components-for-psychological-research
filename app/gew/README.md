@@ -25,6 +25,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | ----------- |:---------------:| --------------:|------------:|
 | `element`   | string  | drawer | DOM reference for render component |
 | `maxElements`| number | 20 |  Number of max checked elements |
+| `checkedElements`| Array<number> | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
 | `R`         | number | 80 | |
 | `labels`    | Array <string>  | [click](#labels) | |
 | `showLines` | boolean | false | |
@@ -33,7 +34,6 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 | `classes`   | Object  | [click](#classes) |CSS classes for custom styling|
 | `headerTop`| string | No emotion | Label for top part of white circle |
 | `headerBottom`| string | Other emotion |  Label for bottom part of white circle |
-| `checkedElements`| Array<number> | [] | Predefined selected indexes (example: [1,2,3,4,5] - defined first five lines |
 
 ### labels<a name="labels"></a>
 ```javascript
