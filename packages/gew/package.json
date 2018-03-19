@@ -1,0 +1,12 @@
+{
+  "name": "@psychological-components/gew",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@psychological-components/core": "^0.0.1"
+  }
+}
