@@ -2,11 +2,22 @@
   "name": "@psychological-components/plutchik",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
+  "scripts": {
+    "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/dark/theme.less lib/theme-dark.css"
+  },
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
-    "@psychological-components/core": "^0.0.1"
+    "@psychological-components/core": "^0.0.1",
+    "less": "^3.0.1",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "rxjs": "^5.5.7"
   }
 }

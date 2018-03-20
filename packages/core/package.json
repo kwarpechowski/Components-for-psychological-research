@@ -5,11 +5,5 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0",
-  "devDependencies": {
-    "less-loader": "^4.1.0",
-    "style-loader": "^0.20.3",
-    "ts-loader": "^4.1.0",
-    "webpack": "^4.1.1"
-  }
+  "license": "Apache-2.0"
 }

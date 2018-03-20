@@ -1,7 +1,7 @@
 import { Option }  from "./Option";
 import { Subject } from "rxjs/Subject";
 import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/fromEvent";
+import { fromEvent } from "rxjs/observable/fromEvent";
 import {Drawer} from "../Drawer";
 import {DrawHelper} from "../helpers/DrawHelper";
 
@@ -59,7 +59,7 @@ export class Element {
   }
 
   private bindEvents() {
-    let source = Observable.fromEvent(this.element, "click");
+    let source = fromEvent(this.element, "click");
 
     source.subscribe(() => {
       if (this.isActive) {
