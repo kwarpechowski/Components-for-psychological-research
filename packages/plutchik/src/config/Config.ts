@@ -1,15 +1,15 @@
-import {ConfigInterface} from "../interfaces/ConfigInterface";
 import languages from "./languages";
+import {PropertiesInterface} from "../interfaces/PropertiesInterface";
 
-export class Config {
+export class Config implements PropertiesInterface {
     element: string = "drawer";
+    lang: string = "en";
     isMobile: boolean = false;
     labels: Array<Array<string>> = [];
     checkedElements: Array<string> = [];
-    lang: string = "en";
     maxElements: number = 32;
 
-    constructor (config: ConfigInterface) {
+    constructor (config: PropertiesInterface) {
         Object.keys(config).forEach((key) => {
             this[key] = config[key];
         });
