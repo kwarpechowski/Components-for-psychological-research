@@ -1,19 +1,14 @@
 import { ClassesInterface } from "./ClassesInterface";
 
 export interface ConfigInterface {
-  /**
-   * Radius of the main wheel
-   */
-  R: number;
-  /**
-   * List of all labels
-   */
-  labels: Array<string>;
 
-  /**
-   * Id DOM element
-   */
   element: string;
+
+  maxElements: number;
+
+  R: number;
+
+  labels: Array<string>;
 
   showLines: boolean;
 
@@ -26,8 +21,6 @@ export interface ConfigInterface {
   headerTop: string;
 
   showHeader: boolean;
-
-  maxElements: number;
 
   checkedElements: Array<number>;
 }
