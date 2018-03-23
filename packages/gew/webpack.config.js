@@ -2,8 +2,8 @@ module.exports = {
     entry: './lib/index.js',
     output: {
         path: __dirname + "/umd",
-        filename: 'index.js',
+        filename: 'gew.js',
         libraryTarget: 'umd',
-        library: 'gew'
+        library: 'GEW'
     }
 };

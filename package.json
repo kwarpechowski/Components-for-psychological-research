@@ -1,5 +1,6 @@
 {
   "name": "psychological-components",
+  "private": true,
   "version": "0.0.4",
   "description": "",
   "repository": {
@@ -7,12 +8,15 @@
     "url": "git+https://github.com/kwarpechowski/Components-for-psychological-research.git"
   },
   "author": "Kamil Warpechowski",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/kwarpechowski/Components-for-psychological-research/issues"
   },
   "homepage": "https://github.com/kwarpechowski/Components-for-psychological-research#readme",
   "devDependencies": {
     "lerna": "^2.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

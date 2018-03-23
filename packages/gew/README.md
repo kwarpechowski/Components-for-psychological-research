@@ -14,7 +14,7 @@ All examples are localized in [this link](https://kwarpechowski.github.io/Compon
 <script type="text/javascript" src="dist/core-gew.js"></script>
 <script>
     GEW({
-      element: 'drawing'
+      element: '#drawing'
     });
 </script>
 ```
