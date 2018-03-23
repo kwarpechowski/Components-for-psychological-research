@@ -1,0 +1,6 @@
+node_modules
+.gitignore
+lib
+yarn-lock
+yarn-error.log
+umd

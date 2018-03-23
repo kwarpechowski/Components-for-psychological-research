@@ -1,0 +1,26 @@
+{
+  "name": "@psychological-components/gew",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "scripts": {
+    "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/rainbow/theme.less lib/theme-rainbow.css && webpack -p"
+  },
+  "files": [
+    "lib",
+    "umd"
+  ],
+  "devDependencies": {
+    "@psychological-components/core": "^0.0.1",
+    "less": "^3.0.1",
+    "typescript": "^2.7.2",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
+  },
+  "dependencies": {
+    "rxjs": "^5.5.7"
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "files": [
+      "src/index.ts"
+    ],
+    "compilerOptions": {
+        "moduleResolution": "node",
+        "target": "es6",
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "baseUrl": "./src/",
+        "typeRoots": [
+            "typings"
+        ],
+        "outDir": "./lib",
+        "types": [],
+        "noEmit": false,
+        "forceConsistentCasingInFileNames": true,
+        "suppressImplicitAnyIndexErrors": true
+    }
+}
