@@ -1,7 +1,7 @@
 {
   "name": "@psychological-components/gew",
   "version": "0.1.10",
-  "description": "",
+  "description": "The Geneva Emotion Wheel implementation in JavaScript",
   "main": "lib/index.js",
   "keywords": [],
   "author": "",

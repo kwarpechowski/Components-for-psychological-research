@@ -1,7 +1,7 @@
 {
   "name": "@psychological-components/plutchik",
   "version": "0.1.11",
-  "description": "",
+  "description": "The Plutchik Emotion Wheel implementation in JavaScript",
   "main": "lib/index.js",
   "keywords": [],
   "author": "Kamil Warpechowski",
