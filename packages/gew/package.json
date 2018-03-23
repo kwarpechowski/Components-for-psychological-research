@@ -1,11 +1,11 @@
 {
   "name": "@psychological-components/gew",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "",
   "main": "lib/index.js",
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/rainbow/theme.less lib/theme-rainbow.css && webpack -p"
   },
@@ -14,7 +14,7 @@
     "umd"
   ],
   "devDependencies": {
-    "@psychological-components/core": "^0.1.2",
+    "@psychological-components/core": "^0.1.4",
     "less": "^3.0.1",
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",

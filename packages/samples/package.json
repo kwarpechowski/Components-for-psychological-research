@@ -1,18 +1,18 @@
 {
   "name": "@psychological-components/samples",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "prepublish": "webpack -p",
     "build": "webpack -p"
   },
   "dependencies": {
-    "@psychological-components/gew": "^0.1.3",
-    "@psychological-components/plutchik": "^0.1.2"
+    "@psychological-components/gew": "^0.1.4",
+    "@psychological-components/plutchik": "^0.1.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",

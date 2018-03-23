@@ -1,6 +1,6 @@
 {
   "name": "@psychological-components/plutchik",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "",
   "main": "lib/index.js",
   "keywords": [],
@@ -13,7 +13,7 @@
     "url": "https://github.com/kwarpechowski/Components-for-psychological-research/issues"
   },
   "homepage": "https://github.com/kwarpechowski/Components-for-psychological-research#readme",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "scripts": {
     "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/dark/theme.less lib/theme-dark.css && webpack -p"
   },
@@ -22,7 +22,7 @@
     "umd"
   ],
   "devDependencies": {
-    "@psychological-components/core": "^0.1.2",
+    "@psychological-components/core": "^0.1.4",
     "less": "^3.0.1",
     "typescript": "^2.7.2",
     "typescript-bundle": "^0.8.9",

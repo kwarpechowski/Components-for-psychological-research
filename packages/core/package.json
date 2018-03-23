@@ -1,17 +1,10 @@
 {
   "name": "@psychological-components/core",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "",
   "main": "index.js",
   "keywords": [],
   "author": "Kamil Warpechowski",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kwarpechowski/Components-for-psychological-research.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kwarpechowski/Components-for-psychological-research/issues"
-  },
-  "homepage": "https://github.com/kwarpechowski/Components-for-psychological-research#readme",
-  "license": "Apache-2.0"
+  "repository": "https://github.com/kwarpechowski/Components-for-psychological-research/tree/master/packages/core",
+  "license": "MIT"
 }
