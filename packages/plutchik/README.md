@@ -5,12 +5,14 @@
 <a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/packages/plutchik/sample.png" width="500"/></a>
 </p>
 
-* https://codesandbox.io/s/ml6zw30ox - simple example written in ES6
+* [simple example written in ES6](https://codesandbox.io/s/ml6zw30ox)
+* [simple example written in ES5 - usage CDN](https://codesandbox.io/s/yv24vyl4rv)
+* [dark theme](https://codesandbox.io/s/vvz83o6j1l)
 
 ## Usage
 ```html
-<script type="text/javascript" src="https://unpkg.com/@psychological-components/plutchik@0.1.10/umd/plutchik.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/@psychological-components/plutchik@0.1.10/lib/theme-core.css">
+<script type="text/javascript" src="https://unpkg.com/@psychological-components/plutchik/umd/plutchik.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/@psychological-components/plutchik/lib/theme-core.css">
 <div id="drawer"></div>
 <script>
     Plutchik.default({
