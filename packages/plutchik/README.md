@@ -2,7 +2,7 @@
 
 ## Examples
 <p align="center"> 
-<a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/packages/plutchik/sample.png" width="500"/></a>
+<a href="https://yv24vyl4rv.codesandbox.io"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/packages/plutchik/sample.png" width="500"/></a>
 </p>
 
 * [simple example written in ES6](https://codesandbox.io/s/ml6zw30ox)
