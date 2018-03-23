@@ -1,6 +1,6 @@
 {
   "name": "@psychological-components/plutchik",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "",
   "main": "lib/index.js",
   "keywords": [],
@@ -22,7 +22,7 @@
     "umd"
   ],
   "devDependencies": {
-    "@psychological-components/core": "^0.1.9",
+    "@psychological-components/core": "^0.1.10",
     "less": "^3.0.1",
     "typescript": "^2.7.2",
     "typescript-bundle": "^0.8.9",
