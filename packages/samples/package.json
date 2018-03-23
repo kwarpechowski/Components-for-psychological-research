@@ -1,6 +1,6 @@
 {
   "name": "@psychological-components/samples",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "",
   "main": "index.js",
   "keywords": [],
@@ -11,8 +11,8 @@
     "build": "webpack -p"
   },
   "dependencies": {
-    "@psychological-components/gew": "^0.1.7",
-    "@psychological-components/plutchik": "^0.1.5"
+    "@psychological-components/gew": "^0.1.8",
+    "@psychological-components/plutchik": "^0.1.8"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.42",

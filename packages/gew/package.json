@@ -1,6 +1,6 @@
 {
   "name": "@psychological-components/gew",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "",
   "main": "lib/index.js",
   "keywords": [],
@@ -22,5 +22,8 @@
   },
   "dependencies": {
     "rxjs": "^5.5.7"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

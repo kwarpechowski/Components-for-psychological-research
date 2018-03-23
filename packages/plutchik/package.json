@@ -1,6 +1,6 @@
 {
   "name": "@psychological-components/plutchik",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "",
   "main": "lib/index.js",
   "keywords": [],
@@ -31,5 +31,8 @@
   },
   "dependencies": {
     "rxjs": "^5.5.7"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
