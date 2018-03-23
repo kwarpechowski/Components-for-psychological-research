@@ -5,17 +5,9 @@
   "main": "lib/index.js",
   "keywords": [],
   "author": "Kamil Warpechowski",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kwarpechowski/Components-for-psychological-research.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kwarpechowski/Components-for-psychological-research/issues"
-  },
-  "homepage": "https://github.com/kwarpechowski/Components-for-psychological-research#readme",
   "license": "MIT",
   "scripts": {
-    "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/dark/theme.less lib/theme-dark.css && webpack -p"
+    "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/dark/theme.less lib/theme-dark.css && webpack -p",
   },
   "files": [
     "lib",
