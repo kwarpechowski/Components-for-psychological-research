@@ -5,7 +5,6 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "target": "es6",
-        "declaration": true,
         "noImplicitAny": true,
         "strictNullChecks": false,
         "baseUrl": "./src/",

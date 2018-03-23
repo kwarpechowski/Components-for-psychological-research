@@ -55,7 +55,6 @@ export class Drawer {
     this.otherEmotion = new Prompt();
     this.otherEmotion.onSave.subscribe((val) => {
       this.gc.clearAll();
-      console.log("sub", val);
     });
     return this.otherEmotion.create();
   }

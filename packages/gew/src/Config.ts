@@ -1,6 +1,6 @@
 import { Line } from "./model/Line";
 import { ClassesInterface } from "./interfaces/ClassesInterface";
-import { ConfigInterface } from "./interfaces/ConfigInterface";
+import {PropertiesInterface} from "./interfaces/PropertiesInterface";
 
 export class Config {
   R: number = 80;
@@ -27,7 +27,7 @@ export class Config {
     "Irritation\nAnger"
   ];
 
-  element: string = "drawer";
+  element: string = "#drawer";
 
   showLines: boolean = false;
 
@@ -53,7 +53,7 @@ export class Config {
     circlePrefix: "row_"
   };
 
-  constructor (config: ConfigInterface) {
+  constructor (config: PropertiesInterface) {
     Object.keys(config).forEach((key) => {
       this[key] = config[key];
     });

@@ -1,12 +1,10 @@
-/// <reference path="../../../typings/index.d.ts" />`
 import { Config }  from "./Config";
-import { ConfigInterface } from "./interfaces/ConfigInterface";
 import { Drawer }  from "./Drawer";
+import {PropertiesInterface} from "./interfaces/PropertiesInterface";
 
-window.GEW = function (userConfig: ConfigInterface) {
+export default function(userConfig: PropertiesInterface) {
     let config = new Config(userConfig);
     let drawer = new Drawer(config);
     drawer.run();
     return drawer;
-};
-
+}
