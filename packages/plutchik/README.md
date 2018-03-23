@@ -5,6 +5,8 @@
 <a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/plutchik/samples/simple/index.html"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/packages/plutchik/sample.png" width="500"/></a>
 </p>
 
+* https://codesandbox.io/s/ml6zw30ox - simple example written in ES6
+
 ## Usage
 ```html
 <script type="text/javascript" src="https://unpkg.com/@psychological-components/plutchik@0.1.10/umd/plutchik.js"></script>
