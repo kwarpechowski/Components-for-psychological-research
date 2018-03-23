@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="https://unpkg.com/@psychological-components/plutchik@0.1.10/lib/theme-core.css">
 <div id="drawer"></div>
 <script>
-    Plutchik({
+    Plutchik.default({
       element: '#drawer'
     });
 </script>
