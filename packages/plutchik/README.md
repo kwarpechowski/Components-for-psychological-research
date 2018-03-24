@@ -11,6 +11,7 @@
 * [simple example written in ES6](https://codesandbox.io/s/ml6zw30ox)
 * [simple example written in ES5 - usage CDN](https://codesandbox.io/s/yv24vyl4rv)
 * [dark theme](https://codesandbox.io/s/vvz83o6j1l)
+* [events subscribe](https://codesandbox.io/s/k0v0qlmz5r)
 
 ## Usage
 ```html
