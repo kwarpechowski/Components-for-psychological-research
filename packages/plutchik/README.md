@@ -12,6 +12,7 @@
 * [simple example written in ES5 - usage CDN](https://codesandbox.io/s/yv24vyl4rv)
 * [dark theme](https://codesandbox.io/s/vvz83o6j1l)
 * [events subscribe](https://codesandbox.io/s/k0v0qlmz5r)
+* [custom labels](https://codesandbox.io/s/p6rwpk0rm)
 
 ## Usage
 ```html
