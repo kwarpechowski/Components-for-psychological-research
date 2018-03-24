@@ -1,4 +1,7 @@
 # The Geneva Emotion Wheel
+
+[![npm downloads](https://img.shields.io/npm/dm/@psychological-components/gew.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@psychological-components/gew)
+
 ## Examples
 <p align="center"> 
 <a href="https://kwarpechowski.github.io/Components-for-psychological-research/app/gew/samples/simple/index.html"><img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/app/gew/sample.png" width="500"/></a>
