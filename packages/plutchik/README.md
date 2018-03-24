@@ -1,5 +1,8 @@
 # Plutchik Emotion Wheel
 
+[![npm downloads](https://img.shields.io/npm/dt/@psychological-components/plutchik.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@psychological-components/plutchik)
+
+
 ## Examples
 <p align="center"> 
 <a href="https://yv24vyl4rv.codesandbox.io"><img src="https://github.com/kwarpechowski/Components-for-psychological-research/blob/master/packages/plutchik/sample.png" width="500"/></a>
@@ -8,6 +11,8 @@
 * [simple example written in ES6](https://codesandbox.io/s/ml6zw30ox)
 * [simple example written in ES5 - usage CDN](https://codesandbox.io/s/yv24vyl4rv)
 * [dark theme](https://codesandbox.io/s/vvz83o6j1l)
+* [events subscribe](https://codesandbox.io/s/k0v0qlmz5r)
+* [custom labels](https://codesandbox.io/s/p6rwpk0rm)
 
 ## Usage
 ```html
