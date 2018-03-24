@@ -7,9 +7,6 @@
 <img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/packages/gew/sample.png" width="500"/></a>
 </p>
 
-All examples are localized in [this link](https://kwarpechowski.github.io/Components-for-psychological-research/app/gew/samples/?style=centerme)
-
-
 ## Usage
 ```html
 <div id="drawing"></div>
