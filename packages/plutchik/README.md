@@ -13,6 +13,7 @@
 * [dark theme](https://codesandbox.io/s/vvz83o6j1l)
 * [events subscribe](https://codesandbox.io/s/k0v0qlmz5r)
 * [custom labels](https://codesandbox.io/s/p6rwpk0rm)
+* [mobile with touch events](https://codesandbox.io/s/ml6zw30ox)
 
 ## Usage
 ```html
