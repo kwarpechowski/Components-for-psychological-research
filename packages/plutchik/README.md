@@ -1,8 +1,5 @@
 # Plutchik Emotion Wheel
 
-[![npm downloads](https://img.shields.io/npm/dt/@psychological-components/plutchik.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@psychological-components/plutchik)
-
-
 ## Examples
 <p align="center"> 
 <a href="https://yv24vyl4rv.codesandbox.io"><img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/packages/plutchik/sample.png" width="500"/></a>
