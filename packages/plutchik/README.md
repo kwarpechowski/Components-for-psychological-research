@@ -8,7 +8,7 @@
 <a href="https://yv24vyl4rv.codesandbox.io"><img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/packages/plutchik/sample.png" width="500"/></a>
 </p>
 
-* [simple example written in ES6](https://codesandbox.io/s/ml6zw30ox)
+* [simple example written in ES6](https://codesandbox.io/s/yj74986mvx)
 * [simple example written in ES5 - usage CDN](https://codesandbox.io/s/yv24vyl4rv)
 * [dark theme](https://codesandbox.io/s/vvz83o6j1l)
 * [events subscribe](https://codesandbox.io/s/k0v0qlmz5r)
