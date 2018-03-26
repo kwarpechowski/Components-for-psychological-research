@@ -1,7 +1,5 @@
 # The Geneva Emotion Wheel
 
-[![npm downloads](https://img.shields.io/npm/dt/@psychological-components/gew.svg?style=flat-square)](http://npm-stat.com/charts.html?package=@psychological-components/gew)
-
 ## Examples
 <p align="center"> 
 <img src="https://raw.githubusercontent.com/kwarpechowski/Components-for-psychological-research/master/packages/gew/sample.png" width="500"/></a>
@@ -9,6 +7,7 @@
 
 * [simple example written in ES6](https://codesandbox.io/s/n568w5w2p4)
 * [simple example written in ES5 - usage CDN](https://codesandbox.io/s/mm9v4ww7zj)
+* [events subscribe](https://codesandbox.io/s/z783vv8lm)
 
 ## Usage
 ```html
