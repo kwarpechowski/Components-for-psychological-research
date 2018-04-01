@@ -9,4 +9,4 @@ cache:
 script: 
   - git checkout master
   - lerna bootstrap
-  - lerna publish --cd-version patch --force-publish=*
+  - lerna publish --cd-version patch --yes
