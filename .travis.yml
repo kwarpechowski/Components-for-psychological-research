@@ -3,6 +3,9 @@ node_js:
   - "9"
 before_script:
   - npm install -g lerna
+cache:
+  directories:
+    - $HOME/.npm
 script: 
   - lerna bootstrap
   - lerna publish --cd-version major
