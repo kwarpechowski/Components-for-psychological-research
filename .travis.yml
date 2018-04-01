@@ -7,5 +7,6 @@ cache:
   directories:
     - $HOME/.npm
 script: 
+  - git checkout master
   - lerna bootstrap
   - lerna publish --cd-version major
