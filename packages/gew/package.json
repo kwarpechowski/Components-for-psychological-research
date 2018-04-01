@@ -7,7 +7,7 @@
   "author": "",
   "license": "MIT",
   "scripts": {
-    "prepublish": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/rainbow/theme.less lib/theme-rainbow.css && webpack -p"
+    "prepare": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/rainbow/theme.less lib/theme-rainbow.css && webpack -p"
   },
   "files": [
     "lib",
