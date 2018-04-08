@@ -4,7 +4,7 @@
   "description": "The Geneva Emotion Wheel implementation in JavaScript",
   "main": "lib/index.js",
   "keywords": [],
-  "author": "",
+  "author": "Kamil Warpechowski",
   "license": "MIT",
   "scripts": {
     "prepare": "tsc && lessc src/themes/core/theme.less lib/theme-core.css && lessc src/themes/rainbow/theme.less lib/theme-rainbow.css && webpack -p"
