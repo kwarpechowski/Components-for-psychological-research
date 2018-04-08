@@ -8,7 +8,4 @@
   "author": "Kamil Warpechowski",
   "repository": "https://github.com/kwarpechowski/Components-for-psychological-research/tree/master/packages/core",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  }
 }
