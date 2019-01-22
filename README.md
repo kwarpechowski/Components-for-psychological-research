@@ -9,6 +9,6 @@
 * [Plutchik Emotion Wheel](https://github.com/kwarpechowski/Components-for-psychological-research/tree/master/packages/plutchik)
 
 ## Partners
-![Browserstack](browserstack.png)
+![Browserstack](browserstack-thanks-to.png)
 
 Thanks to BrowserStack for donating an Open Source license for this project to help us test the code and our technology across many browsers and platforms.
