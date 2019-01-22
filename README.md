@@ -10,4 +10,5 @@
 
 ## Partners
 [![Browserstack](browserstack-thanks-to.png)](https://www.browserstack.com/)
+
 Thanks to BrowserStack for donating an Open Source license for this project to help us test the code and our technology across many browsers and platforms.
