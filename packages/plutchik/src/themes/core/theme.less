@@ -1,29 +1,5 @@
 @import "../mixins.less";
 
-@s: 100%;
-@l: 55%;
-
-@n: 2;
-@x: 45;
-
-@s2: 100%;
-@l2: 70%;
-
-@s3: 100%;
-@l3: 80%;
-
-@l4: 10%;
-
-.colorize-loop (@i) when (@i < 8) {
-    @h: @n + (@x * @i);
-    .color-element(hsl(@h, @s, @l), 0, @i);
-    .color-element(hsl(@h, @s2, @l2), 1, @i);
-    .color-element(hsl(@h, @s3, @l3), 2, @i);
-    .color-element(lighten(average(hsl(@h, @s3, @l3), hsl(@n + (@x * (@i+1)), @s3, @l3)), @l4), 3, @i);
-
-    .colorize-loop(@i + 1);
-}
-
 svg.plutchik {
     width: 100%;
     height: 100%;
@@ -36,9 +12,53 @@ svg.plutchik {
     }
 
     a {
-        .colorize-loop(0);
+        &.p-0-0 path { fill: #ffcd1a; } // ecstasy
+        &.p-1-0 path { fill: #ffde66; } // joy
+        &.p-2-0 path { fill: #ffe999; } // serenity
 
+        &.p-3-0 path { fill: #f0f9c7; } // love
 
+        &.p-0-1 path { fill: #85ff1a; } // admiration
+        &.p-1-1 path { fill: #adff66; } // trust
+        &.p-2-1 path { fill: #c9ff99; } // acceptance
+
+        &.p-3-1 path { fill: #deffda; } // submission
+
+        &.p-0-2 path { fill: #1aff5b; } // terror
+        &.p-1-2 path { fill: #66ff91; } // fear
+        &.p-2-2 path { fill: #99ffb6; } // apprehension
+
+        &.p-3-2 path { fill: #cbfeec; } // awe
+
+        &.p-0-3 path { fill: #1af7ff; } // amazement
+        &.p-1-3 path { fill: #66faff; } // surprise
+        &.p-2-3 path { fill: #99fcff; } // distraction
+
+        &.p-3-3 path { fill: #cceaff; } // disapproval
+
+        &.p-0-4 path { fill: #1a4bff; } // grief
+        &.p-1-4 path { fill: #6687ff; } // sadness
+        &.p-2-4 path { fill: #99afff; } // pensiveness
+
+        &.p-3-4 path { fill: #ded7ff; } // emorse
+
+        &.p-0-5 path { fill: #941aff; } // loathing
+        &.p-1-5 path { fill: #b866ff; } // disgust
+        &.p-2-5 path { fill: #cf99ff; } // boredom
+
+        &.p-3-5 path { fill: #f2c6f7; } // contempt
+
+        &.p-0-6 path { fill: #ff211a; } // rage
+        &.p-1-6 path { fill: #ff6b66; } // anger
+        &.p-2-6 path { fill: #ff9c99; } // annoyance
+
+        &.p-3-6 path { fill: #ffdbce; } // aggressiveness
+
+        &.p-0-7 path { fill: #ff941a; } // vigilance
+        &.p-1-7 path { fill: #ffaa66; } // anticipation
+        &.p-2-7 path { fill: #ffc199; } // interest
+
+        &.p-3-7 path { fill: #ffeecc; } // optimistm
         &.active  {
             path {
                 fill: #000;
